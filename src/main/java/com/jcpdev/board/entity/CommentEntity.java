@@ -8,6 +8,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.jcpdev.board.model.Whiteboard;
+
 import lombok.Builder;
 import lombok.Data;
 import lombok.AllArgsConstructor;
@@ -32,7 +34,7 @@ public class CommentEntity {
 	@Column(nullable = false)
 	private String comment_content;
 	
-	@ManyToOne				
+	@ManyToOne(targetEntity = WhiteboardEntity.class)
 	private WhiteboardEntity whiteboard;
 
 }

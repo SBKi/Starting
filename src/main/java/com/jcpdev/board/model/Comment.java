@@ -1,9 +1,5 @@
 package com.jcpdev.board.model;
 
-import java.time.LocalDateTime;
-
-import javax.persistence.Column;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

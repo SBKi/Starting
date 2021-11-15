@@ -2,6 +2,8 @@ package com.jcpdev.board.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface CommentRepository extends JpaRepository<CommentRepository, Integer>{
+import com.jcpdev.board.entity.CommentEntity;
+
+public interface CommentRepository extends JpaRepository<CommentEntity, Integer>{
 
 }
