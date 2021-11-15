@@ -36,7 +36,7 @@ public class ClientEntity {
 	private String client_birth;
 	@Column(nullable = false)
 	private int client_tall;
-	@Column(nullable = false)
+	@Column(nullable = true)
 	private String client_img;
 	@Column(nullable = false)
 	private String client_instruction;
