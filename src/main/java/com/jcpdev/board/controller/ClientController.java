@@ -1,5 +1,8 @@
 package com.jcpdev.board.controller;
 
-public class ClientController {
+import org.springframework.stereotype.Controller;
 
+@Controller
+public class ClientController {
+	
 }
