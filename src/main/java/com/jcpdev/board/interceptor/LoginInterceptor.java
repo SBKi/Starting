@@ -6,7 +6,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.web.servlet.HandlerInterceptor;
 
-import com.jcpdev.board.model.Customer;
+import com.jcpdev.board.model.Client;
 
 public class LoginInterceptor implements HandlerInterceptor {
 
@@ -16,9 +16,9 @@ public class LoginInterceptor implements HandlerInterceptor {
 			throws Exception {
 	
 		HttpSession session = request.getSession();
-		Customer customer = (Customer) session.getAttribute("customer");
+		Client client = (Client) session.getAttribute("client");
 		
-		if(customer == null) {
+		if(client == null) {
   		response.sendRedirect(request.getContextPath() +"/login?alert=y");
 //		response.sendRedirect("login?alert=y");  //http://localhost:8080/board/community/login?alert=y  -> 오류
 			return false;		//handler 메소드로 제어(실행)가 이동되지 않습니다.
