@@ -1,6 +1,9 @@
 package com.jcpdev.board.controller;
 
+<<<<<<< HEAD
 import org.springframework.stereotype.Controller;
+=======
+>>>>>>> branch 'master' of https://github.com/Advensod-KBJ/TeamProject3.git
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

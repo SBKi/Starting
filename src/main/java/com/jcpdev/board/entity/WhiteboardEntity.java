@@ -14,6 +14,7 @@ import org.springframework.data.annotation.CreatedDate;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+<<<<<<< HEAD
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
@@ -51,4 +52,41 @@ public class WhiteboardEntity {
 	@Column(nullable = false)
 	private Integer whiteboard_like;
 
+=======
+import lombok.NoArgsConstructor;
+
+@Entity
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+@Data
+@Table(name="Whiteboard")
+public class WhiteboardEntity {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer whiteboard_no;
+	
+	@Column(nullable = false)
+	private String whiteboard_id;
+	@Column(nullable = false)
+	private String whiteboard_img1;
+
+	private String whiteboard_img2;
+	private String whiteboard_img3;
+	
+	@Column(nullable = false)
+	private String whiteboard_content;
+	
+	@CreatedDate
+	@Column(nullable = false)
+	private LocalDateTime whiteboard_date;
+	
+	@Column(nullable = false)
+	private Integer whiteboard_count;
+	@Column(nullable = false)
+	private Integer whiteboard_like;
+	
+	
+>>>>>>> branch 'master' of https://github.com/Advensod-KBJ/TeamProject3.git
 }

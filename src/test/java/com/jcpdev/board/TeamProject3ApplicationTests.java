@@ -24,7 +24,6 @@ class TeamProject3ApplicationTests {
 	@Autowired
 	WhiteboardServiceImpl serivce;
 
-	@Test
 	void contextLoads() {
 		Whiteboard board = new Whiteboard(0, "test", "11.png", null, null, "contex", null, 0, 0);
 		WhiteboardEntity entity = serivce.toEntity(board); 
