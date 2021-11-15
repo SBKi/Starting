@@ -41,7 +41,7 @@ public class WhiteboardEntity {
 	private String whiteboard_content;
 
 	@CreatedDate
-	@Column(updatable=false)
+	@Column(updatable = false)
 	private LocalDateTime whiteboard_date;
 
 	@Column(nullable = false)
