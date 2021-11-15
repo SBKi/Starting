@@ -3,11 +3,14 @@ package com.jcpdev.board.entity;
 import java.time.LocalDateTime;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EntityListeners;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -18,6 +21,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 @Data
+@EntityListeners(value = { AuditingEntityListener.class })
 @Table(name = "Whiteboard")
 public class WhiteboardEntity {
 
@@ -37,7 +41,7 @@ public class WhiteboardEntity {
 	private String whiteboard_content;
 
 	@CreatedDate
-	@Column(nullable = false)
+	@Column(updatable=false)
 	private LocalDateTime whiteboard_date;
 
 	@Column(nullable = false)
