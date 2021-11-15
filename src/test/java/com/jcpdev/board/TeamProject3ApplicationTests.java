@@ -18,7 +18,6 @@ class TeamProject3ApplicationTests {
 	@Autowired
 	ClientService serivce;
 
-	@Test
 	void contextLoads() {
 		Client client = new Client("test", "pasw", "email@tes.com", "test_name", "addr_test", "M", "2016-10-20", 175,
 				"asdfsdf.png", "asdfsf", "asdfasdf");
