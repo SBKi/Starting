@@ -31,8 +31,6 @@ public class WhiteboardEntity {
 	private Integer whiteboard_no;
 
 	@Column(nullable = false)
-	private String whiteboard_id;
-	@Column(nullable = false)
 	private String whiteboard_img1;
 
 	private String whiteboard_img2;
@@ -51,5 +49,5 @@ public class WhiteboardEntity {
 	private Integer whiteboard_like;
 
 	@ManyToOne(targetEntity = ClientEntity.class)
-	private ClientEntity clientEntity;
+	private ClientEntity whiteboard;
 }

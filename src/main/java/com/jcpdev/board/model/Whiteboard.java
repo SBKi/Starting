@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @Builder
 public class Whiteboard {
 	private int whiteboard_no;
-	private String whiteboard_id;
+	private String whiteboard_client_id;
 	private String whiteboard_img1;
 	private String whiteboard_img2;
 	private String whiteboard_img3;
