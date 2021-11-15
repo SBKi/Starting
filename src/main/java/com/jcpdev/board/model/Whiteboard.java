@@ -12,11 +12,6 @@ import lombok.NoArgsConstructor;
 @Data
 @Builder
 public class Whiteboard {
-<<<<<<< HEAD
-
-=======
-	
->>>>>>> branch 'master' of https://github.com/Advensod-KBJ/TeamProject3.git
 	private int whiteboard_no;
 	private String whiteboard_id;
 	private String whiteboard_img1;
