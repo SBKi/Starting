@@ -8,33 +8,31 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Getter;
+import lombok.Data;
+import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Getter
 @Builder
-@ToString
-@Table(name = "Report")
-public class ReportEntity {
-
+@Data
+@Table(name = "comment")
+public class CommentEntity {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int report_no;
-
-	@Column(nullable = false) // not null, uniqe값 설정
-	private String report_id;
+	private Integer comment_no;
+	
 	@Column(nullable = false)
-	private int reportboard_no;
+	private Integer commentboard_no;
 	@Column(nullable = false)
-	private String report_content;
+	private String comment_id;
+	@Column(nullable = false)
+	private String comment_content;
 	
 	@ManyToOne				
-	private ClientEntity client;
-	
+	private WhiteboardEntity whiteboard;
+
 }

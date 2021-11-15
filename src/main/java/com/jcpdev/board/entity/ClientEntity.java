@@ -3,7 +3,10 @@ package com.jcpdev.board.entity;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import com.jcpdev.board.model.Whiteboard;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -43,4 +46,5 @@ public class ClientEntity {
 	private String client_instruction;
 	@Column(nullable = false)
 	private String client_info;
+	
 }

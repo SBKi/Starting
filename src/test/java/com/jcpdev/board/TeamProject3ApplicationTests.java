@@ -4,25 +4,25 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.jcpdev.board.entity.ClientEntity;
-import com.jcpdev.board.model.Client;
-import com.jcpdev.board.repository.ClientRepository;
-import com.jcpdev.board.service.ClientService;
+import com.jcpdev.board.entity.WhiteboardEntity;
+import com.jcpdev.board.model.Whiteboard;
+import com.jcpdev.board.repository.WhiteboardRepository;
+import com.jcpdev.board.service.WhiteboardServiceImpl;
 
 @SpringBootTest
 class TeamProject3ApplicationTests {
 
 	@Autowired
-	ClientRepository repository;
+	WhiteboardRepository repository;
 
 	@Autowired
-	ClientService serivce;
-
+	WhiteboardServiceImpl serivce;
+	
+	@Test
 	void contextLoads() {
-		Client client = new Client("test", "pasw", "email@tes.com", "test_name", "addr_test", "M", "2016-10-20", 175,
-				"asdfsdf.png", "asdfsf", "asdfasdf");
-		ClientEntity entity = serivce.toEntity(client);
-		repository.save(entity);
+		Whiteboard board = new Whiteboard(0, "test", "11.png", null, null, "contex", null, 0, 0);
+		WhiteboardEntity entity = serivce.toEntity(board); 
+		System.out.println(repository.save(entity));
 
 	}
 
