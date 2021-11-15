@@ -22,8 +22,7 @@ public class ClientEntity {
 
 	@Id
 	private String client_id;
-
-	@Column(nullable = false) // not null, uniqe값 설정
+	@Column(nullable = false)
 	private String client_password;
 	@Column(nullable = false)
 	private String client_email;
@@ -37,7 +36,7 @@ public class ClientEntity {
 	private String client_birth;
 	@Column(nullable = false)
 	private int client_tall;
-	@Column(nullable = false)
+	@Column(nullable = true)
 	private String client_img;
 	@Column(nullable = false)
 	private String client_instruction;

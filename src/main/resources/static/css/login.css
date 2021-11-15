@@ -1,0 +1,245 @@
+@charset "UTF-8";
+
+/*폰트 */
+@FONT-FACE {
+   font-family: 'monhwa';
+   src: url("../font/monhwa.ttf");
+}
+* {
+   font-family: monhwa;
+}
+
+/*컨테이너  */
+body  {
+    background-color:#f7f7f7;
+}
+
+#login {
+    width:100%;
+    height:100%;
+}
+.header_title {
+    text-align: center;
+    font-size: 28px;
+    margin-bottom: 35px;
+}
+.container {
+    width:650px;
+    background-color:#ffffff;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    border:1px solid #e5e5e5;
+    margin:0 auto;
+    padding-left:80px;
+    padding-right:80px;
+    box-sizing: border-box;
+    padding-top:60px;
+    padding-bottom:60px;
+}
+
+/*로고 사진  */
+.instagram_logo {
+    margin-bottom: 25px;
+    margin-top:10px;
+    text-align:center;
+    border-radius: 6px;
+}
+.instagram_logo img { 
+	height: 90px;
+	border-radius: 6px;
+}
+
+
+/*입력창  */
+.input {
+    width:100%;
+    box-sizing: border-box;
+    height:50px;
+    border-radius: 3px;
+    border:1px solid #e1e1e1;
+    color:#333333;
+    font-size:14px;
+    padding-left:20px;
+    padding-right:20px;
+    margin-top:10px;
+    margin-bottom:5px;
+}
+
+.input1 {
+    width:49.5%;
+    box-sizing: border-box;
+    height:50px;
+    border-radius: 3px;
+    border:1px solid #e1e1e1;
+    color:#333333;
+    font-size:14px;
+    padding-left:20px;
+    padding-right:20px;
+    margin-top:10px;
+    margin-bottom:5px;
+}
+.input2 {
+	margin-left: 1px;
+}
+.instruction {
+	width:100%;
+	height:150px;
+	box-sizing: border-box;
+    border-radius: 3px;
+    border:1px solid #e1e1e1;
+    color:#333333;
+    font-size:14px;
+    padding-left:20px;
+    padding-right:20px;
+    margin-top:10px;
+    margin-bottom:5px;
+    text-overflow: clip;
+}
+/* info 성격유형 */
+.info_select_box {
+    position: relative;
+    width: 49.5%;
+    
+}
+.info_select_box select {
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+    font-size: 14px;
+    width: 100%;
+    height: 50px;
+    border-radius: 3px;
+    padding: 10px;
+    background-color: #fff;
+    border: 1px solid #e8ebed;
+    line-height: 17px;
+    text-align: center;
+}
+.info_select_box:after {
+    border: 1px solid #9ea4aa;
+    border-width: 0 1px 1px 0;
+    content: "";
+    display: inline-block;
+    height: 8px;
+    padding: 0;
+    pointer-events: none;
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: rotate(45deg);
+    width: 8px;
+    color: #454c53;
+}
+.radio {
+	margin-left: 30px;
+}
+/*로그인 버튼, 회원가입 */
+.submit_button {
+	border:1px solid #e1e1e1;
+    color:#ffffff;
+    font-size:16px;
+    text-align: center;
+    height:55px;
+    line-height:55px;
+    cursor:pointer;
+    border-radius: 3px;
+    margin-top:30px;
+    background: #ff80ab;
+    cursor: pointer;
+	border-radius: 4px;
+	width: 100%;
+	margin-top: 20px;
+}
+/*아이디 찾기 비밀번호 찾기 확인버튼  */
+.submit_button1 {
+	border:1px solid #e1e1e1;
+    color:#ffffff;
+    font-size:16px;
+    text-align: center;
+    height:55px;
+    line-height:55px;
+    cursor:pointer;
+    border-radius: 3px;
+    margin-top:30px;
+    background: #ff80ab;
+    cursor: pointer;
+	border-radius: 4px;
+	width: 49.5%;
+	margin-top: 20px;
+}
+
+.cancel_button {
+	border:1px solid #e1e1e1;
+    color:#ffffff;
+    font-size:16px;
+    text-align: center;
+    height:55px;
+    line-height:55px;
+    cursor:pointer;
+    border-radius: 3px;
+    margin-top:30px;
+    background: #ff80ab;
+    cursor: pointer;
+	border-radius: 4px;
+	width: 49.5%;
+	margin-top: 20px;
+}
+.login_button:hover {
+    color:#dddddd;
+}
+
+/*아이디찾기,비밀번호,회원가입  */
+.login_line {
+    margin-top:30px;
+    margin-bottom:30px;
+    border-bottom:1px solid #e1e1e1;
+}
+.button_section {
+    margin-top:30px;
+    text-align:center;
+}
+.button_section > a{
+    font-size:16px;
+    color: black;
+    text-decoration: none;
+}
+.button_section > span.hor_line{
+    margin-left:15px;
+    margin-right:15px;
+}
+
+/* 모바일 mobile */
+@media screen and (max-width:750px) {
+    #body { padding-top: 50px !important;}
+    .container { padding: 15px; width: 100%;}
+    .container { width: 100%;}
+
+    .instagram_logo img { height:70px; }
+    .container .instagram_logo img { height: 80px;}
+    
+    .button_section > span.hor_line { margin: 0 10px;}
+    .button_section { margin-bottom: 20px;}
+}
+
+/* 에러메세지 */
+.error_next_box {
+    margin-top: 9px;
+    font-size: 12px;
+    color: red;    
+    display: none;
+}
+
+p {
+    display: block;
+    font-size: 13px;
+    font-style: normal;
+    text-align: center;
+    color: #8B8B9E;
+    padding: 20px 0;
+}
+
+a {
+    text-decoration: none;
+    outline: none !important;
+}
