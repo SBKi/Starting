@@ -17,7 +17,7 @@ public class Client {
 	private String client_address;
 	private String client_gender;
 	private String client_birth;
-	private int client_tall;
+	private Integer client_tall;
 	private String client_img;
 	private String client_instruction;
 	private String client_info;
