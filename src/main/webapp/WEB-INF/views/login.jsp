@@ -18,6 +18,10 @@
 						style="cursor: pointer;">
 				</div>
 				<div class="header_title">로그인</div>
+<<<<<<< HEAD
+=======
+				<form action="login" method="post">
+>>>>>>> branch 'master' of https://github.com/Advensod-KBJ/TeamProject3
 					<div class="input_section">
 						<input class="input" type="text" id="id" name="client_id" placeholder="ID">
 						<input class="input" type="password" id="password" name="client_password" placeholder="PASSWORD">

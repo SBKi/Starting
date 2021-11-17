@@ -1,6 +1,7 @@
 package com.jcpdev.board.repository;
 import org.springframework.stereotype.Repository;
 
+
 import com.jcpdev.board.model.ChatRoom;
 
 import javax.annotation.PostConstruct;

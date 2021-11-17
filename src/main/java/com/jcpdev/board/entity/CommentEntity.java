@@ -28,13 +28,11 @@ public class CommentEntity {
 	private Integer comment_no;
 	
 	@Column(nullable = false)
-	private Integer commentboard_no;
-	@Column(nullable = false)
 	private String comment_id;
 	@Column(nullable = false)
 	private String comment_content;
 	
 	@ManyToOne(targetEntity = WhiteboardEntity.class)
-	private WhiteboardEntity whiteboard;
+	private WhiteboardEntity comment;
 
 }

@@ -1,39 +1,25 @@
 package com.jcpdev.board.controller;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.jcpdev.board.entity.ClientEntity;
 import com.jcpdev.board.model.Client;
 import com.jcpdev.board.repository.ClientRepository;
 import com.jcpdev.board.service.ClientService;
-import com.jcpdev.board.service.ClientServiceImpl;
 
 @Controller
-@SessionAttributes(names = "client")
+@SessionAttributes(names="client")
 public class ClientController {
 	private static final Logger logger = LoggerFactory.getLogger(ClientController.class);
 
@@ -43,13 +29,17 @@ public class ClientController {
 	@Autowired
 	ClientService service;
 
-	@RequestMapping(value = "/instagram", method = RequestMethod.GET)
-	public String mainPage() {
-		return "instagram";
-	}
 
-	@RequestMapping(value = "/instagram/login", method = RequestMethod.GET)
-	public String loginPage() {
+		  
+	
+	  @RequestMapping(value = "/instagram/login", method = RequestMethod.GET)
+	 public String loginPage() { return "login"; }
+	  
+	
+	//로그아웃
+	@RequestMapping(value = "/instagram/logout", method = RequestMethod.POST)
+	public String logout(SessionStatus status) {
+		status.setComplete();
 		return "login";
 	}
 
@@ -70,12 +60,6 @@ public class ClientController {
 		}
 	}
 
-	// 로그아웃
-	@RequestMapping(value = "/instagram/logout", method = RequestMethod.POST)
-	public String logout(SessionStatus status) {
-		status.setComplete();
-		return "redirect:login";
-	}
 
 	// 회원가입
 	@RequestMapping(value = "/instagram/register", method = RequestMethod.POST)
@@ -97,7 +81,19 @@ public class ClientController {
 	@GetMapping
 	@RequestMapping(value = "/instagram/find_id_C")
 	public String find_id_C(String client_email, String client_name, String client_birth) {
-		
+		return "";
+	} 
+	
+	@RequestMapping(value = "/instagram/main")
+	public String main() {
+		return "instagram";
+	}
+
+	
+
+	@GetMapping
+	@RequestMapping(value = "/instagram/find_password")
+	public String find_password() {
 		return "find_password";
 	}
 
