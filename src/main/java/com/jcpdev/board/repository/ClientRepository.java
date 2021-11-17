@@ -7,8 +7,10 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.query.Param;
 
 import com.jcpdev.board.entity.ClientEntity;
+import com.jcpdev.board.entity.CommentEntity;
 import com.jcpdev.board.model.Client;
 
 public interface ClientRepository extends JpaRepository<ClientEntity, String> {
+	
 	
 }
