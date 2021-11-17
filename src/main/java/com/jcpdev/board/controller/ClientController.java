@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -25,10 +26,14 @@ public class ClientController {
 	@Autowired
 	ClientService service;
 
-	@GetMapping
-	@RequestMapping(value = "/instagram/login")
+	@RequestMapping(value = "/instagram/login", method = RequestMethod.GET)
 	public String loginPage() {
 		return "login";
+	}
+	
+	@RequestMapping(value="/instagram/login", method = RequestMethod.POST)
+	public String login() {
+		return "";
 	}
 
 	// 회원가입
@@ -45,7 +50,7 @@ public class ClientController {
 	@GetMapping
 	@RequestMapping(value = "/instagram/main")
 	public String main() {
-		return "NewFile.jsp";
+		return "instagram";
 	}
 
 	@GetMapping

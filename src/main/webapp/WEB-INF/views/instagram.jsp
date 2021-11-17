@@ -1,11 +1,14 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<html>
 <head>
 <meta charset="UTF-8">
-<title>인스타</title>
-<!-- <link rel="stylesheet" type="text/css" th:href="@{/css/header.css}"> -->
-<!-- <link rel="stylesheet" type="text/css" th:href="@{/css/footer.css}"> -->
-<!-- <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}"> -->
-<!-- <link rel="stylesheet" type="text/css" th:href="@{/css/detail.css}"> -->
+<title>스타팅</title>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/header.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/footer.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/main.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/detail.css">
 <link
 	href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css"
 	rel="stylesheet">
@@ -48,7 +51,7 @@
 </style>
 </head>
 <body>
-	<div th:replace="fragments/header :: header"></div>
+<jsp:include page="fragments/header.jsp"></jsp:include>
 	<main>
 		<div class="feeds">
 			<!-- story section -->
@@ -57,7 +60,7 @@
 				<ul class="story-list slider">
 					<li class="story-list_li ">
 						<div class="gradient-wrap">
-							<img class="img-profile story" th:src="@{/img/logo.jpg}"
+							<img class="img-profile story" src="${pageContext.request.contextPath}/resources/img/logo.jpg"
 								onclick="location.href='#'" style="cursor: pointer;">
 						</div>
 						<div class="profile-text">
@@ -66,7 +69,7 @@
 					</li>
 					<li class="story-list_li">
 						<div class="gradient-wrap">
-							<img class="img-profile story" th:src="@{/img/logo.jpg}"
+							<img class="img-profile story"src="${pageContext.request.contextPath}/resources/img/logo.jpg"
 								onclick="location.href='#'" style="cursor: pointer;">
 						</div>
 						<div class="profile-text">
@@ -75,7 +78,7 @@
 					</li>
 					<li class="story-list_li">
 						<div class="gradient-wrap">
-							<img class="img-profile story" th:src="@{/img/logo.jpg}"
+							<img class="img-profile story" src="${pageContext.request.contextPath}/resources/img/logo.jpg"
 								onclick="location.href='#'" style="cursor: pointer;">
 						</div>
 						<div class="profile-text">
@@ -84,7 +87,7 @@
 					</li>
 					<li class="story-list_li">
 						<div class="gradient-wrap">
-							<img class="img-profile story" th:src="@{/img/logo.jpg}"
+							<img class="img-profile story" src="${pageContext.request.contextPath}/resources/img/logo.jp"
 								onclick="location.href='#'" style="cursor: pointer;">
 						</div>
 						<div class="profile-text">
@@ -93,7 +96,7 @@
 					</li>
 					<li class="story-list_li">
 						<div class="gradient-wrap">
-							<img class="img-profile story" th:src="@{/img/logo.jpg}"
+							<img class="img-profile story"src="${pageContext.request.contextPath}/resources/img/logo.jpg"
 								onclick="location.href='#'" style="cursor: pointer;">
 						</div>
 						<div class="profile-text">
@@ -102,7 +105,7 @@
 					</li>
 					<li class="story-list_li">
 						<div class="gradient-wrap">
-							<img class="img-profile story" th:src="@{/img/logo.jpg}"
+							<img class="img-profile story" src="${pageContext.request.contextPath}/resources/img/logo.jpg"
 								onclick="location.href='#'" style="cursor: pointer;">
 						</div>
 						<div class="profile-text">
@@ -111,7 +114,7 @@
 					</li>
 					<li class="story-list_li">
 						<div class="gradient-wrap">
-							<img class="img-profile story" th:src="@{/img/logo.jpg}"
+							<img class="img-profile story"src="${pageContext.request.contextPath}/resources/img/logo.jpg"
 								onclick="location.href='#'" style="cursor: pointer;">
 						</div>
 						<div class="profile-text">
@@ -120,7 +123,7 @@
 					</li>
 					<li class="story-list_li">
 						<div class="gradient-wrap">
-							<img class="img-profile story" th:src="@{/img/logo.jpg}"
+							<img class="img-profile story" src="${pageContext.request.contextPath}/resources/img/logo.jpg"
 								onclick="location.href='#'" style="cursor: pointer;">
 						</div>
 						<div class="profile-text">
@@ -129,7 +132,7 @@
 					</li>
 					<li class="story-list_li">
 						<div class="gradient-wrap">
-							<img class="img-profile story" th:src="@{/img/logo.jpg}"
+							<img class="img-profile story" src="${pageContext.request.contextPath}/resources/img/logo.jpg"
 								onclick="location.href='#'" style="cursor: pointer;">
 						</div>
 						<div class="profile-text">
@@ -138,7 +141,7 @@
 					</li>
 					<li class="story-list_li">
 						<div class="gradient-wrap">
-							<img class="img-profile story" th:src="@{/img/logo.jpg}"
+							<img class="img-profile story" src="${pageContext.request.contextPath}/resources/img/logo.jpg"
 								onclick="location.href='#'" style="cursor: pointer;">
 						</div>
 						<div class="profile-text">
@@ -147,7 +150,7 @@
 					</li>
 					<li class="story-list_li">
 						<div class="gradient-wrap">
-							<img class="img-profile story" th:src="@{/img/logo.jpg}"
+							<img class="img-profile story" src="${pageContext.request.contextPath}/resources/img/logo.jpg"
 								onclick="location.href='#'" style="cursor: pointer;">
 						</div>
 						<div class="profile-text">
@@ -160,7 +163,7 @@
 			<article>
 				<header>
 					<div class="profile-of-article">
-						<img class="img-profile1 pic" th:src="@{/img/logo.jpg}"
+						<img class="img-profile1 pic"src="${pageContext.request.contextPath}/resources/img/logo.jpg"
 							onclick="location.href='/instagram'"> <span
 							class="userID main-id point-span" style="margin-top: 8px;">장치영</span>
 					</div>
@@ -170,13 +173,13 @@
 				</header>
 				<div class="single-item">
 					<div>
-						<img th:src="@{/img/logo.jpg}">
+						<img src="${pageContext.request.contextPath}/resources/img/logo.jpg">
 					</div>
 					<div>
-						<img th:src="@{/img/logo.jpg}">
+						<img src="${pageContext.request.contextPath}/resources/img/logo.jpg">
 					</div>
 					<div>
-						<img th:src="@{/img/logo.jpg}">
+						<img src="${pageContext.request.contextPath}/resources/img/logo.jpg">
 					</div>
 				</div>
 				<div class="icons-react">
@@ -228,7 +231,7 @@
 		<!-- main-right -->
 		<div class="main-right">
 			<div class="myProfile">
-				<img class="pic" th:src="@{/img/logo.jpg}"
+				<img class="pic" src="${pageContext.request.contextPath}/resources/img/logo.jpg"
 					onclick="location.href='#'" style="cursor: pointer;">
 				<div>
 					<span class="userID point-span">장치영</span>
@@ -248,7 +251,7 @@
 				<ul class="recommend-list">
 					<li>
 						<div class="recommend-friend-profile">
-							<img class="img-profile1 story" th:src="@{/img/logo.jpg}"
+							<img class="img-profile1 story" src="${pageContext.request.contextPath}/resources/img/logo.jpg"
 								onclick="location.href='#'" style="cursor: pointer;">
 							<div class="profile-text1">
 								<span class="userID point-span">홍길동</span> <span
@@ -258,7 +261,7 @@
 					</li>
 					<li>
 						<div class="recommend-friend-profile">
-							<img class="img-profile1 story" th:src="@{/img/logo.jpg}"
+							<img class="img-profile1 story" src="${pageContext.request.contextPath}/resources/img/logo.jpg"
 								onclick="location.href='#'" style="cursor: pointer;">
 							<div class="profile-text1">
 								<span class="userID point-span">강호동</span> <span
@@ -268,7 +271,7 @@
 					</li>
 					<li>
 						<div class="recommend-friend-profile">
-							<img class="img-profile1 story" th:src="@{/img/logo.jpg}"
+							<img class="img-profile1 story" src="${pageContext.request.contextPath}/resources/img/logo.jpg"
 								onclick="location.href='#'" style="cursor: pointer;">
 							<div class="profile-text1">
 								<span class="userID point-span">유재석</span> <span
@@ -293,23 +296,23 @@
 						<div class="modal_left1">
 							<div class="single-items">
 								<div>
-									<img th:src="@{/img/liked.png}">
+									<img src="${pageContext.request.contextPath}/resources/img/liked.png">
 								</div>
 								<div>
-									<img th:src="@{/img/dm.png}">
+									<img src="${pageContext.request.contextPath}/resources/img/dm.png">
 								</div>
 								<div>
-									<img th:src="@{/img/home.png}">
+									<img src="${pageContext.request.contextPath}/resources/img/home.png">
 								</div>
 								<div>
-									<img th:src="@{/img/logo.jpg}">
+									<img src="${pageContext.request.contextPath}/resources/img/logo.jpg">
 								</div>
 							</div>
 						</div>
 						<div class="modal_right1">
 							<header>
 								<div class="profile-of-article">
-									<img class="img-profile1 pic" th:src="@{/img/logo.jpg}"
+									<img class="img-profile1 pic" src="${pageContext.request.contextPath}/resources/img/logo.jpg"
 										onclick="location.href='/instagram'"> <span
 										class="userID main-id point-span" style="margin-top: 8px;">장치영</span>
 								</div>
