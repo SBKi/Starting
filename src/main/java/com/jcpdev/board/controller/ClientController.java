@@ -88,7 +88,7 @@ public class ClientController {
 		return "find_id_C";
 	}
 	
-	@RequestMapping(value = "/instagram/main")
+	@RequestMapping(value = {"/instagram/main","/instagram"})
 	public String main() {
 		return "instagram";
 	}
