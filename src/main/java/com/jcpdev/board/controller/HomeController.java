@@ -21,11 +21,11 @@ public class HomeController {
 	WhiteboardService service;
 
 
-	@GetMapping("/instagram/board")
-	public void board() {
-		Whiteboard board = new Whiteboard(0, "test", "11.png", null, null, "contex", null, 0, 0);
-		WhiteboardEntity entity = service.toEntity(board);
-		System.out.println(repository.save(entity));
-		return;
-	}
+//	@GetMapping("/instagram/board")
+//	public void board() {
+//		Whiteboard board = new Whiteboard(0, "test", "11.png", null, null, "contex", null, 0, 0);
+//		WhiteboardEntity entity = service.toEntity(board);
+//		System.out.println(repository.save(entity));
+//		return;
+//	}
 }

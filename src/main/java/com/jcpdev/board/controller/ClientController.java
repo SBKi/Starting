@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
@@ -78,11 +79,14 @@ public class ClientController {
 		return "join";
 	}
 
-	@GetMapping
-	@RequestMapping(value = "/instagram/find_id_C")
+	@RequestMapping(value = "/instagram/find_id_C", method = RequestMethod.POST)
 	public String find_id_C(String client_email, String client_name, String client_birth) {
 		return "";
 	} 
+	@RequestMapping(value = "/instagram/find_id_C", method = RequestMethod.GET)
+	public String find_id_C() {
+		return "find_id_C";
+	}
 	
 	@RequestMapping(value = "/instagram/main")
 	public String main() {
@@ -97,11 +101,7 @@ public class ClientController {
 		return "find_password";
 	}
 
-	@GetMapping
-	@RequestMapping(value = "/instagram/find_id_C")
-	public String find_id_C() {
-		return "find_id_C";
-	}
+	
 
 	@GetMapping
 	@RequestMapping(value = "/instagram/find_password_C")
