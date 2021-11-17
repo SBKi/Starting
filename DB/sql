@@ -12,7 +12,6 @@ create table Client (
    Client_info varchar(200) not null
 );
 
-
 create table Whiteboard (
 	Whiteboard_no int auto_increment primary key,
 	Whiteboard_id varchar(20) not null,
