@@ -40,6 +40,7 @@ public class ClientController {
 		}
 		return "redirect:login";
 	}
+	
 	@GetMapping
 	@RequestMapping(value = "/instagram/main")
 	public String main() {
