@@ -20,8 +20,10 @@ public class HomeController {
 	@Autowired
 	WhiteboardService service;
 
-	@GetMapping("/instagram")
-	public void instagram() {
+	@GetMapping("/test")
+	public String test() {
+		System.out.println("test ad");
+		return "test";
 	}
 
 	@GetMapping("/instagram/board")

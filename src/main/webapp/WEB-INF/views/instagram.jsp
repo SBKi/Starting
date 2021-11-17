@@ -1,12 +1,11 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
 <title>인스타</title>
-<link rel="stylesheet" type="text/css" th:href="@{/css/header.css}">
-<link rel="stylesheet" type="text/css" th:href="@{/css/footer.css}">
-<link rel="stylesheet" type="text/css" th:href="@{/css/main.css}">
-<link rel="stylesheet" type="text/css" th:href="@{/css/detail.css}">
+<!-- <link rel="stylesheet" type="text/css" th:href="@{/css/header.css}"> -->
+<!-- <link rel="stylesheet" type="text/css" th:href="@{/css/footer.css}"> -->
+<!-- <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}"> -->
+<!-- <link rel="stylesheet" type="text/css" th:href="@{/css/detail.css}"> -->
 <link
 	href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css"
 	rel="stylesheet">
