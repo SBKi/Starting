@@ -1,3 +1,4 @@
+
 package com.jcpdev.board.model;
 
 import lombok.AllArgsConstructor;
@@ -5,6 +6,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+
 
 @Data
 @AllArgsConstructor
@@ -17,3 +19,4 @@ public class Chat {
 	private String writer;
 	private String message;
 }
+

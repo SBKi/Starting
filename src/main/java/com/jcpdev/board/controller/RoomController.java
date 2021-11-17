@@ -1,6 +1,4 @@
 package com.jcpdev.board.controller;
-import javax.servlet.http.HttpSession;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -46,9 +44,9 @@ public class RoomController {
  
     //채팅방 조회
     @GetMapping("/room")
-    public void getRoom(String roomId, Model model,HttpSession session){
+    public void getRoom(String roomId, Model model){
 
         log.info("# get Chat Room, roomID : " + roomId);
-        model.addAttribute("room", repository.findRoomById(roomId,session));
+        model.addAttribute("room", repository.findRoomById(roomId));
     }
 }

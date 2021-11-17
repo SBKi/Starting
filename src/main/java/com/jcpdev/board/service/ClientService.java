@@ -29,5 +29,4 @@ public interface ClientService {
 		return login;
 	}
 
-	ClientEntity loginok(String client_id, String client_password);
 }

@@ -21,5 +21,6 @@ public class Client {
 	private String client_img;
 	private String client_instruction;
 	private String client_info;
+	private Integer client_status;
 
 }
