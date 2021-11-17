@@ -23,10 +23,4 @@ public interface ClientService {
 				.client_info(entity.getClient_info()).build();
 	}
 
-	default ClientEntity login(Client dto) {
-		ClientEntity login = ClientEntity.builder().client_id(dto.getClient_id())
-				.client_password(dto.getClient_password()).build();
-		return login;
-	}
-
 }
