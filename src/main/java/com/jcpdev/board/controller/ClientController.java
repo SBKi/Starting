@@ -33,7 +33,7 @@ public class ClientController {
 
 		  
 	
-	  @RequestMapping(value = "/instagram/login", method = RequestMethod.GET)
+	  @RequestMapping(value = "/instagram/login")
 	 public String loginPage() { return "login"; }
 	  
 	
@@ -53,7 +53,7 @@ public class ClientController {
 			user = service.toDto(client.get());
 			if (client_password.equals(user.getClient_password())) {
 				model.addAttribute("client", client);
-				return "redirect:/instagram";
+				return "redirect:/instagram/main";
 			}
 			return "redirect:login";
 		} else {
