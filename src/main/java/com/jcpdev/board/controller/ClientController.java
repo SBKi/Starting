@@ -35,6 +35,7 @@ public class ClientController {
 	@RequestMapping(value = "/instagram/register", method = RequestMethod.POST)
 	public String sign_up(Client client, Model model) {
 		if (client != null) {
+			client.setClient_img("defalut.png");
 			ClientEntity entity = service.toEntity(client);
 			repository.save(entity);
 		}

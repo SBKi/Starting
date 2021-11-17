@@ -41,6 +41,7 @@ nav {
 img {
 	width: 100%;
 	height: 100%;
+	cursor: pointer;
 }
 .nav-container {
     max-width: 1000px;
@@ -481,7 +482,104 @@ article, aside, figcaption, figure, footer, hgroup, main, nav, section {
     width: 24;
 }
 .modal_cansle {
+	cursor: pointer;
+	border: 0;
 	top: -17px;
     left: 83px;
     background: 0 0;
+}
+
+
+
+.JyscU.ePUX4 .EtaWk {
+    padding: 0;
+}
+
+.L_LMM.ePUX4 .EtaWk {
+    margin: 0 0 auto;
+    padding: 0 16px;
+}
+.JyscU .EtaWk {
+    margin: 0 -24px;
+    -webkit-box-ordinal-group: 2;
+    -webkit-order: 1;
+    -ms-flex-order: 1;
+    order: 1;
+    overflow-x: hidden;
+}
+.EtaWk {
+    -webkit-box-flex: 1;
+    -webkit-flex-grow: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+    -webkit-flex-shrink: 1;
+    -ms-flex-negative: 1;
+    flex-shrink: 1;
+    margin-bottom: 4px;
+    min-height: 0;
+    overflow: auto;
+}
+.XQXOT {
+    height: 430px;
+    left: 0;
+    padding: 16px;
+    scrollbar-width: none;
+}
+.X7jCj {
+    width: 100%;
+}
+.C7I1f {
+    flex-direction: row;
+    width: calc(100% - 28px);
+}
+
+.RR-M- {
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-align-self: center;
+    -ms-flex-item-align: center;
+    align-self: center;
+    display: block;
+    -webkit-box-flex: 0;
+    -webkit-flex: none;
+    -ms-flex: none;
+    flex: none;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+}
+.TKzGu {
+    margin: 0 18px 0 0;
+}
+.qNELH {
+    cursor: pointer;
+}
+._2dbep {
+    background-color: #fafafa;
+    background-color: rgba(var(--b3f,250,250,250),1);
+    border-radius: 50%;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    display: block;
+    -webkit-box-flex: 0;
+    -webkit-flex: 0 0 auto;
+    -ms-flex: 0 0 auto;
+    flex: 0 0 auto;
+    overflow: hidden;
+    position: relative;
+}
+.C4VMK {
+   display: inline-block;
+    -ms-flex-negative: 1;
+    flex-shrink: 1;
+    margin-bottom: 25px;
+}
+.MqpiF {
+    display: inline;
+}
+h3,h4 {
+	margin: auto;
 }
