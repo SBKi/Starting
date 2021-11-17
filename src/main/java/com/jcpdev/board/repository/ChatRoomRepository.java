@@ -1,9 +1,14 @@
 package com.jcpdev.board.repository;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.bind.annotation.SessionAttribute;
 
 import com.jcpdev.board.model.ChatRoom;
+import com.jcpdev.board.model.Client;
 
 import javax.annotation.PostConstruct;
+import javax.servlet.http.HttpSession;
+import javax.websocket.Session;
+
 import java.util.*;
 import java.util.stream.Stream;
 
@@ -25,8 +30,10 @@ public class ChatRoomRepository {
         return result;
     }
 
-    public ChatRoom findRoomById(String id){
+    public ChatRoom findRoomById(String id,HttpSession session){
+    	HttpSession session2 = session;
     	System.out.println("id : "+id);
+    	System.out.println(session2.getAttribute("client"));
     	System.out.println(chatRoomDTOMap);
     	System.out.println("aasd"+chatRoomDTOMap.get(id));
         return chatRoomDTOMap.get(id);
