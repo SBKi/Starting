@@ -15,13 +15,6 @@
 							</div>
 						</div></a>
 				</div>
-<<<<<<< HEAD
-				<div>
-				<form action="/instagram/logout" method="post">
-				<button value= submit>로그아웃</button>
-				</div>
-=======
->>>>>>> branch 'master' of https://github.com/Advensod-KBJ/TeamProject3
 				<div class="_0aCwM ">
 					<input aria-label="입력 검색" autocapitalize="none"
 						class="XTCLo x3qfX " placeholder="검색" type="text">

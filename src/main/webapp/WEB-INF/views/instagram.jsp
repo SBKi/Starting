@@ -87,19 +87,6 @@
 					</li>
 					<li class="story-list_li">
 						<div class="gradient-wrap">
-<<<<<<< HEAD
-							<img class="img-profile story" src="${pageContext.request.contextPath}/resources/img/logo.jpg"
-=======
-							<img class="img-profile story" src="${pageContext.request.contextPath}/resources/img/logo.jp"
->>>>>>> branch 'master' of https://github.com/Advensod-KBJ/TeamProject3
-								onclick="location.href='#'" style="cursor: pointer;">
-						</div>
-						<div class="profile-text">
-							<span class="userID point-span">안준석</span>
-						</div>
-					</li>
-					<li class="story-list_li">
-						<div class="gradient-wrap">
 							<img class="img-profile story"src="${pageContext.request.contextPath}/resources/img/logo.jpg"
 								onclick="location.href='#'" style="cursor: pointer;">
 						</div>
