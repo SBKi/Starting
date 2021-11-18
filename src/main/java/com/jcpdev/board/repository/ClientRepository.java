@@ -1,16 +1,24 @@
 package com.jcpdev.board.repository;
 
 import java.util.List;
+import java.util.Optional;
 
-import org.springframework.data.jdbc.repository.query.Query;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import com.jcpdev.board.entity.ClientEntity;
-import com.jcpdev.board.entity.CommentEntity;
-import com.jcpdev.board.model.Client;
 
 public interface ClientRepository extends JpaRepository<ClientEntity, String> {
+	
+	@Query("select c from ClientEntity c where c.client_email = :client_email and c.client_name = :client_name and c.client_birth = :client_birth")
+	Optional<ClientEntity> findId(@Param("client_email") String client_email, @Param("client_name") String client_name, @Param("client_birth") String client_birth);
+	
+	//@Query("select c from ClientEntity c where c.client_id = :client_id and c.client_email = :client_email and c.client_name = :client_name")
+	//List<ClientEntity> findPassword_s(@Param("client_id") String client_id, @Param("client_email") String client_email, @Param("client_name") String client_name);
+	
+	@Query("update ClientEntity c set c.client_password where c.client_id = :client_id and c.client_email = :client_email and c.client_name = :client_name")
+	List<ClientEntity> findPassword(@Param("client_id") String client_id, @Param("client_email") String client_email, @Param("client_name") String client_name);
 	
 	
 }

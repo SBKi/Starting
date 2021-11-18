@@ -1,4 +1,5 @@
 package com.jcpdev.board.controller;
+import java.util.List;
 import java.util.Optional;
 
 
@@ -30,22 +31,19 @@ public class ClientController {
 	@Autowired
 	ClientService service;
 
-
-		  
-	
-	  @RequestMapping(value = "/instagram/login")
-	 public String loginPage() { return "login"; }
+	@RequestMapping(value = "/starting/login")
+	public String loginPage() { return "login"; }
 	  
 	
 	//로그아웃
-	@RequestMapping(value = "/instagram/logout", method = RequestMethod.POST)
+	@RequestMapping(value = "/starting/logout", method = RequestMethod.POST)
 	public String logout(SessionStatus status) {
 		status.setComplete();
 		return "login";
 	}
-
+	
 	// 로그인 체크
-	@RequestMapping(value = "/instagram/logincheck", method = RequestMethod.POST)
+	@RequestMapping(value = "/starting/logincheck", method = RequestMethod.POST)
 	public String logincheck(String client_id, String client_password, Model model) {
 		Optional<ClientEntity> client = repository.findById(client_id);
 		if (client.isPresent()) {
@@ -53,7 +51,7 @@ public class ClientController {
 			user = service.toDto(client.get());
 			if (client_password.equals(user.getClient_password())) {
 				model.addAttribute("client", client);
-				return "redirect:/instagram/main";
+				return "redirect:/starting/main";
 			}
 			return "redirect:login";
 		} else {
@@ -61,9 +59,8 @@ public class ClientController {
 		}
 	}
 
-
 	// 회원가입
-	@RequestMapping(value = "/instagram/register", method = RequestMethod.POST)
+	@RequestMapping(value = "/starting/register", method = RequestMethod.POST)
 	public String sign_up(Client client, Model model) {
 		if (client != null) {
 			client.setClient_img("defalut.png");
@@ -74,37 +71,52 @@ public class ClientController {
 	}
 
 	@GetMapping
-	@RequestMapping(value = "/instagram/join")
+	@RequestMapping(value = "/starting/join")
 	public String join() {
 		return "join";
 	}
 
-	@RequestMapping(value = "/instagram/find_id_C", method = RequestMethod.POST)
-	public String find_id_C(String client_email, String client_name, String client_birth) {
-		return "";
+	// 아이디 찾기
+	@RequestMapping(value = "/starting/find_id", method = RequestMethod.POST)
+	public String find_id(String client_email, String client_name, String client_birth, Model model) {
+		Optional<ClientEntity> client = repository.findId(client_email, client_name, client_birth);
+		if(client.isPresent()) {
+			Client user = null;
+			user = service.toDto(client.get());
+			if(client_email.equals(user.getClient_email()) && client_name.equals(user.getClient_name()) && client_birth.equals(user.getClient_birth())) {
+				model.addAttribute("client", client);
+				return "redirect:/starting/find_id_C";
+			}
+			return "redirect:/starting/find_id_F";
+		}
+		return "redirect:/starting/find_id";
 	} 
-	@RequestMapping(value = "/instagram/find_id_C", method = RequestMethod.GET)
+	
+	@RequestMapping(value = "/starting/find_id_F", method = RequestMethod.GET)
+	public String find_id_F() {
+		return "find_id_F";
+	}
+	
+	@RequestMapping(value = "/starting/find_id_C", method = RequestMethod.GET)
 	public String find_id_C() {
 		return "find_id_C";
 	}
 	
-	@RequestMapping(value = {"/instagram/main","/instagram"})
+	@RequestMapping(value = {"/starting/main","/starting"})
 	public String main() {
-		return "instagram";
+		return "starting";
 	}
 
 	
 
 	@GetMapping
-	@RequestMapping(value = "/instagram/find_password")
+	@RequestMapping(value = "/starting/find_password")
 	public String find_password() {
 		return "find_password";
 	}
 
-	
-
 	@GetMapping
-	@RequestMapping(value = "/instagram/find_password_C")
+	@RequestMapping(value = "/starting/find_password_C")
 	public String find_password_C() {
 		return "find_password_C";
 	}

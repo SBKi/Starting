@@ -245,6 +245,7 @@ input {
 .item_submit_box .btn_item_submit {
     background-color: #ff80ab;
     height: 57px;
+    cursor: pointer;
 }
 
 input[type=date], input[type=email], input[type=number], input[type=password], input[type=tel], input[type=text], textarea {

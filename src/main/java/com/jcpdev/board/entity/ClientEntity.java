@@ -43,6 +43,6 @@ public class ClientEntity {
 	private String client_instruction;
 	@Column(nullable = false)
 	private String client_info;
-	@Column(nullable = false)
+	@Column(nullable = true)
 	private Integer client_status;
 }

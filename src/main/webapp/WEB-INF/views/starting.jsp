@@ -1,14 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
+<html lang="ko">
 <head>
 <meta charset="UTF-8">
-<title>스타팅</title>
+<title>Starting</title>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/header.css">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/footer.css">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/main.css">
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/detail.css">
 <link
 	href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css"
 	rel="stylesheet">
@@ -51,7 +50,6 @@
 </style>
 </head>
 <body>
-
 <jsp:include page="fragments/header.jsp"></jsp:include>
 	<main>
 		<div class="feeds">
@@ -180,7 +178,7 @@
 							src="https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/bearu/heart.png">
 						<img class="icon-react"
 							src="https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/bearu/comment.png">
-						<img class="icon-react" src="img/dm.png">
+						<img class="icon-react" src="/resources/img/dm.png">
 					</div>
 					<img class="icon-react"
 						src="https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/bearu/bookmark.png"

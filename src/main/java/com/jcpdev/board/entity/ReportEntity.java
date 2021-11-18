@@ -27,14 +27,13 @@ public class ReportEntity {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int report_no;
 
-	@Column(nullable = false) // not null, uniqe값 설정
-	private String report_id;
-	@Column(nullable = false)
-	private int reportboard_no;
 	@Column(nullable = false)
 	private String report_content;
 	
-	@ManyToOne				
-	private ClientEntity client;
+	@ManyToOne(targetEntity = ClientEntity.class)				
+	private ClientEntity c_report;
+	
+	@ManyToOne(targetEntity = WhiteboardEntity.class)
+	private WhiteboardEntity w_report;
 	
 }

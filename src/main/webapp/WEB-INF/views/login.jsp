@@ -1,27 +1,29 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<html lang="ko">
 <head>
 <meta charset="UTF-8">
-<title>인스타</title>
+<title>로그인</title>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/login.css">
 <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 
 </head>
+
 <body>
 <div id="login">
 		<div id="body" style="padding-top: 75px;">
 			<div class="container">
 				<div class="instagram_logo">
 					<img src="${pageContext.request.contextPath}/resources/img/logo.jpg"
-						onclick="location.href='/instagram'"
+						onclick="location.href='/starting'"
 						style="cursor: pointer;">
 				</div>
 				<div class="header_title">로그인</div>
 				<form action="logincheck" method="post">
 					<div class="input_section">
-						<input class="input" type="text" id="id" name="client_id" placeholder="ID">
-						<input class="input" type="password" id="password" name="client_password" placeholder="PASSWORD">
+						<input class="input" type="text" id="id" name="client_id" placeholder="ID" required="required">
+						<input class="input" type="password" id="password" name="client_password" placeholder="PASSWORD" required="required">
 					</div>
 					<input class="submit_button" type="submit"  value="로그인" >
 				</form>

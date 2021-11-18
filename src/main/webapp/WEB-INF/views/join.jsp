@@ -15,7 +15,7 @@
 			<div class="container" style="padding-top: 28px;">
 				<div class="instagram_logo">
 					<img src="${pageContext.request.contextPath}/resources/img/logo.jpg"
-						onclick="location.href='/instagram'"
+						onclick="location.href='/starting'"
 						style="cursor: pointer;">
 				</div>
 				<div class="header_title">회원가입</div>
