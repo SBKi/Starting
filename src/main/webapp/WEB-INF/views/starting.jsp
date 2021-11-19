@@ -1,13 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
 <title>Starting</title>
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/header.css">
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/footer.css">
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/main.css">
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/resources/css/header.css">
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/resources/css/main.css">
 <link
 	href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css"
 	rel="stylesheet">
@@ -50,7 +51,7 @@
 </style>
 </head>
 <body>
-<jsp:include page="fragments/header.jsp"></jsp:include>
+	<jsp:include page="fragments/header.jsp"></jsp:include>
 	<main>
 		<div class="feeds">
 			<!-- story section -->
@@ -59,8 +60,9 @@
 				<ul class="story-list slider">
 					<li class="story-list_li ">
 						<div class="gradient-wrap">
-							<img class="img-profile story" src="${pageContext.request.contextPath}/resources/img/logo.jpg"
-								onclick="location.href='#'" style="cursor: pointer;">
+							<img class="img-profile story"
+								src="${pageContext.request.contextPath}/resources/img/logo.jpg"
+								onclick="location.href='userProfile'" style="cursor: pointer;">
 						</div>
 						<div class="profile-text">
 							<span class="userID point-span">김범진</span>
@@ -68,8 +70,9 @@
 					</li>
 					<li class="story-list_li">
 						<div class="gradient-wrap">
-							<img class="img-profile story"src="${pageContext.request.contextPath}/resources/img/logo.jpg"
-								onclick="location.href='#'" style="cursor: pointer;">
+							<img class="img-profile story"
+								src="${pageContext.request.contextPath}/resources/img/logo.jpg"
+								onclick="location.href='userProfile'" style="cursor: pointer;">
 						</div>
 						<div class="profile-text">
 							<span class="userID point-span">김민재</span>
@@ -77,8 +80,9 @@
 					</li>
 					<li class="story-list_li">
 						<div class="gradient-wrap">
-							<img class="img-profile story" src="${pageContext.request.contextPath}/resources/img/logo.jpg"
-								onclick="location.href='#'" style="cursor: pointer;">
+							<img class="img-profile story"
+								src="${pageContext.request.contextPath}/resources/img/logo.jpg"
+								onclick="location.href='userProfile'" style="cursor: pointer;">
 						</div>
 						<div class="profile-text">
 							<span class="userID point-span">신범기</span>
@@ -86,8 +90,9 @@
 					</li>
 					<li class="story-list_li">
 						<div class="gradient-wrap">
-							<img class="img-profile story"src="${pageContext.request.contextPath}/resources/img/logo.jpg"
-								onclick="location.href='#'" style="cursor: pointer;">
+							<img class="img-profile story"
+								src="${pageContext.request.contextPath}/resources/img/logo.jpg"
+								onclick="location.href='userProfile'" style="cursor: pointer;">
 						</div>
 						<div class="profile-text">
 							<span class="userID point-span">장치영</span>
@@ -95,8 +100,9 @@
 					</li>
 					<li class="story-list_li">
 						<div class="gradient-wrap">
-							<img class="img-profile story" src="${pageContext.request.contextPath}/resources/img/logo.jpg"
-								onclick="location.href='#'" style="cursor: pointer;">
+							<img class="img-profile story"
+								src="${pageContext.request.contextPath}/resources/img/logo.jpg"
+								onclick="location.href='userProfile'" style="cursor: pointer;">
 						</div>
 						<div class="profile-text">
 							<span class="userID point-span">한병훈</span>
@@ -104,8 +110,9 @@
 					</li>
 					<li class="story-list_li">
 						<div class="gradient-wrap">
-							<img class="img-profile story"src="${pageContext.request.contextPath}/resources/img/logo.jpg"
-								onclick="location.href='#'" style="cursor: pointer;">
+							<img class="img-profile story"
+								src="${pageContext.request.contextPath}/resources/img/logo.jpg"
+								onclick="location.href='userProfile'" style="cursor: pointer;">
 						</div>
 						<div class="profile-text">
 							<span class="userID point-span">한병훈</span>
@@ -113,8 +120,9 @@
 					</li>
 					<li class="story-list_li">
 						<div class="gradient-wrap">
-							<img class="img-profile story" src="${pageContext.request.contextPath}/resources/img/logo.jpg"
-								onclick="location.href='#'" style="cursor: pointer;">
+							<img class="img-profile story"
+								src="${pageContext.request.contextPath}/resources/img/logo.jpg"
+								onclick="location.href='userProfile'" style="cursor: pointer;">
 						</div>
 						<div class="profile-text">
 							<span class="userID point-span">한병훈</span>
@@ -122,8 +130,9 @@
 					</li>
 					<li class="story-list_li">
 						<div class="gradient-wrap">
-							<img class="img-profile story" src="${pageContext.request.contextPath}/resources/img/logo.jpg"
-								onclick="location.href='#'" style="cursor: pointer;">
+							<img class="img-profile story"
+								src="${pageContext.request.contextPath}/resources/img/logo.jpg"
+								onclick="location.href='userProfile'" style="cursor: pointer;">
 						</div>
 						<div class="profile-text">
 							<span class="userID point-span">한병훈</span>
@@ -131,8 +140,9 @@
 					</li>
 					<li class="story-list_li">
 						<div class="gradient-wrap">
-							<img class="img-profile story" src="${pageContext.request.contextPath}/resources/img/logo.jpg"
-								onclick="location.href='#'" style="cursor: pointer;">
+							<img class="img-profile story"
+								src="${pageContext.request.contextPath}/resources/img/logo.jpg"
+								onclick="location.href='userProfile'" style="cursor: pointer;">
 						</div>
 						<div class="profile-text">
 							<span class="userID point-span">한병훈</span>
@@ -140,8 +150,9 @@
 					</li>
 					<li class="story-list_li">
 						<div class="gradient-wrap">
-							<img class="img-profile story" src="${pageContext.request.contextPath}/resources/img/logo.jpg"
-								onclick="location.href='#'" style="cursor: pointer;">
+							<img class="img-profile story"
+								src="${pageContext.request.contextPath}/resources/img/logo.jpg"
+								onclick="location.href='userProfile'" style="cursor: pointer;">
 						</div>
 						<div class="profile-text">
 							<span class="userID point-span">한병훈</span>
@@ -153,8 +164,9 @@
 			<article>
 				<header>
 					<div class="profile-of-article">
-						<img class="img-profile1 pic"src="${pageContext.request.contextPath}/resources/img/logo.jpg"
-							onclick="location.href='/instagram'"> <span
+						<img class="img-profile1 pic"
+							src="${pageContext.request.contextPath}/resources/img/logo.jpg"
+							onclick="location.href='/${board_client_id}'"> <span
 							class="userID main-id point-span" style="margin-top: 8px;">장치영</span>
 					</div>
 					<img class="icon-react icon-more"
@@ -163,32 +175,39 @@
 				</header>
 				<div class="single-item">
 					<div>
-						<img src="${pageContext.request.contextPath}/resources/img/logo.jpg">
+						<img
+							src="${pageContext.request.contextPath}/resources/img/logo.jpg">
 					</div>
 					<div>
-						<img src="${pageContext.request.contextPath}/resources/img/logo.jpg">
+						<img
+							src="${pageContext.request.contextPath}/resources/img/logo.jpg">
 					</div>
 					<div>
-						<img src="${pageContext.request.contextPath}/resources/img/logo.jpg">
+						<img
+							src="${pageContext.request.contextPath}/resources/img/logo.jpg">
 					</div>
 				</div>
 				<div class="icons-react">
 					<div class="icons-left">
-						<img class="icon-react" id="heart" onclick=""
-							src="https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/bearu/heart.png">
-						<img class="icon-react"
+						<c:if test="${!heartCheck }">
+								<i class="fa fa-heart-o heart" style="cursor: pointer;" onclick="like(heart)"></i> <span
+									class="visually-hiddewn"></span>
+						</c:if>
+							<!-- 이미 관심등록 되어있음 -->
+						<c:if test="${heartCheck }">
+								<i class="fa heart heart-clicked fa-heart" style="color: red; cursor: pointer;"
+									onclick="unLike(heart)"></i> <span class="visually-hidden"></span>
+						</c:if>
+						<img class="icon-react" onclick="location.href='starting/comment'"
 							src="https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/bearu/comment.png">
-						<img class="icon-react" src="/resources/img/dm.png">
+						<img class="icon-react" onclick="location.href='starting/message'"  src="/resources/img/dm.png">
 					</div>
-					<img class="icon-react"
-						src="https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/bearu/bookmark.png"
-						alt="북마크">
 				</div>
 				<!-- article text data -->
 				<div class="reaction">
 					<div class="liked-people">
 						<p>
-							<span class="point-span">좋아요 777개</span>
+							<span class="point-span" id="heart_count">0</span>
 						</p>
 					</div>
 					<div class="description">
@@ -211,9 +230,9 @@
 				<div class="hl"></div>
 				<div class="comment">
 					<form action="" method="post">
-					<input id="input-comment" class="input-comment" type="text"
-						placeholder="댓글 달기...">
-					<button type="submit" class="submit-comment">게시</button>
+						<input id="input-comment" class="input-comment" type="text"
+							placeholder="댓글 달기...">
+						<button type="submit" class="submit-comment">게시</button>
 					</form>
 				</div>
 			</article>
@@ -221,10 +240,11 @@
 		<!-- main-right -->
 		<div class="main-right">
 			<div class="myProfile">
-				<img class="pic" src="${pageContext.request.contextPath}/resources/img/logo.jpg"
+				<img class="pic"
+					src="${pageContext.request.contextPath}/resources/img/logo.jpg"
 					onclick="location.href='#'" style="cursor: pointer;">
 				<div>
-					<span class="userID point-span">장치영</span>
+					<span class="userID point-span">${client_name}</span>
 				</div>
 				<div>
 					<span class="sub-span"
@@ -241,7 +261,8 @@
 				<ul class="recommend-list">
 					<li>
 						<div class="recommend-friend-profile">
-							<img class="img-profile1 story" src="${pageContext.request.contextPath}/resources/img/logo.jpg"
+							<img class="img-profile1 story"
+								src="${pageContext.request.contextPath}/resources/img/logo.jpg"
 								onclick="location.href='#'" style="cursor: pointer;">
 							<div class="profile-text1">
 								<span class="userID point-span">홍길동</span> <span
@@ -251,7 +272,8 @@
 					</li>
 					<li>
 						<div class="recommend-friend-profile">
-							<img class="img-profile1 story" src="${pageContext.request.contextPath}/resources/img/logo.jpg"
+							<img class="img-profile1 story"
+								src="${pageContext.request.contextPath}/resources/img/logo.jpg"
 								onclick="location.href='#'" style="cursor: pointer;">
 							<div class="profile-text1">
 								<span class="userID point-span">강호동</span> <span
@@ -261,7 +283,8 @@
 					</li>
 					<li>
 						<div class="recommend-friend-profile">
-							<img class="img-profile1 story" src="${pageContext.request.contextPath}/resources/img/logo.jpg"
+							<img class="img-profile1 story"
+								src="${pageContext.request.contextPath}/resources/img/logo.jpg"
 								onclick="location.href='#'" style="cursor: pointer;">
 							<div class="profile-text1">
 								<span class="userID point-span">유재석</span> <span
@@ -273,90 +296,7 @@
 			</div>
 		</div>
 	</main>
-	<div class="modal">
-		<div class="modal_body">
-			<div class="modal_body2">
-				<div class=" modal_body3"></div>
-			</div>
-		</div>
-		<div class="modal_main">
-			<div class="modal_main2">
-				<article class="modal_main3">
-					<div class="modal_main4">
-						<div class="modal_left1">
-							<div class="single-items">
-								<div>
-									<img src="${pageContext.request.contextPath}/resources/img/liked.png">
-								</div>
-								<div>
-									<img src="${pageContext.request.contextPath}/resources/img/dm.png">
-								</div>
-								<div>
-									<img src="${pageContext.request.contextPath}/resources/img/home.png">
-								</div>
-								<div>
-									<img src="${pageContext.request.contextPath}/resources/img/logo.jpg">
-								</div>
-							</div>
-						</div>
-						<div class="modal_right1">
-							<header>
-								<div class="profile-of-article">
-									<img class="img-profile1 pic" src="${pageContext.request.contextPath}/resources/img/logo.jpg"
-										onclick="location.href='/instagram'"> <span
-										class="userID main-id point-span" style="margin-top: 8px;">장치영</span>
-								</div>
-								<img class="icon-react icon-more"
-									src="https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/bearu/more.png"
-									alt="more">
-							</header>
 
-							<div class="icons-react">
-								<div class="icons-left">
-									<img class="icon-react" id="heart" onclick=""
-										src="https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/bearu/heart.png">
-									<img class="icon-react"
-										src="https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/bearu/comment.png">
-									<img class="icon-react" src="img/dm.png">
-								</div>
-								<img class="icon-react"
-									src="https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/bearu/bookmark.png"
-									alt="북마크">
-							</div>
-							<div class="reaction">
-								<div class="liked-people">
-									<p>
-										<span class="point-span">좋아요 777개</span>
-									</p>
-								</div>
-							</div>
-							<div class="comment">
-								<form action="" method="post">
-									<input id="input-comment" style="width: 526px;"
-										class="input-comment" type="text" placeholder="댓글 달기...">
-									<button type="submit" class="submit-comment">게시</button>
-								</form>
-							</div>
-						</div>
-						<div class="modal_cansle">
-							<button id="modal_cansle" class="modal_cansle" type="button">
-								<div class="QBdPU ">
-									<svg class="xbotton" color="#ffffff"
-										fill="#ffffff" height="24" role="img" viewBox="0 0 48 48"
-										width="24">
-										<path clip-rule="evenodd"
-											d="M41.8 9.8L27.5 24l14.2 14.2c.6.6.6 1.5 0 2.1l-1.4 1.4c-.6.6-1.5.6-2.1 0L24 27.5 9.8 41.8c-.6.6-1.5.6-2.1 0l-1.4-1.4c-.6-.6-.6-1.5 0-2.1L20.5 24 6.2 9.8c-.6-.6-.6-1.5 0-2.1l1.4-1.4c.6-.6 1.5-.6 2.1 0L24 20.5 38.3 6.2c.6-.6 1.5-.6 2.1 0l1.4 1.4c.6.6.6 1.6 0 2.2z"
-											fill-rule="evenodd"></path></svg>
-								</div>
-							</button>
-						</div>
-					</div>
-				</article>
-			</div>
-		</div>
-		<div></div>
-	</div>
-	<button class="btn-open-popup">Modal 띄우기</button>
 	<script type="text/javascript">
 $(document).ready(function(){
   $('.single-item').slick({
@@ -384,41 +324,78 @@ $(document).ready(function(){
 		vertical : false,		// 세로 방향 슬라이드 옵션
 		draggable : true, 
 	});
-  $('.single-items').slick({
-		infinite : true, 	//무한 반복 옵션	 
-		slidesToShow : 1,		// 한 화면에 보여질 컨텐츠 개수
-		slidesToScroll : 1,		//스크롤 한번에 움직일 컨텐츠 개수
-		speed : 100,	 // 다음 버튼 누르고 다음 화면 뜨는데까지 걸리는 시간(ms)
-		arrows : true, 		// 옆으로 이동하는 화살표 표시 여부
-		dots : true, 		// 스크롤바 아래 점으로 페이지네이션 여부
-		draggable : true, 
-		vertical : false,		// 세로 방향 슬라이드 옵션
-		pauseOnHover : true,		// 슬라이드 이동	시 마우스 호버하면 슬라이더 멈추게 설정
 });
-});
-</script>
-	<script> 
-const modal = document.querySelector('.modal'); 
-const btnOpenPopup = document.querySelector('#commentsAll');
-btnOpenPopup.addEventListener('click', () => { 
-	modal.style.display = 'block';
-	 $('.single-items').slick({
-			infinite : true, 	//무한 반복 옵션	 
-			slidesToShow : 1,		// 한 화면에 보여질 컨텐츠 개수
-			slidesToScroll : 1,		//스크롤 한번에 움직일 컨텐츠 개수
-			speed : 100,	 // 다음 버튼 누르고 다음 화면 뜨는데까지 걸리는 시간(ms)
-			arrows : true, 		// 옆으로 이동하는 화살표 표시 여부
-			dots : true, 		// 스크롤바 아래 점으로 페이지네이션 여부
-			draggable : true, 
-			vertical : false,		// 세로 방향 슬라이드 옵션
-			pauseOnHover : true,		// 슬라이드 이동	시 마우스 호버하면 슬라이더 멈추게 설정
-	  });
+
+$(function(){
+	// 좋아요버튼 클릭시(좋아요 추가 또는 좋아요 취소)
+	$("#heart").click(function(){
+		$.ajax({
+			url: "/heart",
+            type: "POST",
+            async : true,
+            dataType : "json", 
+            data: {
+                no: ${1},
+                id: 'jang123'
+            },
+            success: function () {
+            	heartCount();
+            },
+		});
 	});
-const btnCansle = document.querySelector('#modal_cansle');
-btnCansle.addEventListener('click', () => { 
-	modal.style.display = 'none';
-});	
+	
+	// 좋아요 카운트
+    function heartCount() {
+		$.ajax({
+			url: "/heartCount",
+            type: "POST",
+            async : true,
+            dataType : "json",
+            data: {
+                no: ${1}
+            },
+            success: function (count) {
+            	$(".heart_count").html(count);
+            },
+		});
+    };
+    $(document).ready(function() { // 페이지가 준비되면
+	    heartCount(); // 처음 시작했을 때 실행되도록 해당 함수 호출
+	});
+});
+    
 </script>
+	<!-- <script>
+	var id = '${id}'; // postid
+
+	function likeview() {
+		$.ajax({
+			url : '/like/view',
+			type : 'post',
+			async : true,
+			data : {'id' : id}, // postid 보냄
+			dataType : "json", // data가 json타입
+			success : function(data) {
+				var a = '';
+				if (data.cnt == 1) {   // 현재 로그인 유저가 포스팅 좋아요를 눌렀음
+					a += '<a onclick="likeDelete('+ id +');"' // likeDelete는 밑에서
+						+ 'class="glyphicon glyphicon-heart heart" aria-hidden="true"></a>'
+					a += '<span class="glyphicon glyphicon-comment" aria-hidden="true"></span> <br />'
+					a += '<span><b>좋아요 ' + data.total_cnt + '개</b></span>' // 총 좋아요 개수
+				} else if (data.cnt == 0) { // 안눌렀음
+					a += '<a onclick="likeInsert('+ id +');"' // likeInsert는 밑에서
+						+'class="glyphicon glyphicon-heart-empty heart" aria-hidden="true"></a>'
+					a += '<span class="glyphicon glyphicon-comment" aria-hidden="true"></span> <br />'
+					a += '<span><b>좋아요 ' + data.total_cnt + '개</b></span>'		
+				}
+				$('.like').html(a); // <div class="like></div> 이부분에 나타남
+			}
+		});
+	}
+	$(document).ready(function() { // 페이지가 준비되면
+		likeview(); // 함수 likeview ㄱ
+	});
+</script> -->
 
 </body>
 

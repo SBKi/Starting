@@ -1,13 +1,13 @@
 @charset "UTF-8";
 
-@FONT-FACE {
+/* @FONT-FACE {
 	font-family: 'monhwa';
-	src: url("../include/monhwa.ttf");
+	src: url("${pageContext.request.contextPath}/resources/font/monhwa.ttf)";
 }
 
 * {
 	font-family: monhwa;
-}
+} */
 
 .html, body {
 	height: 100%;

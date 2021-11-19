@@ -125,21 +125,21 @@
 		<div class="pbNvD  fPMEg">
 			<div class="_1XyCr  ">
 				<div class="piCib">
-					<div class="mt3GC">
+					<div class="modal_button_body">
 					<!-- 내정보 일경우 -->
-						<button class="aOOlW   HoLwm " tabindex="0" onclick="location.href='mypage'">개인정보 변경</button>
-						<button class="aOOlW   HoLwm " tabindex="0" onclick="location.href='board'">게시물 올리기</button>
-						<button class="aOOlW   HoLwm " tabindex="0" onclick="location.href='follower'">팔로워 확인</button>
-						<button class="aOOlW   HoLwm " tabindex="0" onclick="location.href='follws'">팔로우 확인</button>
-						<button class="aOOlW   HoLwm " tabindex="0" onclick="location.href='message'">message 확인</button>
-						<button class="aOOlW   HoLwm " tabindex="0" onclick="location.href='logout'">로그아웃</button>
-						<button id="modal_cansle" class="aOOlW   HoLwm " tabindex="0">취소</button>
+						<button class="modal_button" tabindex="0" onclick="location.href='mypage'">개인정보 변경</button>
+						<button class="modal_button" tabindex="0" onclick="location.href='board'">게시물 올리기</button>
+						<button class="modal_button" tabindex="0" onclick="location.href='follower'">팔로워 확인</button>
+						<button class="modal_button" tabindex="0" onclick="location.href='follws'">팔로우 확인</button>
+						<button class="modal_button" tabindex="0" onclick="location.href='message'">message 확인</button>
+						<button class="modal_button" tabindex="0" onclick="location.href='logout'">로그아웃</button>
+						<button id="modal_cansle" class="modal_button" tabindex="0">취소</button>
 					<!-- 상대방 정보 일경우 -->
-						<button class="aOOlW   HoLwm " tabindex="0" onclick="location.href='follower'">팔로우 하기</button>
-						<button class="aOOlW   HoLwm " tabindex="0" onclick="location.href='follows'">팔로우 취소</button>
-						<button class="aOOlW   HoLwm " tabindex="0" onclick="location.href='message'">message 보내기</button>
-						<button class="aOOlW   HoLwm " tabindex="0" onclick="location.href='declare'">신고하기</button>
-						<button id="modal_cansle" class="aOOlW   HoLwm " tabindex="0">취소</button>
+						<button class="modal_button" tabindex="0" onclick="location.href='follower'">팔로우 하기</button>
+						<button class="modal_button" tabindex="0" onclick="location.href='follows'">팔로우 취소</button>
+						<button class="modal_button" tabindex="0" onclick="location.href='message'">message 보내기</button>
+						<button class="modal_button" tabindex="0" onclick="location.href='declare'">신고하기</button>
+						<button id="modal_cansle" class="modal_button" tabindex="0">취소</button>
 					</div>
 				</div>
 			</div>

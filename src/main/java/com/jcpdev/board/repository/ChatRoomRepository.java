@@ -1,41 +1,18 @@
 package com.jcpdev.board.repository;
-import org.springframework.stereotype.Repository;
 
 
-import com.jcpdev.board.model.ChatRoom;
+import java.util.List;
+import java.util.Optional;
 
-import javax.annotation.PostConstruct;
-import java.util.*;
-import java.util.stream.Stream;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
-@Repository
-public class ChatRoomRepository {
+import com.jcpdev.board.entity.ChatEntity;
 
-    private Map<String, ChatRoom> chatRoomDTOMap;
+public interface ChatRoomRepository extends JpaRepository<ChatEntity, Integer>{
+	
+	@Query("select c from ChatEntity c where c.roomid = :myid or c.roomid = :id")
+	List<ChatEntity>findcustom(@Param("myid") String myid, @Param("id")String id);
 
-    @PostConstruct
-    private void init(){
-        chatRoomDTOMap = new LinkedHashMap<>();
-    }
-
-    public List<ChatRoom> findAllRooms(){
-        //채팅방 생성 순서 최근 순으로 반환
-        List<ChatRoom> result = new ArrayList<>(chatRoomDTOMap.values());
-        Collections.reverse(result);
-
-        return result;
-    }
-
-    public ChatRoom findRoomById(String id){
-    	System.out.println("id : "+id);
-    	System.out.println(chatRoomDTOMap);
-    	System.out.println("aasd"+chatRoomDTOMap.get(id));
-        return chatRoomDTOMap.get(id);
-    }
-
-    public ChatRoom createChatRoomDTO(String name){
-    	ChatRoom room = ChatRoom.create(name);
-        chatRoomDTOMap.put(room.getRoomId(), room);
-        return room;
-    }
 }

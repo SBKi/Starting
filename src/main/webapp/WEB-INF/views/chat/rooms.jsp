@@ -12,27 +12,27 @@
 		<div>
 		<c:forEach var="room" items="${list}">
 			<ul>
-				<li><a href="/chat/room?roomId=${room.roomId}">${room.name}</a></li>
+				<li><a href="/chat/room?id=beomki123">${room.roomid}</a></li>
 			</ul>
 		</c:forEach>
 		</div>
 	</div>
-	<form action="/chat/room" method="post">
-		<input type="text" name="name" class="form-control">
-		<button class="btn btn-secondary">개설하기</button>
+	<form action="room" method="post">
+		<input type="text" name="id" class="form-control">
+		<button class="btn btn-secondary btn-create">개설하기</button>
 	</form>
       <script type="text/javascript">
             $(document).ready(function(){
 
-                var roomName = ${roomName};
+                var roomId = ${room.roomid};
 
-                if(roomName != null)
-                    alert(roomName + "방이 개설되었습니다.");
+                if(roomId != null)
+                    alert(roomId + "방이 개설되었습니다.");
 
                 $(".btn-create").on("click", function (e){
                     e.preventDefault();
 
-                    var name = $("input[name='name']").val();
+                    var name = $("input[name='id']").val();
 
                     if(name == "")
                         alert("Please write the name.")

@@ -187,8 +187,8 @@ header {
     -webkit-flex-direction: row;
 }
 .icon-react {
-    width: 24px;
-    height: 24px;
+    width: 31px;
+    height: 31px;
 }
 .icons-left {
     display: flex;
@@ -520,7 +520,7 @@ article, aside, figcaption, figure, footer, hgroup, main, nav, section {
     overflow: auto;
 }
 .XQXOT {
-    height: 430px;
+    height: 410px;
     left: 0;
     padding: 16px;
     scrollbar-width: none;
@@ -593,4 +593,34 @@ input[type=date], input[type=email], input[type=number], input[type=password], i
     box-sizing: border-box;
     line-height: 20px;
     border: 1px solid #e8ebed;
+}
+.fa-heart-o:before {
+    content: "\f08a";
+    font-size: 30px;
+    cursor: pointer;
+    margin-right: 10px;
+}
+.fa-heart:before {
+    content: "\f004";
+    font-size: 30px;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.fa-heart:active { 
+	position: relative; 
+    border: 1px solid transparent;
+    border-radius: 30px;
+    position: relative;
+    font-weight: 600;
+}
+
+
+.fa-heart-o:active { 
+	position: relative; 
+	font-size: 17px;
+    border: 1px solid transparent;
+    border-radius: 30px;
+    position: relative;
+    font-weight: 600;
 }

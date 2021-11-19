@@ -4,7 +4,7 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<title>아이디찾기</title>
+<title>회원가입</title>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/login.css">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/find.css">
 </head>
@@ -17,11 +17,7 @@
 						onclick="location.href='/starting'"
 						style="cursor: pointer;">
 				</div>
-				<div class="header_title">아이디 찾기 완료</div>
-				<div class="navigation_list">
-						<div class="navigation_item ">01</div>
-						<div class="navigation_item on">02 결과</div>
-					</div>
+				<div class="header_title">회원가입을 축하드립니다!!</div>
 				<div class="login_line"></div>
 				<div class="">
 					<table>
@@ -29,16 +25,34 @@
 					<td>아이디 : </td>
 					<td>${client.client_id}</td>
 					</tr>
+					<tr> 
+					<td>이름 : </td>
+					<td>${client.client_name}</td>
+					</tr>
+					<tr> 
+					<td>키 : </td>
+					<td>${client.client_tall}</td>
+					</tr>
+					<tr> 
+					<td>이메일 : </td>
+					<td>${client.client_email}</td>
+					</tr>
+					<tr> 
+					<td>주소 : </td>
+					<td>${client.client_address}</td>
+					</tr>
 					</table>
 					
 				</div>
 				<div>
-					<input style="background: #ff80ab;" class="button1 input" type="button" value="확인" onclick="location.href='login'">
+					<input class="submit_button" type="button" value="확인" onclick="location.href='login'">
 				</div>
 				<div class="button_section">
+					<a class="" href="find_id">아이디 찾기</a>
+					<span class="hor_line">|</span>
 					<a class="" href="find_password">비밀번호 찾기</a>
 					<span class="hor_line ">|</span>
-					<a class="" href="join">회원가입</a>
+					<a class="" href="sign_up">회원가입</a>
 				</div>
 			</div>
 		</div>

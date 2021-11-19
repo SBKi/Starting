@@ -1,0 +1,30 @@
+@charset "UTF-8";
+
+.comment_body {
+	height: auto;
+	border-bottom: 1px solid #dbdbdb;
+}
+
+main {
+	padding-top: 40px;
+}
+.modal_main {
+	padding: 0;
+}
+
+.comment {
+	z-index: 0;
+}
+.follow_list_button {
+    font-size: 17px;
+    margin-left: 8px;
+    margin-right: 8px;
+    -ms-flex: 0 0 auto;
+    border: 1px solid transparent;
+    background-color: #0095f6;
+    border-radius: 11px;
+    color: #fff;
+    position: relative;
+    font-weight: 600;
+    cursor: pointer;
+}

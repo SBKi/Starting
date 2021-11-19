@@ -16,7 +16,9 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
 	// 이유는 왜 그런지 아직 찾지 못함
 	@Override
 	public void registerStompEndpoints(StompEndpointRegistry registry) {
-		registry.addEndpoint("/stomp/chat").withSockJS();
+	    registry.addEndpoint("/stomp/chat")
+        .setAllowedOrigins("http://localhost:8083")
+        .withSockJS();
 	}
 
 	/* 어플리케이션 내부에서 사용할 path를 지정할 수 있음 */

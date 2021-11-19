@@ -80,7 +80,7 @@
 							<span class="_2dbep qNELH" role="link" tabindex="0"
 								style="width: 22px; height: 22px;"><img class="_6q-tv"
 								crossorigin="anonymous" data-testid="user-avatar"
-								draggable="false" src="${pageContext.request.contextPath}/resources/img/logo.jpg"></span>
+								draggable="false" src="${pageContext.request.contextPath}/resources/img/logo.jpg" onclick="location.href='/starting/mypage'"></span>
 							<div class="poA5q" style="margin-left: -180px;"></div>
 						</div>
 					</div>

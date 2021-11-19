@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @Builder
 public class Follow {
 	private int follow_no;
-	private String follow_id;
+	private String follow_client_id;
 	private String following_id;
 
 }

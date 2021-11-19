@@ -152,7 +152,7 @@ nav img {
     margin-top: 20px;
 }
 
-#modal {
+#modal, #report_modal, #meaning_modal {
 	top: 0;
 	left: 0;
 	bottom: 0;
@@ -219,27 +219,23 @@ nav img {
     -ms-flex-pack: center;
     justify-content: center;
 }
-.mt3GC:only-child {
+.modal_button_body:only-child {
     margin-top: 0;
 }
-.mt3GC {
+.modal_button_body {
     margin-top: 16px;
 }
-.mt3GC:only-child .aOOlW:first-child {
+.modal_button_body:only-child .modal_button:first-child {
     border-top: none;
     border-top-left-radius: 12px;
     border-top-right-radius: 12px;
 }
-.HoLwm {
-    color: inherit;
-}
-.aOOlW {
+.modal_button {
     background-color: transparent;
     border-bottom: 0;
     border-left: 0;
     border-right: 0;
-    border-top: 1px solid #d
- solid rgba(var(--b6a,219,219,219),1);
+    border-top: 1px solid #dbdbdb;
     cursor: pointer;
     line-height: 1.5;
     margin: 0;

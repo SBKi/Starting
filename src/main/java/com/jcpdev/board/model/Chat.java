@@ -14,8 +14,8 @@ import lombok.ToString;
 @Builder
 @ToString
 public class Chat {
-	private int chat_no;
-	private String roomId;
+	private Integer chat_no;
+	private String roomid;
 	private String writer;
 	private String message;
 }

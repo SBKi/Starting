@@ -17,4 +17,7 @@ public interface ClientRepository extends JpaRepository<ClientEntity, String> {
 	@Query("select c from ClientEntity c where c.client_id = :client_id and c.client_email = :client_email and c.client_birth = :client_birth")
 	Optional<ClientEntity> findPassword(@Param("client_id") String client_id, @Param("client_email") String client_email, @Param("client_birth") String client_birth);
 	
+	@Query("select c from ClientEntity c where c.client_id = :client_id")
+	Optional<ClientEntity> mypage(@Param("client_id")String client_id);
+	
 }

@@ -33,7 +33,7 @@
 								<div class="user_id">
 									<div>
 										<span>
-											<a>client_id</a>
+											<a href="userProfile">client_id</a>
 										</span>
 									</div>
 								</div>
@@ -61,7 +61,7 @@
 								<div class="img_box">
 									<div>
 										<a>
-											<img style="width: 60px;" alt="" src="${pageContext.request.contextPath}/resources/img/person.png">
+											<img style="width: 60px;" alt="" src="${pageContext.request.contextPath}/resources/img/person.png/${list.client_img}">
 										</a>
 									</div>
 								</div>
@@ -70,19 +70,19 @@
 								<div class="user_id">
 									<div>
 										<span>
-											<a>client_id</a>
+											<a href="userProfile/${list.client_id }">${list.clientid_id }</a>
 										</span>
 									</div>
 								</div>
 								<div class="user_name">
 									<div>
-										<span>client_name</span>
+										<span>${list.clientid_name }</span>
 									</div>
 								</div>
 								<div class="user_info">
 									<div >
 										<div>
-											<span>client_info</span>
+											<span>${list.clientid_info }</span>
 										</div>
 									</div>
 								</div>
