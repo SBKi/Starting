@@ -159,13 +159,14 @@ public class ClientController {
 	@RequestMapping(value = "/starting/userProfile", method = RequestMethod.GET)
 	public String mypage(String client_id,HttpSession session, Model model, HttpServletRequest request) {
 		Client user=(Client) session.getAttribute("client");
-		String login_id = user.getClient_id();
-		ClientEntity entity=repository.getById(login_id);
-		if(client_id.equals(user.getClient_id())) return "userProfile?client_id="+client_id;
-		else {
-		user = service.toDto(entity);
-		model.addAttribute("user", user);
-		return "userProfile";
+		if(client_id == null || client_id.equals("")) {
+			if(user == null || user.getClient_id().equals("")) {
+				return "redirect:starting";
+			}else {
+				return "userProfile?client_id="+user.getClient_id();
+			}
+		}else {
+			return "userProfile?client_id="+client_id;
 		}
 	}
 
