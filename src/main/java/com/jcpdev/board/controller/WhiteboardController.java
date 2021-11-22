@@ -43,8 +43,8 @@ public class WhiteboardController {
 	}
 	
 	@RequestMapping("/starting/main")
-	public String getList(String client_id,Model model){
-		List<WhiteboardEntity> list =repository.findByWhiteboard_Client(client_id);
+	public String getList(Model model){
+		List<WhiteboardEntity> list =repository.findByWhiteboard_Client();
 		//		List<WhiteboardEntity> list = repository.findAll(Sort.by(Sort.Direction.DESC,"whiteboard_no"));
 		//if(list.equals("[]")) {list = repository.findAll();}
 		List<Whiteboard> result = new ArrayList<Whiteboard>();

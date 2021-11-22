@@ -181,7 +181,7 @@
 				<div class="single-item">
 					<div>
 						<img
-							src="/upload/test${board.whiteboard_img1 }">
+							src="/img/${board.whiteboard_img1 }">
 							<br>
 							
 							/upload/test/${board.whiteboard_img1 }
