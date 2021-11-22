@@ -65,19 +65,16 @@
 								<div class="modal_left1">
 									<div class="single-items">
 										<div>
-											<img
-												src="${pageContext.request.contextPath}/resources/img/liked.png">
-												${whiteboard.whiteboard_img1 }
+											<img style="height: 475px;"
+												src="/img/${whiteboard.whiteboard_img1 }">
 										</div>
 										<div>
-											<img
-												src="${pageContext.request.contextPath}/resources/img/dm.png">
-												${whiteboard.whiteboard_img2 }
+											<img style="height: 475px;"
+												src="/img/${whiteboard.whiteboard_img2 }">
 										</div>
 										<div>
-											<img
-												src="${pageContext.request.contextPath}/resources/img/logo.jpg">
-												${whiteboard.whiteboard_img3 }
+											<img style="height: 475px;"
+												src="/img/${whiteboard.whiteboard_img3 }">
 										</div>
 									</div>
 								</div>

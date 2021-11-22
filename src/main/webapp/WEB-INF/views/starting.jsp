@@ -26,15 +26,12 @@
 .slick-prev {
 	left: 10px;
 }
-
 .slick-next {
 	right: 10px;
 }
-
 .slick-arrow {
 	z-index: 1;
 }
-
 .modal {
 	position: absolute;
 	top: 0;
@@ -45,7 +42,6 @@
 	height: 100%;
 	display: none;
 }
-
 .single-item {
 	height: 100%;
 }
@@ -180,23 +176,16 @@
 				</header>
 				<div class="single-item">
 					<div>
-						<img
+						<img style="height: 600px;"
 							src="/img/${board.whiteboard_img1 }">
-							<br>
-							
-							/upload/test/${board.whiteboard_img1 }
 					</div>
 					<div>
-						<img
-							src="${pageContext.request.contextPath}/resources/img/logo.jpg">
-							<br>
-							${board.whiteboard_img2 }
+						<img style="height: 600px;"
+							src="/img/${board.whiteboard_img2 }">
 					</div>
 					<div>
-						<img
-							src="${pageContext.request.contextPath}/resources/img/logo.jpg">
-							<br>
-							${board.whiteboard_img3 }
+						<img style="height: 600px;"
+							src="/img/${board.whiteboard_img3 }">
 					</div>
 				</div>
 				<div class="icons-react">
@@ -210,9 +199,9 @@
 								<i class="fa heart heart-clicked fa-heart" style="color: red; cursor: pointer;"
 									onclick="unLike(heart)"></i> <span class="visually-hidden"></span>
 						</c:if>
-						<img class="icon-react" onclick="location.href='starting/comment'"
+						<img class="icon-react" onclick="location.href='/starting/comment?whiteboard_no=${board.whiteboard_no}'"
 							src="https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/bearu/comment.png">
-						<img class="icon-react" onclick="location.href='starting/message'"  src="/resources/img/dm.png">
+						<img class="icon-react" onclick="location.href='/starting/message'"  src="/resources/img/dm.png">
 					</div>
 				</div>
 				<!-- article text data -->
@@ -224,7 +213,7 @@
 					</div>
 					<div class="description">
 						<p>
-							<span class="point-span userID">travel_behappyhere</span> <span>
+							<span class="point-span userID">${board.whiteboard_client_id }</span> <span>
 								${board.whiteboard_content }</span>
 						</p>
 					</div>
@@ -235,13 +224,18 @@
 					</div>
 				</div>
 				<div class="hl"></div>
-				<div class="comment">
-					<form action="" method="post">
-						<input id="input-comment" class="input-comment" type="text"
-							placeholder="댓글 달기...">
-						<button type="submit" class="submit -comment">게시</button>
-					</form>
-				</div>
+				<div class="comment" style="margin-bottom: 20px; border-bottom: 1px solid #DBDBDB;">
+										<form action="comment/save" method="post">
+											<input type="hidden" name="comment_no" value="0">
+											<input type="hidden" name="comment_whiteboard_no" value="${board.whiteboard_no }">
+											<input type="hidden" name="comment_id" value="${client.client_id }">
+											<input id="input-comment" name="comment_content" style="width: 560px;"
+												class="input-comment" type="text" placeholder="댓글 달기..."
+												>
+											<button type="submit" class="submit-comment">게시</button>
+										</form>
+									</div>
+									<div style="border-bottom: 1px solid #DBDBDB"></div>
 				</c:forEach>
 			</article>
 		</div>
@@ -252,7 +246,7 @@
 					src="${pageContext.request.contextPath}/resources/img/logo.jpg"
 					onclick="location.href='#'" style="cursor: pointer;">
 				<div>
-					<span class="userID point-span">${client_name}</span>
+					<span class="userID point-span">${client.client_name}</span>
 				</div>
 				<div>
 					<span class="sub-span"
@@ -333,7 +327,6 @@ $(document).ready(function(){
 		draggable : true, 
 	});
 });
-
 $(function(){
 	// 좋아요버튼 클릭시(좋아요 추가 또는 좋아요 취소)
 	$("#heart").click(function(){
@@ -373,12 +366,11 @@ $(function(){
 });
     
 </script>
-	<!-- <script>
-	var id = '${id}'; // postid
-
+<script>
+	var id = '${client_id}'; // postid
 	function likeview() {
 		$.ajax({
-			url : '/like/view',
+			url : '/board',
 			type : 'post',
 			async : true,
 			data : {'id' : id}, // postid 보냄
@@ -403,7 +395,7 @@ $(function(){
 	$(document).ready(function() { // 페이지가 준비되면
 		likeview(); // 함수 likeview ㄱ
 	});
-</script> -->
+</script>
 
 </body>
 
