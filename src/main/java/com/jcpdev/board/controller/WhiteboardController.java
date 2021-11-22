@@ -41,8 +41,8 @@ public class WhiteboardController {
 		System.out.println(repository.save(entity));
 		return "test";
 	}
-	
-	@RequestMapping("/starting/main")
+
+	@RequestMapping({"/starting/main","/starting","/"})
 	public String getList(Model model){
 		List<WhiteboardEntity> list =repository.findByWhiteboard_Client();
 		//		List<WhiteboardEntity> list = repository.findAll(Sort.by(Sort.Direction.DESC,"whiteboard_no"));

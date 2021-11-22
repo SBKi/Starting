@@ -167,7 +167,7 @@
 					<div class="profile-of-article">
 						<img class="img-profile1 pic"
 							src="${pageContext.request.contextPath}/resources/img/logo.jpg"
-							onclick="location.href='/${board_client_id}'"> <span
+							onclick="location.href='userProfile?client_id=${board.whiteboard_client_id}'"> <span
 							class="userID main-id point-span" style="margin-top: 8px;">${board.whiteboard_client_id }</span>
 					</div>
 					<img class="icon-react icon-more"

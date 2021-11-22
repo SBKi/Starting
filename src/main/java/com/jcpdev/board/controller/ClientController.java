@@ -37,11 +37,6 @@ public class ClientController {
 	@Autowired
 	ClientService service;
 
-	@RequestMapping(value = {"/starting" })
-	public String main() {
-		return "starting";
-	}
-
 	@RequestMapping(value = "/starting/login")
 	public String loginPage(HttpServletRequest request) {
 		HttpSession session = request.getSession();
@@ -159,20 +154,25 @@ public class ClientController {
 	@RequestMapping(value = "/starting/userProfile", method = RequestMethod.GET)
 	public String mypage(String client_id,HttpSession session, Model model, HttpServletRequest request) {
 		Client user=(Client) session.getAttribute("client");
+		String temp = null;
 		if(client_id == null || client_id.equals("")) {
 			if(user == null || user.getClient_id().equals("")) {
 				return "redirect:starting";
 			}else {
-				return "userProfile?client_id="+user.getClient_id();
+				temp = user.getClient_id();
 			}
 		}else {
-			return "userProfile?client_id="+client_id;
+			temp = client_id;
 		}
-	}
-
-	// 비밀번호 확인
-	@RequestMapping(value = "/starting/password_check", method = RequestMethod.GET)
-	public String password_check1() {
+		ClientEntity entity =  repository.getById(temp);
+		model.addAttribute("user", service.toDto(entity));
+			return "userProfile";
+			
+		}
+	
+		// 비밀번호 확인
+		@RequestMapping(value = "/starting/password_check", method = RequestMethod.GET)
+		public String password_check1() {
 		return "password_check";
 	}
 	
