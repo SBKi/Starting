@@ -125,7 +125,7 @@
       <li class="sidebar-brand">
         <a href="./main">Starting gram</a>
       </li>
-      <li><a class="leftitems" href="./mypage">마이페이지</a></li>
+      <li><a class="leftitems" href="./userProfile">마이페이지</a></li>
 			<li><a class="leftitems" href="./profile_update">개인정보 변경</a></li>
 			<li><a class="leftitems" href="./password_update">비밀번호 변경</a></li>
 			<li><a class="leftitems" href="./like_list">이상형 리스트</a></li>
@@ -139,7 +139,6 @@
   <h2>개인정보</h2>
     <div class="container-fluid">
 	<div class="container">
-  <form action="#">
     
     
     <div class="w3-content w3-container w3-margin-top">
@@ -148,31 +147,67 @@
 				<h3>Profile</h3>
 			</div>
 			<div>
-				<form id="myForm" action="#" method="post">
-					<p>
-						<label>이름</label> 
-						<input class="w3-input" type="text" id="name" name="name" readonly value="${ user.client_name}" required> 
-					</p>
-					<p>
-						<label>성별</label> 
-						<input class="w3-input" type="text" id="gender" name="gender" value="${ user.client_gender }"> 
-					</p>
-					<p>
-						<label>생년월일</label> 
-						<input class="w3-input" type="text" id="birth" name="birth" value="${ user.client_birth }"> 
-					</p>
+				<form id="myForm" action="profile_update" method="post">
+				
 					<p>
 						<label>ID</label> 
-						<input class="w3-input" type="text" id="id" name="id" readonly value="${ user.client_id }"> 
+						<input class="w3-input" type="text" id="id" name="client_id" readonly value="${ user.client_id }"> 
+					</p>
+					<p>
+						<input class="w3-input" type="hidden" id="password" name="client_password" value="${ user.client_password }"> 
 					</p>
 					<p>
 						<label>Email</label> 
-						<input class="w3-input" type="text" id="email" name="email" value="${ user.client_email }"> 
+						<input class="w3-input" type="text" id="email" name="client_email" readonly value="${ user.client_email }"> 
+					</p>
+					<p>
+						<label>이름</label> 
+						<input class="w3-input" type="text" id="name" name="client_name" readonly value="${ user.client_name}" required> 
+					</p>
+					<p>
+						<label>성별</label> 
+						<input class="w3-input" type="text" id="gender" name="client_gender" readonly value="${ user.client_gender } "> 
+					</p>
+					<p>
+						<label>생년월일</label> 
+						<input class="w3-input" type="text" id="birth" name="client_birth" readonly value="${ user.client_birth }"> 
 					</p>
 					<p>
 						<label>주소</label> 
-						<input class="w3-input" type="text" id="address" name="address" value="${ user.client_address }"> 
+						<input class="w3-input" type="text" id="address" name="client_address" value="${ user.client_address }"> 
 					</p>
+					<p>
+						<label>신장</label> 
+						<input class="w3-input" type="text" id="tall" name="client_tall" value="${ user.client_tall }"> 
+					</p>
+					<p>
+						<label>자기소개</label> 
+						<input class="w3-input" type="text" id="instruction" name="client_instruction" value="${ user.client_instruction }"> 
+					</p>
+					<p>
+						<label>MBTI</label> 
+					</p>
+					<div class="info_select_box">
+							<select name="Client_info" id="info">
+								<option  value="${user.client_info }" >${user.client_info }</option>
+								<option value="INTJ">INTJ</option>
+								<option value="INTP">INTP</option>
+								<option value="ENTJ">ENTJ</option>
+								<option value="ENTP">ENTP</option>
+								<option value="INFJ">INFJ</option>
+								<option value="INFP">INFP</option>
+								<option value="ENFJ">ENFJ</option>
+								<option value="ENFP">ENFP</option>
+								<option value="ISTJ">ISTJ</option>
+								<option value="ISFJ">ISFJ</option>
+								<option value="ESTJ">ESTJ</option>
+								<option value="ESFJ">ESFJ</option>
+								<option value="ISTP">ISTP</option>
+								<option value="ISFP">ISFP</option>
+								<option value="ESTP">ESTP</option>
+								<option value="ESFP">ESFP</option>
+							</select>
+						</div>
 
 					<p class="w3-center">
 						<button type="submit" class="w3-button w3-block w3-black w3-ripple w3-margin-top w3-round">회원정보 변경</button>
@@ -184,7 +219,6 @@
 		</div>
 	</div>
   
-  </form>
 </div>
 
 	</div>

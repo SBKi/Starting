@@ -2,6 +2,8 @@ package com.jcpdev.board.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -22,27 +24,28 @@ import lombok.ToString;
 public class ClientEntity {
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private String client_id;
-	@Column(nullable = false)
+	@Column(name = "client_password",nullable = false)
 	private String client_password;
-	@Column(nullable = false)
+	@Column(name = "client_email",nullable = false)
 	private String client_email;
-	@Column(nullable = false)
+	@Column(name = "client_name",nullable = false)
 	private String client_name;
-	@Column(nullable = false)
+	@Column(name = "client_address", nullable = false)
 	private String client_address;
-	@Column(nullable = false)
+	@Column(name = "client_gender",nullable = false)
 	private String client_gender;
-	@Column(nullable = false)
+	@Column(name = "client_birth",nullable = false)
 	private String client_birth;
-	@Column(nullable = false)
+	@Column(name = "client_tall",nullable = false)
 	private Integer client_tall;
-	@Column(nullable = true)
+	@Column(name = "client_img",nullable = true)
 	private String client_img;
-	@Column(nullable = false)
+	@Column(name = "client_instruction",nullable = false)
 	private String client_instruction;
-	@Column(nullable = false)
+	@Column(name = "client_info",nullable = false)
 	private String client_info;
-	@Column(nullable = true)
+	@Column(name = "client_status",nullable = true)
 	private Integer client_status;
 }

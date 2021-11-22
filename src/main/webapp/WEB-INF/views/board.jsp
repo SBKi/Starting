@@ -28,6 +28,7 @@
 <body>
 <jsp:include page="fragments/header.jsp"></jsp:include>
 	<main>
+	${client }
 		<div class="modal">
 			<div class="modal_body">
 				<div class="modal_body2">
@@ -71,12 +72,19 @@
 																		style="position: absolute; top: -5px; left: -5px; width: 42px; height: 42px;"></canvas>
 																</div>
 															</div>
-															<form action="save" method="post"
+															<form action="/starting/board" method="post"
 																enctype="multipart/form-data">
+																<input type = "hidden" name = "whiteboard_client_id" value="${client.client_id }">
+																<input type = "hidden" name = "whiteboard_no" value="0">
+																<input type = "hidden" name = "whiteboard_count" value="0">
+																<input type = "hidden" name = "whiteboard_like" value="0">
+																 
+																
 																<div class="regist_box">
 																	<div class="">
 																		<dl class="regist_image_dl" id="images_box">
 																			<dt>
+																			${client.client_id }
 																				<span
 																					style="color: rgb(0, 0, 0); font-weight: 600; margin-left: 15px;">사진올리기</span>
 																				<span
@@ -89,7 +97,8 @@
 																						<div class="form-group">
 																							<label for="input_img1"> 
 																								<img style="width: 100px; height: 100px; display: flex;"
-																								src="https://ccimage.hellomarket.com/web/2018/auto/img_car_pic_basic.png">
+																								src="https://ccimage.hellomarket.com/web/2018/auto/img_car_pic_basic.png"
+																								>
 																							</label>
 																							 	<input type="file" name="whiteboard_img1" id="input_img1" class=" user_picked_files"
 																								accept="image/*" required />
@@ -124,7 +133,7 @@
 																			<dd>
 																				<textarea rows="5" class="introduce"
 																					style="margin: 0px; width: 440px; height: 241px;"
-																					name="whiteboard__content" placeholder="내용을 입력해주세요"></textarea>
+																					name="whiteboard_content" placeholder="내용을 입력해주세요"></textarea>
 																			</dd>
 																		</dl>
 																	</div>

@@ -37,49 +37,48 @@ public class ClientController {
 	@Autowired
 	ClientService service;
 
-	@RequestMapping(value = { "/starting/main", "/starting" })
-	   public String main() {
-	      return "starting";
-	   }
+	@RequestMapping(value = {"/starting" })
+	public String main() {
+		return "starting";
+	}
 
 	@RequestMapping(value = "/starting/login")
-	   public String loginPage(HttpServletRequest request) {
-	      HttpSession session = request.getSession();
-	      if(session.getAttribute("client")!=null) {
-	         return "starting";
-	      }
-	      return "login";
-	   }
+	public String loginPage(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		if (session.getAttribute("client") != null) {
+			return "starting";
+		}
+		return "login";
+	}
 
 	// 로그아웃
-	   @RequestMapping(value = "/starting/logout", method = RequestMethod.POST)
-	   public String logout(HttpServletRequest request) {
-	      HttpSession session = request.getSession();
-	      if(session.getAttribute("client")!=null) {
-	         session.invalidate();
-	         return "login";
-	      }
-	      return "login";
-	   }
+	@RequestMapping(value = "/starting/logout", method = RequestMethod.GET)
+	public String logout(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		if (session.getAttribute("client") != null) {
+			session.invalidate();
+			return "login";
+		}
+		return "login";
+	}
 
 	// 로그인 체크
-	   @RequestMapping(value = "/starting/logincheck", method = RequestMethod.POST)
-	   public String logincheck(String client_id, String client_password, Model model,HttpServletRequest request) {
-	      Optional<ClientEntity> client = repository.findById(client_id);
-	      if (client.isPresent()) {
-	         Client user = null;
-	         user = service.toDto(client.get());
-	         if (client_password.equals(user.getClient_password())) {
-	            HttpSession session = request.getSession();
-	            session.setAttribute("client", service.toDto(client.get()));
-	            return "redirect:/starting/main";
-	         }
-	         return "redirect:login";
-	      } else {
-	         return "redirect:login";
-	      }
-	   }
-
+	@RequestMapping(value = "/starting/logincheck", method = RequestMethod.POST)
+	public String logincheck(String client_id, String client_password, Model model, HttpServletRequest request) {
+		Optional<ClientEntity> client = repository.findById(client_id);
+		if (client.isPresent()) {
+			Client user = null;
+			user = service.toDto(client.get());
+			HttpSession session = request.getSession();
+			if (client_password.equals(user.getClient_password())) {
+				session.setAttribute("client", service.toDto(client.get()));
+				return "redirect:/starting/main";
+			}
+			return "redirect:login";
+		} else {
+			return "redirect:login";
+		}
+	}
 
 	// 회원가입
 	@RequestMapping(value = "/starting/register", method = RequestMethod.POST)
@@ -116,7 +115,8 @@ public class ClientController {
 		if (client.isPresent()) {
 			Client user = null;
 			user = service.toDto(client.get());
-			if (client_email.equals(user.getClient_email()) && client_name.equals(user.getClient_name()) && client_birth.equals(user.getClient_birth())) {
+			if (client_email.equals(user.getClient_email()) && client_name.equals(user.getClient_name())
+					&& client_birth.equals(user.getClient_birth())) {
 				model.addAttribute("client", user);
 				return "redirect:find_id_C";
 			}
@@ -144,61 +144,59 @@ public class ClientController {
 			user = service.toDto(client.get());
 			model.addAttribute("client", user);
 			return "redirect:find_password_C";
-			}
+		}
 		return "redirect:/starting/find_password";
 	}
-	
+
 	@RequestMapping(value = "/starting/find_password_Com", method = RequestMethod.POST)
 	public String find_password_C(Client client) {
 		ClientEntity entity = service.toEntity(client);
 		repository.save(entity);
-			return "redirect:login";
+		return "redirect:login";
 	}
-	
-	@RequestMapping(value = "/starting/mypage", method = RequestMethod.GET)
+
+	// 마이페이지
+	@RequestMapping(value = "/starting/userProfile", method = RequestMethod.GET)
 	public String mypage(HttpSession session, Model model, HttpServletRequest request) {
-		session = request.getSession();
-		String client_id = (String) session.getAttribute("client_id");
-		Optional<ClientEntity> client = repository.mypage(client_id);
-		model.addAttribute(client);
-		return "mypage";
+		Client user=(Client) session.getAttribute("client");
+		String client_id = user.getClient_id();
+		ClientEntity entity=repository.getById(client_id);
+		user = service.toDto(entity);
+		
+		model.addAttribute("user", user);
+		
+		return "userProfile";
 	}
-	
+
+	// 개인정보 수정
 	@RequestMapping(value = "/starting/profile_update", method = RequestMethod.GET)
-	public String profile_update(Client client, HttpSession session, HttpServletRequest request,Model model) {
-		session = request.getSession();
-		String client_id = (String) session.getAttribute("client_id");
-		Optional<ClientEntity> user = repository.mypage(client_id);
-		model.addAttribute(user);
-		System.out.println("@@"+user);
+	public String profile_update(HttpSession session, HttpServletRequest request, Model model) {
+		Client user=(Client) session.getAttribute("client");
+		String client_id = user.getClient_id();
+		ClientEntity entity=repository.getById(client_id);
+		user = service.toDto(entity);
+		
+		model.addAttribute("user", user);
 		return "profile_update";
 	}
 	
-	@RequestMapping(value = "/starting/profile_update1", method = RequestMethod.POST)
+	@RequestMapping(value = "/starting/profile_update", method = RequestMethod.POST)
 	public String profile_updateGET(Client client) {
 		ClientEntity entity = service.toEntity(client);
 		repository.save(entity);
-		return "redirect:mypage";
+		return "redirect:userProfile";
 	}
-	
-	
+
 	@GetMapping
 	@RequestMapping(value = "/starting/password_update")
 	public String password_update() {
 		return "password_update";
 	}
-	
+
 	@GetMapping
 	@RequestMapping(value = "/starting/like_list")
 	public String like_list() {
 		return "like_list";
 	}
-	
-	
-	
-	
-	
-	
-	
 
 }

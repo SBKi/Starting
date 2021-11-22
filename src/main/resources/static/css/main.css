@@ -27,6 +27,7 @@ span.point-span {
     color: #262626;
     overflow: hidden;
     text-overflow: ellipsis;
+    margin-left: 12px;
 }
 /* nav */
 nav {
@@ -459,14 +460,14 @@ article, aside, figcaption, figure, footer, hgroup, main, nav, section {
     height: 100%;
 }
 .modal_left1 {
-   	max-width: 620px;
-    min-width: 620px;
+   	max-width: 50%;
+   	min-width: 49.9%;
     height: 100%;
     display: flex;
 }
 .modal_right1 {
-    max-width: 580px;
-    min-width: 580px;
+    max-width: 49.5%;
+    min-width: 49.2%;
     overflow: hidden;
 }
 .slick-track {
@@ -520,7 +521,7 @@ article, aside, figcaption, figure, footer, hgroup, main, nav, section {
     overflow: auto;
 }
 .XQXOT {
-    height: 410px;
+    height: auto;
     left: 0;
     padding: 16px;
     scrollbar-width: none;
@@ -623,4 +624,23 @@ input[type=date], input[type=email], input[type=number], input[type=password], i
     border-radius: 30px;
     position: relative;
     font-weight: 600;
+}
+@media screen and (max-width: 980px) {
+   main {
+      width: 100%;
+   }
+   .feeds {
+    width: 80%;
+    margin-left: 60px;
+   }
+   .main-right {
+   display: none;
+   }
+   .hl {
+    border-top: 1px solid #DBDBDB;
+    width: 100%;
+	}
+	.input-comment {
+    width: 89%;
+	}
 }

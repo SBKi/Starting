@@ -96,7 +96,7 @@ h2{
       <li class="sidebar-brand">
         <a href="./main">Starting gram</a>
       </li>
-      <li><a class="leftitems" href="./mypage">마이페이지</a></li>
+      <li><a class="leftitems" href="./userProfile">마이페이지</a></li>
 			<li><a class="leftitems" href="./profile_update">개인정보 변경</a></li>
 			<li><a class="leftitems" href="./password_update">비밀번호 변경</a></li>
 			<li><a class="leftitems" href="./like_list">이상형 리스트</a></li>

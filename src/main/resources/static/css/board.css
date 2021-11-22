@@ -118,7 +118,7 @@ input {
     width: 100%;
 }
 .image_list li .item_img {
-    width: 600px;
+    width: 100%;
     height: 600px;
     left: 0;
     top: 0;
@@ -276,4 +276,22 @@ input[type=date], input[type=email], input[type=number], input[type=password], i
 	width: 77px;
 	    display: none;
     margin-left: -85px;
+}
+
+@media screen and (max-width: 980px) {
+   main {
+      width: 100%;
+   }
+   .modal_left1 {
+   	width: 80%;
+   }
+   .modal_right1 {
+   	width: 80%;
+   }
+}
+.modal_main2 {
+    margin: auto;
+    max-width: 80%;
+    width: 100%;
+    height: 100%;
 }

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -53,6 +54,9 @@
 <body>
 	<jsp:include page="fragments/header.jsp"></jsp:include>
 	<main>
+	${sessionScope.client }
+	<br>
+	${asd.client }
 		<div class="feeds">
 			<!-- story section -->
 			<div class="section-story ">
@@ -162,12 +166,13 @@
 			</div>
 			<!-- article -->
 			<article>
+			<c:forEach var="board" items="${list }">
 				<header>
 					<div class="profile-of-article">
 						<img class="img-profile1 pic"
 							src="${pageContext.request.contextPath}/resources/img/logo.jpg"
 							onclick="location.href='/${board_client_id}'"> <span
-							class="userID main-id point-span" style="margin-top: 8px;">장치영</span>
+							class="userID main-id point-span" style="margin-top: 8px;">${board.whiteboard_client_id }</span>
 					</div>
 					<img class="icon-react icon-more"
 						src="https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/bearu/more.png"
@@ -176,15 +181,22 @@
 				<div class="single-item">
 					<div>
 						<img
-							src="${pageContext.request.contextPath}/resources/img/logo.jpg">
+							src="/upload/test${board.whiteboard_img1 }">
+							<br>
+							
+							/upload/test/${board.whiteboard_img1 }
 					</div>
 					<div>
 						<img
 							src="${pageContext.request.contextPath}/resources/img/logo.jpg">
+							<br>
+							${board.whiteboard_img2 }
 					</div>
 					<div>
 						<img
 							src="${pageContext.request.contextPath}/resources/img/logo.jpg">
+							<br>
+							${board.whiteboard_img3 }
 					</div>
 				</div>
 				<div class="icons-react">
@@ -207,23 +219,18 @@
 				<div class="reaction">
 					<div class="liked-people">
 						<p>
-							<span class="point-span" id="heart_count">0</span>
+							<span class="point-span" id="heart_count">${board.whiteboard_like }</span>
 						</p>
 					</div>
 					<div class="description">
 						<p>
 							<span class="point-span userID">travel_behappyhere</span> <span>
-								해발 700m 산자락 위, 프라이빗 캠핑 스팟💛 감탄을 자아내는 뷰와 함께 향긋한 메리골드 꽃차를 마시고, 밤이
-								되면 머리 위로 별이 쏟아지는 곳✨ 산촌 생활의 불편함 그 자체가 매력적인 팜스테이를 즐기고 싶다면 추천드려요❣
-
-								숙소 이름과 더 자세한 정보는, 👉숙소기록: @rest_behappyhere 에서 확인해주세요! 📷이미지출처
-								@1amny @iam_eunz - ⠀ 여행 기록은 #여기서행복할것 태그♥ 여행 제보는 DM 또는 이메일로♥ ⠀
-								#여기서행복할것_국내 #behappyhere</span>
+								${board.whiteboard_content }</span>
 						</p>
 					</div>
 					<div class="comment-section">
 						<ul class="comments">
-							<li><a id="commentsAll" onclick="#commentsAll">댓글보기</a></li>
+							<li><a id="commentsAll" onclick="#commentsAll" href="comment?whiteboard_no=${board.whiteboard_no }">댓글보기</a></li>
 						</ul>
 					</div>
 				</div>
@@ -232,9 +239,10 @@
 					<form action="" method="post">
 						<input id="input-comment" class="input-comment" type="text"
 							placeholder="댓글 달기...">
-						<button type="submit" class="submit-comment">게시</button>
+						<button type="submit" class="submit -comment">게시</button>
 					</form>
 				</div>
+				</c:forEach>
 			</article>
 		</div>
 		<!-- main-right -->

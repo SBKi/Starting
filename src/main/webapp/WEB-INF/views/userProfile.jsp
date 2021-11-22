@@ -62,11 +62,8 @@
 			</div>
 			<div class="profile_info">
 				<div></div>
-				<div class="profile_info1">travel_behappyhere 해발 700m 산자락 위,
-					프라이빗 캠핑 스팟💛 감탄을 자아내는 뷰와 함께 향긋한 메리골드 꽃차를 마시고, 밤이 되면 머리 위로 별이 쏟아지는
-					곳✨ 산촌 생활의 불편함 그 자체가 매력적인 팜스테이를 즐기고 싶다면 추천드려요❣ 숙소 이름과 더 자세한 정보는,
-					👉숙소기록: @rest_behappyhere 에서 확인해주세요! 📷이미지출처 @1amny @iam_eunz - ⠀
-					여행 기록은 #여기서행복할것 태그♥ 여행 제보는 DM 또는 이메일로♥ ⠀ #여기서행복할것_국내 #behappyhere</div>
+				<div class="profile_info1">
+				<p>${user.client_instruction}</p></div>
 			</div>
 			<div class="profile_board_body">
 
@@ -127,7 +124,7 @@
 				<div class="piCib">
 					<div class="modal_button_body">
 					<!-- 내정보 일경우 -->
-						<button class="modal_button" tabindex="0" onclick="location.href='mypage'">개인정보 변경</button>
+						<button class="modal_button" tabindex="0" onclick="location.href='profile_update'">개인정보 변경</button>
 						<button class="modal_button" tabindex="0" onclick="location.href='board'">게시물 올리기</button>
 						<button class="modal_button" tabindex="0" onclick="location.href='follower'">팔로워 확인</button>
 						<button class="modal_button" tabindex="0" onclick="location.href='follws'">팔로우 확인</button>

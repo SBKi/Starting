@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -66,14 +67,17 @@
 										<div>
 											<img
 												src="${pageContext.request.contextPath}/resources/img/liked.png">
+												${whiteboard.whiteboard_img1 }
 										</div>
 										<div>
 											<img
 												src="${pageContext.request.contextPath}/resources/img/dm.png">
+												${whiteboard.whiteboard_img2 }
 										</div>
 										<div>
 											<img
 												src="${pageContext.request.contextPath}/resources/img/logo.jpg">
+												${whiteboard.whiteboard_img3 }
 										</div>
 									</div>
 								</div>
@@ -96,9 +100,11 @@
 									<div>
 										<div class="EtaWk">
 											<ul class="XQXOT    pXf-y ">
+											<c:forEach var="comment" items="${commentlist }">
 												<div role="button" class="ZyFrc" tabindex="0">
 													<li class="gElp9 rUo9f  PpGvg " role="menuitem"><div
 															class="P9YgZ">
+															
 															<div class="C7I1f X7jCj">
 																<div class="Jv7Aj mArmR   pZp3x">
 																	<div class="RR-M-  TKzGu  " role="button" tabindex="-1">
@@ -111,14 +117,15 @@
 																			class="_6q-tv"></a>
 																	</div>
 																</div>
+																
 																<div class="C4VMK">
 																	<h3 class="_6lAjh ">
 																		<div>
-																			<span><a href="/starting/${client_id }">{client_id
+																			<span><a href="/starting/${comment.comment_id }">${comment.comment_id
 																					}</a></span>
 																		</div>
 																	</h3>
-																	<span class="">{comment.comment_content} </span>
+																	<span class="">${comment.comment_content} </span>
 																	<div
 																		class="             qF0y9          Igw0E     IwRSH      eGOV_         _4EzTm   pjcA_                                                         aGBdT                                                  ">
 																		<div
@@ -126,10 +133,13 @@
 																		</div>
 																	</div>
 																</div>
+																
 															</div>
 														</div></li>
 												</div>
+												</c:forEach>
 												<ul>
+												
 													<div role="button" class="ZyFrc" tabindex="0">
 														<li class="gElp9 rUo9f "><div class="P9YgZ">
 																<div class="C7I1f ">
@@ -213,9 +223,13 @@
 										</div>
 									</div>
 									<div class="comment">
-										<form action="" method="post">
-											<input id="input-comment" style="width: 289px;"
-												class="input-comment" type="text" placeholder="댓글 달기...">
+										<form action="comment/save" method="post">
+											<input type="hidden" name="comment_no" value="0">
+											<input type="hidden" name="comment_whiteboard_no" value="${whiteboard.whiteboard_no }">
+											<input type="hidden" name="comment_id" value="${client.client_id }">
+											<input id="input-comment" name="comment_content" style="width: 289px;"
+												class="input-comment" type="text" placeholder="댓글 달기..."
+												>
 											<button type="submit" class="submit-comment">게시</button>
 										</form>
 									</div>

@@ -152,7 +152,7 @@ nav img {
     margin-top: 20px;
 }
 
-#modal, #report_modal, #meaning_modal {
+#modal, #report_modal, #meaning_modal, #follow_modal{
 	top: 0;
 	left: 0;
 	bottom: 0;

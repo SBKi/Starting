@@ -158,20 +158,20 @@ img, input, select, textarea, label {
 				<hr>
 				<div class="onethird">
 					<h2>1. 신상</h2>
-					<p><b>이름:</b> ${client.client_name}<br>
-					   <b>생년월일:</b> ${client.client_birth}<br>
-					   <b>성별:</b> ${client.client_gender}<br>
-					   <b>지역:</b> ${client.client_address}<br>
-					   <b>키:</b> ${client.client_tall}<br>
+					<p><b>이름:</b> ${user.client_name}<br>
+					   <b>생년월일:</b> ${user.client_birth}<br>
+					   <b>성별:</b> ${user.client_gender}<br>
+					   <b>지역:</b> ${user.client_address}<br>
+					   <b>키:</b> ${user.client_tall}<br>
 					</p>
 		        </div>
 				<div class="onethird  last">
 					<h2>2. 자기소개</h2>
-					<p>${client.client_instruction}</p>
+					<p>${user.client_instruction}</p>
 				</div>
 				<div class="onethird  last">
 					<h2>3. MBTI</h2>
-					<p>${client.client_info}</p>
+					<p>${user.client_info}</p>
 				</div>
 			</div>
   		</div>

@@ -1,13 +1,20 @@
 package com.jcpdev.board.controller;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.jcpdev.board.entity.WhiteboardEntity;
 import com.jcpdev.board.model.Whiteboard;
@@ -24,10 +31,7 @@ public class WhiteboardController {
 	@Autowired
 	WhiteboardService service;
 	
-	@RequestMapping(value = "/starting/board")
-	public String board() {
-		return "board";
-	}
+	
 	
 	
 	@GetMapping("/instagram/board")
@@ -38,23 +42,65 @@ public class WhiteboardController {
 		return "test";
 	}
 	
-	@RequestMapping("/test")
-	public String getList(Model model){
-		List<WhiteboardEntity> list = repository.findAll();
+	@RequestMapping("/starting/main")
+	public String getList(String client_id,Model model){
+		List<WhiteboardEntity> list =repository.findByWhiteboard_Client(client_id);
+		//		List<WhiteboardEntity> list = repository.findAll(Sort.by(Sort.Direction.DESC,"whiteboard_no"));
+		//if(list.equals("[]")) {list = repository.findAll();}
 		List<Whiteboard> result = new ArrayList<Whiteboard>();
 		list.forEach(item-> {
 			result.add(service.toDto(item));
 		});
 		model.addAttribute("list", result);
-		System.out.println(result);
-		return "test";
+		return "starting";
 	}
 	
-	@RequestMapping("/save")
-	public String insert(Whiteboard dto) {
-		WhiteboardEntity entity = service.toEntity(dto);
+	@RequestMapping(value = "/starting/board" ,method = RequestMethod.GET)
+	public String board() {
+		return "board";
+	}
+	
+	@RequestMapping(value = "/starting/board" ,method = RequestMethod.POST)
+	public String insert(@RequestParam MultipartFile whiteboard_img1,@RequestParam MultipartFile whiteboard_img2,
+				@RequestParam MultipartFile whiteboard_img3,String whiteboard_client_id,String whiteboard_content) throws IllegalStateException, IOException {
+		System.out.println(whiteboard_img1.getOriginalFilename());
+		System.out.println(whiteboard_img2.getOriginalFilename());
+		System.out.println(whiteboard_img3.getOriginalFilename());
+		
+		String randomimg1 = null,randomimg2 = null,randomimg3=null;
+		if(!whiteboard_img1.isEmpty())
+			randomimg1 =UUID.randomUUID().toString()+whiteboard_img1.getOriginalFilename();
+		if(!whiteboard_img2.isEmpty())
+			randomimg2 =UUID.randomUUID().toString()+ whiteboard_img2.getOriginalFilename();
+		if(!whiteboard_img3.isEmpty())
+			randomimg3 =UUID.randomUUID().toString()+ whiteboard_img3.getOriginalFilename();
+		
+		Whiteboard whiteboard = new Whiteboard(0, whiteboard_client_id ,randomimg1,randomimg2
+				,randomimg3, whiteboard_content, null, 0, 0);
+		
+		String path ="C:\\img\\test";
+		File upfile = null;
+		if(randomimg1 !=null) {
+			String img = path+"\\"+randomimg1;
+			upfile = new File(img);
+			whiteboard_img1.transferTo(upfile);
+		}
+		if(randomimg2 !=null) {
+			String img = path+"\\"+randomimg2;
+			upfile = new File(img);
+			whiteboard_img1.transferTo(upfile);
+		}
+		if(randomimg3 !=null) {
+			String img = path+"\\"+randomimg3;
+			upfile = new File(img);
+			whiteboard_img1.transferTo(upfile);
+		}
+		
+		System.out.println(whiteboard);
+		WhiteboardEntity entity = service.toEntity(whiteboard);
+		System.out.println(entity);
 		repository.save(entity);
-		return "redirect:test";
+		return "redirect:/starting/main?client_id="+whiteboard_client_id;
 	}
 	
 	@RequestMapping("/update")
