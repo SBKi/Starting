@@ -162,12 +162,25 @@ public class ClientController {
 		String client_id = user.getClient_id();
 		ClientEntity entity=repository.getById(client_id);
 		user = service.toDto(entity);
-		
 		model.addAttribute("user", user);
-		
 		return "userProfile";
 	}
 
+	// 비밀번호 확인
+	@RequestMapping(value = "/starting/password_check", method = RequestMethod.GET)
+	public String password_check1() {
+		return "password_check";
+	}
+	
+	@RequestMapping(value = "/starting/password_check", method = RequestMethod.POST)
+	public String password_check(String client_password, HttpSession session) {
+		Client user=(Client) session.getAttribute("client");
+		if(client_password.equals(user.getClient_password())) return "redirect:profile_update";
+		else return "password_check";
+	}
+	
+	
+	
 	// 개인정보 수정
 	@RequestMapping(value = "/starting/profile_update", method = RequestMethod.GET)
 	public String profile_update(HttpSession session, HttpServletRequest request, Model model) {

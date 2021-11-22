@@ -24,8 +24,8 @@ import lombok.ToString;
 public class ClientEntity {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private String client_id;
+	
 	@Column(name = "client_password",nullable = false)
 	private String client_password;
 	@Column(name = "client_email",nullable = false)

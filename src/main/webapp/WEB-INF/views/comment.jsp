@@ -82,7 +82,7 @@
 									</div>
 								</div>
 								<div class="modal_right1"
-									style="max-width: 299px; min-width: 338px; overflow: hidden;">
+									style="overflow: hidden;">
 									<header>
 										<div class="profile-of-article">
 											<img class="img-profile1 pic"
@@ -91,7 +91,7 @@
 											<h3 class="userID main-id point-span"
 												style="margin-top: 8px;">jang96</h3>
 
-											<button class="follow_list_button" style="margin-top: 8px;">팔로우</button>
+											<button id="follow_update" class="follow_list_button" style="margin-top: 8px;">팔로우</button>
 										</div>
 										<img class="icon-react icon-more" id="option"
 											src="https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/bearu/more.png"
@@ -138,61 +138,6 @@
 														</div></li>
 												</div>
 												</c:forEach>
-												<ul>
-												
-													<div role="button" class="ZyFrc" tabindex="0">
-														<li class="gElp9 rUo9f "><div class="P9YgZ">
-																<div class="C7I1f ">
-																	<div class="">
-																		<div class="RR-M-  TKzGu  ">
-																			<canvas class="CfWVH" height="53" width="53"
-																				style="position: absolute; top: -5px; left: -5px; width: 42px; height: 42px;"></canvas>
-																			<a class="_2dbep qNELH kIKUG"
-																				style="width: 32px; height: 32px; display: block;"><img
-																				class=""
-																				src="${pageContext.request.contextPath}/resources/img/person.png"></a>
-																		</div>
-																	</div>
-																	<div class="C4VMK">
-																		<h4 class="_6lAjh ">
-																			<div>
-																				<span><a href="/starting/${client_id }"
-																					tabindex="0">{client.client_id}</a></span>
-																			</div>
-																		</h4>
-																		<span class="">{comment.comment_content}</span>
-																	</div>
-																</div>
-															</div></li>
-													</div>
-												</ul>
-												<ul>
-													<div role="button" class="ZyFrc" tabindex="0">
-														<li class="gElp9 rUo9f "><div class="P9YgZ">
-																<div class="C7I1f ">
-																	<div class="">
-																		<div class="RR-M-  TKzGu  ">
-																			<canvas class="CfWVH" height="53" width="53"
-																				style="position: absolute; top: -5px; left: -5px; width: 42px; height: 42px;"></canvas>
-																			<a class="_2dbep qNELH kIKUG"
-																				style="width: 32px; height: 32px; display: block;"><img
-																				class=""
-																				src="${pageContext.request.contextPath}/resources/img/person.png"></a>
-																		</div>
-																	</div>
-																	<div class="C4VMK">
-																		<h4 class="_6lAjh ">
-																			<div>
-																				<span><a href="/starting/${client_id }"
-																					tabindex="0">{comment.comment_id}</a></span>
-																			</div>
-																		</h4>
-																		<span class="">음ㄴ암느암느암ㄴ으마음나으마음나으ㅏ</span>
-																	</div>
-																</div>
-															</div></li>
-													</div>
-												</ul>
 											</ul>
 										</div>
 									</div>
@@ -211,7 +156,7 @@
 												<span class="visually-hidden"></span>
 											</c:if>
 											<img class="icon-react"
-												onclick="location.href='starting/message'"
+												onclick="location.href='/starting/message'"
 												src="/resources/img/dm.png">
 										</div>
 									</div>
@@ -227,7 +172,7 @@
 											<input type="hidden" name="comment_no" value="0">
 											<input type="hidden" name="comment_whiteboard_no" value="${whiteboard.whiteboard_no }">
 											<input type="hidden" name="comment_id" value="${client.client_id }">
-											<input id="input-comment" name="comment_content" style="width: 289px;"
+											<input id="input-comment" name="comment_content" style="width: 420px;"
 												class="input-comment" type="text" placeholder="댓글 달기..."
 												>
 											<button type="submit" class="submit-comment">게시</button>
@@ -320,7 +265,7 @@
 		</div>
 	</div>
 	<div class="RnEpo  Yx5HN " id="report_modal">
-		<div class="pbNvD  fPMEg" style="margin-top: 80px;">
+		<div class="pbNvD  fPMEg" style="margin-top: 50px;">
 			<div class="_1XyCr  ">
 				<div class="piCib">
 					<div class="modal_button_body">
@@ -383,6 +328,25 @@
 			</div>
 		</div>
 	</div>
+	<div class="RnEpo  Yx5HN " id="follow_modal">
+		<div class="pbNvD1  fPMEg">
+			<div class="_1XyCr  ">
+				<div class="piCib">
+					<div class="modal_button_body">
+						<div class="user_profile">
+							<img class="user_img" src="${pageContext.request.contextPath}/resources/img/person.png">
+							<div>
+								<h4 class="h4">{client_id} 님을 팔로우 하시겠습니까?</h4>
+							</div>
+						</div>
+						<button class="modal_button" tabindex="0" style="font-weight: 700; "
+							onclick="location.href='update'"><span>팔로우 하기</span></button>
+						<button id="follow_modal_cansle" class="modal_button" tabindex="0">취소</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 	<script>
 	/*옵션 모달  */
 const modal = document.querySelector('#modal'); 
@@ -420,6 +384,18 @@ meaning_btnOpenPopup.addEventListener('click', () => {
 meaning_btnCansle.addEventListener('click', () => { 
 	meaning_modal.style.display = 'none';
 });	
+/*팔로우 모달  */
+const follow_modal = document.querySelector('#follow_modal'); 
+const follow_btnOpenPopup = document.getElementById('follow_update');
+const follow_btnCansle = document.querySelector('#follow_modal_cansle');
+
+follow_btnOpenPopup.addEventListener('click', () => { 
+	follow_modal.style.display = 'block';
+	});
+	
+follow_btnCansle.addEventListener('click', () => { 
+	follow_modal.style.display = 'none';
+});
 </script>
 	<script type="text/javascript">
 $(document).ready(function(){

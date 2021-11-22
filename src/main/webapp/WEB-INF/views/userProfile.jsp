@@ -37,7 +37,7 @@
 								tabindex="0">메시지 보내기</a>
 						</div>
 						<div class="profile_update">
-							<a class="profile_update_button" href="profile_update"
+							<a class="profile_update_button" href="password_check"
 								tabindex="0">프로필 편집</a>
 						</div>
 						<!-- 옵션 -->
