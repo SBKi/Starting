@@ -62,7 +62,7 @@
 						<div class="gradient-wrap">
 							<img class="img-profile story"
 								src="${pageContext.request.contextPath}/resources/img/logo.jpg"
-								onclick="location.href='userProfile?client_id=${client.client_id}'" style="cursor: pointer;">
+								onclick="location.href='userProfile'" style="cursor: pointer;">
 						</div>
 						<div class="profile-text">
 							<span class="userID point-span">김범진</span>
@@ -82,7 +82,7 @@
 						<div class="gradient-wrap">
 							<img class="img-profile story"
 								src="${pageContext.request.contextPath}/resources/img/logo.jpg"
-								onclick="location.href='userProfile'" style="cursor: pointer;">
+								onclick="location.href='userProfile?client_id=${client.client_id}'" style="cursor: pointer;">
 						</div>
 						<div class="profile-text">
 							<span class="userID point-span">신범기</span>
@@ -167,7 +167,7 @@
 					<div class="profile-of-article">
 						<img class="img-profile1 pic"
 							src="${pageContext.request.contextPath}/resources/img/logo.jpg"
-							onclick="location.href='userProfile?client_id=${board.whiteboard_client_id}'"> <span
+							onclick="location.href='/starting/userProfile?${board.whiteboard_client_id}'"> <span
 							class="userID main-id point-span" style="margin-top: 8px;">${board.whiteboard_client_id }</span>
 					</div>
 					<img class="icon-react icon-more"

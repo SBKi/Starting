@@ -86,7 +86,7 @@
 												src="${pageContext.request.contextPath}/resources/img/logo.jpg"
 												onclick="location.href='/userProfile/jang123'">
 											<h3 class="userID main-id point-span"
-												style="margin-top: 8px;">jang96</h3>
+												style="margin-top: 8px;">${whiteboard.whiteboard_client_id }</h3>
 
 											<button id="follow_update" class="follow_list_button" style="margin-top: 8px;">팔로우</button>
 										</div>
@@ -200,41 +200,13 @@
 			</div>
 			<div class="profile_board_imgs">
 				<div class="board_imgs">
+				<c:forEach var="board" items="${list }">
 					<div class="board_img">
-						<img onclick="location.href='comment/${1}'" class="img" alt="1"
-							src="${pageContext.request.contextPath}/resources/img/dm.png"><a
-							href="comment/${comment.no }"></a>
+						<img onclick="location.href='/comment?whiteboard_no=${board.whiteboard_no}'" class="img" alt="1"
+							src="/img/${board.whiteboard_img1 }"><a
+							href="/comment?whiteboard_no=${board.whiteboard_no}'"></a>
 					</div>
-					<div class="board_img">
-						<img class="img" alt="1"
-							src="${pageContext.request.contextPath}/resources/img/dm.png">
-						<a href="comment/${comment.no }"></a>
-					</div>
-					<div class="board_img">
-						<img class="img" alt="1"
-							src="${pageContext.request.contextPath}/resources/img/dm.png"><a
-							href="comment/${comment.no }"></a>
-					</div>
-					<div class="board_img">
-						<img class="img" alt="1"
-							src="${pageContext.request.contextPath}/resources/img/dm.png"><a
-							href="comment/${comment.no }"></a>
-					</div>
-					<div class="board_img">
-						<img class="img" alt="1"
-							src="${pageContext.request.contextPath}/resources/img/dm.png"><a
-							href="comment/{comment.no }"></a>
-					</div>
-					<div class="board_img">
-						<img class="img" alt="1"
-							src="${pageContext.request.contextPath}/resources/img/dm.png"><a
-							href="comment/${comment.no }"></a>
-					</div>
-					<div class="board_img">
-						<img class="img" alt="1"
-							src="${pageContext.request.contextPath}/resources/img/dm.png"><a
-							href="comment/${comment.no }"></a>
-					</div>
+				</c:forEach>
 				</div>
 			</div>
 

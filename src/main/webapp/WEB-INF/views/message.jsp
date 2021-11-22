@@ -21,47 +21,35 @@
 		<div class="main_area">
 			<div class="left_main">
 				<div class="left_main_header">
-				</div>
-				<ul>
 					<!-- room 반복 -->
 					<div class="S-mcP">
 						<div class="AjEzM ">
-							<div class="_2NzhO xkdid">
-								<img src="${pageContext.request.contextPath}/resources/img/logo.jpg"
-						onclick="location.href='/starting/userProfile'"
-						style="cursor: pointer;border-radius: 30px;width: 35px;
-    height: 35px;">
+							<div class="">
+								<img
+									src="${pageContext.request.contextPath}/resources/img/logo.jpg"
+									onclick="location.href='/starting/userProfile'"
+									style="cursor: pointer; border-radius: 30px; width: 35px; height: 35px;">
 							</div>
 							<div class="m7ETg">
-								<div class="             qF0y9          Igw0E     IwRSH      eGOV_         _4EzTm                                                                                                              "
-									style="width: 100%;">
-									<button class="sqdOP yWX7d    y3zKF     " 
-										type="button">
-										<div
-											class="             qF0y9          Igw0E   rBNOH          YBx95   ybXk5    _4EzTm                                                                                                              "
-											style="width: 100%;">
+								<div class="" style="width: 100%;">
+									<button class="" type="button">
+										<div class="" style="width: 100%;">
 											<div class="lf6L3">
-												<div onclick="location.href='/starting/userProfile'" style="cursor: pointer;"
-													class="_7UhW9    vy6Bb      qyrsm KV-D4              fDxYl    T0kll ">coug_96</div>
-											</div> 
-											<div 
-												class="             qF0y9          Igw0E     IwRSH      eGOV_         _4EzTm                                                                                 lC6p0            HVWg4                 ">
-												<span
-													style="display: inline-block; transform: rotate(180deg);"><svg 
-														aria-label="아래쪽 V자형 아이콘" class="_8-yf5 " color="#262626"
-														fill="#262626" height="45" role="img" viewBox="0 0 24 24"
-														width="45">
-														<path 
-															d="M21 17.502a.997.997 0 01-.707-.293L12 8.913l-8.293 8.296a1 1 0 11-1.414-1.414l9-9.004a1.03 1.03 0 011.414 0l9 9.004A1 1 0 0121 17.502z"></path></svg></span>
+												<div onclick="location.href='/starting/userProfile?${1}'"
+													style="cursor: pointer;"
+													class="">{client_id }</div>
+											</div>
+											<div class="">
 											</div>
 										</div>
 									</button>
 								</div>
 							</div>
-							<div class="_2NzhO EQ1Mr">
-								<button class="wpO6b ZQScA " type="button" style="cursor: pointer; " >
-									<div class="QBdPU ">
-										<svg aria-label="새로운 메시지" class="_8-yf5 " color="#262626"
+							<div class="">
+								<button type="button"
+									style="cursor: pointer;">
+									<div>
+										<svg aria-label="새로운 메시지"color="#262626"
 											fill="#262626" height="24" role="img" viewBox="0 0 24 24"
 											width="24">
 											<path
@@ -81,27 +69,79 @@
 							</div>
 						</div>
 					</div>
-					<div class="card_box active"
-						onclick="getMailList('12jang123','rmawhd123','12')">
+					</div>
+					<ul>
+					<div>
 						<li>
 							<div class="profile">
-								<img src="${pageContext.request.contextPath}/resources/img/person.png">
+								<img
+									src="${pageContext.request.contextPath}/resources/img/person.png">
 							</div>
 							<div class="info">
-								<div class="nick">홍길동</div>
-								<div class="description size_limite">문자내용~~</div>
-								<span class="description size_limite">시간~~~</span>
+								<c:forEach var="room" items="${list}">
+									<div class="nick">
+										<a href="/chat/room?id=${client.client_id }">${room.roomid}</a>
+										<div class="lf6L3">
+												<div onclick="location.href='/starting/userProfile?${1}'"
+													style="cursor: pointer;"
+													class="">{client_id }</div>
+											</div>
+									<form action="room" method="post">
+										<input type="hidden" name="id" class="form-control" value="${client.client_id }">
+										<button class="btn btn-secondary btn-create">방</button>
+									</form>
+									</div>
+								</c:forEach>
 							</div>
 						</li>
 					</div>
-
-
 				</ul>
 			</div>
 			<div class="right_main">
-				<div id="message"></div>
-				<div id="footer_input" class="chat_footer"></div>
+				<div id="message">
+					<div class="chat_header">
+						<div class="image_box">
+							<div class="image_table">
+								<img onclick="location.href='client_id?${1}'"
+									src="${pageContext.request.contextPath}/resources/img/person.png">
+							</div>
+						</div>
+						<div class="profile-of-article">
+										<input type="hidden" value="whiteboard_client_id">
+										<h3 class="userID main-id point-span" style="margin-top: 8px;">${client.client_id}</h3>
+										<h4 class="userID main-id point-span" style="margin-top: 8px;">${client.client_name}</h4>
+									</div>
+					</div>
+					<div class="chat_description" id="chatContent">
+						<c:forEach items="${roomlist }" var="chat">
+							<div class="col-6">
+								<c:if test="${chat.writer eq client.client_id }">
+									<div class="alert alert-secondary">
+								</c:if>
+								<c:if test="${chat.writer ne client.client_id }">
+									<div class="alert alert-warning">
+								</c:if>
+								<b>${chat.writer } : ${chat.message}</b>
+							</div>
+					</div>
+					</c:forEach>
+				</div>
 			</div>
+			<div id="footer_input" class="chat_footer">
+				<div class="input-group mb-3">
+					<input type="text" id="msg" class="form-control"
+						style="width: 580px">
+					<div class="input-group-append">
+						<input type="hidden" id="roomid"
+							value="${roomlist.get(0).getRoomid() }"> <input
+							type="hidden" id="id" value="${client.client_id }">
+						<button class="btn btn-outline-secondary" type="button"
+							id="button-send">전송</button>
+					</div>
+				</div>
+
+			</div>
+		</div>
 		</div>
 	</main>
 </body>

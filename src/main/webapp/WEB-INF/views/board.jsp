@@ -52,12 +52,9 @@
 									<div class="profile-of-article">
 										<img class="img-profile1 pic" src="/resources/img/logo.jpg"> <input
 											type="hidden" value="whiteboard_client_id">
-										<h3 class="userID main-id point-span" style="margin-top: 8px;">${whiteboard_client_id}</h3>
-										<h4 class="userID main-id point-span" style="margin-top: 8px;">${whiteboard_client_name}</h4>
+										<h3 class="userID main-id point-span" style="margin-top: 8px;">${client.client_id}</h3>
+										<h4 class="userID main-id point-span" style="margin-top: 8px;">${client.client_name}</h4>
 									</div>
-									<img class="icon-react icon-more"
-										src="https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/bearu/more.png"
-										alt="more">
 								</header>
 								<div>
 									<div class="EtaWk">
@@ -84,7 +81,6 @@
 																	<div class="">
 																		<dl class="regist_image_dl" id="images_box">
 																			<dt>
-																			${client.client_id }
 																				<span
 																					style="color: rgb(0, 0, 0); font-weight: 600; margin-left: 15px;">사진올리기</span>
 																				<span

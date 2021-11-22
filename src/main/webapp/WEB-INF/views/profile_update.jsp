@@ -154,12 +154,7 @@
 						<input class="w3-input" type="text" id="id" name="client_id" readonly value="${ user.client_id }"> 
 					</p>
 					<p>
-						<label>새 비밀번호</label> 
-						<input class="w3-input" type="password" id="pw" name="client_password" required>
-					</p>
-					<p>
-						<label>새 비밀번호 확인</label>
-						<input class="w3-input" type="password" id="pw2" name="client_password2" required>
+						<input class="w3-input" type="hidden" id="pw" name="client_password" value="${ user.client_password }">
 					</p>
 					<p>
 						<label>Email</label> 

@@ -18,9 +18,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.jcpdev.board.entity.ClientEntity;
 import com.jcpdev.board.model.Client;
@@ -152,62 +154,77 @@ public class ClientController {
 
 	// 마이페이지
 	@RequestMapping(value = "/starting/userProfile", method = RequestMethod.GET)
-	public String mypage(String client_id,HttpSession session, Model model, HttpServletRequest request) {
-		Client user=(Client) session.getAttribute("client");
+	public String mypage(String client_id, HttpSession session, Model model, HttpServletRequest request) {
+		Client user = (Client) session.getAttribute("client");
 		String temp = null;
-		if(client_id == null || client_id.equals("")) {
-			if(user == null || user.getClient_id().equals("")) {
+		if (client_id == null || client_id.equals("")) {
+			if (user == null || user.getClient_id().equals("")) {
 				return "redirect:starting";
-			}else {
+			} else {
 				temp = user.getClient_id();
 			}
-		}else {
+		} else {
 			temp = client_id;
 		}
-		ClientEntity entity =  repository.getById(temp);
+		ClientEntity entity = repository.getById(temp);
 		model.addAttribute("user", service.toDto(entity));
-			return "userProfile";
-			
-		}
-	
-		// 비밀번호 확인
-		@RequestMapping(value = "/starting/password_check", method = RequestMethod.GET)
-		public String password_check1() {
+		return "userProfile";
+
+	}
+
+	// 비밀번호 확인
+	@RequestMapping(value = "/starting/password_check", method = RequestMethod.GET)
+	public String password_check1() {
 		return "password_check";
 	}
-	
+
 	@RequestMapping(value = "/starting/password_check", method = RequestMethod.POST)
 	public String password_check(String client_password, HttpSession session) {
-		Client user=(Client) session.getAttribute("client");
-		if(client_password.equals(user.getClient_password())) return "redirect:profile_update";
-		else return "password_check";
+		Client user = (Client) session.getAttribute("client");
+		if (client_password.equals(user.getClient_password()))
+			return "redirect:profile_update";
+		else
+			return "password_check";
 	}
-	
-	
-	
+
 	// 개인정보 수정
 	@RequestMapping(value = "/starting/profile_update", method = RequestMethod.GET)
 	public String profile_update(HttpSession session, HttpServletRequest request, Model model) {
-		Client user=(Client) session.getAttribute("client");
+		Client user = (Client) session.getAttribute("client");
 		String client_id = user.getClient_id();
-		ClientEntity entity=repository.getById(client_id);
+		ClientEntity entity = repository.getById(client_id);
 		user = service.toDto(entity);
-		
 		model.addAttribute("user", user);
 		return "profile_update";
 	}
-	
+
 	@RequestMapping(value = "/starting/profile_update", method = RequestMethod.POST)
-	public String profile_updateGET(Client client) {
+	public String profile_updatePOST(Client client) {
 		ClientEntity entity = service.toEntity(client);
 		repository.save(entity);
 		return "redirect:userProfile";
 	}
-
-	@GetMapping
-	@RequestMapping(value = "/starting/password_update")
+	
+	//비밀번호 수정
+	@RequestMapping(value = "/starting/password_update", method = RequestMethod.GET)
 	public String password_update() {
 		return "password_update";
+	}
+
+	@GetMapping
+	@RequestMapping(value = "/starting/password_update", method = RequestMethod.POST)
+	public String password_updatePOST(HttpSession session, HttpServletRequest request, String old_password, String new_password, String new_password2) {
+		Client user = (Client) session.getAttribute("client");
+		String client_password = user.getClient_password();
+		if(client_password.equals(old_password)) {
+			if(new_password.equals(new_password2)) {
+				user.setClient_password(new_password);
+				ClientEntity entity = service.toEntity(user);
+				repository.save(entity);
+				return "redirect:userProfile";
+			}else return "password_update";
+			
+		}else return "password_update";
 	}
 
 	@GetMapping
