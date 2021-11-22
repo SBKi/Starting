@@ -62,7 +62,7 @@
 						<div class="gradient-wrap">
 							<img class="img-profile story"
 								src="${pageContext.request.contextPath}/resources/img/logo.jpg"
-								onclick="location.href='userProfile'" style="cursor: pointer;">
+								onclick="location.href='userProfile?client_id=${client.client_id}'" style="cursor: pointer;">
 						</div>
 						<div class="profile-text">
 							<span class="userID point-span">김범진</span>

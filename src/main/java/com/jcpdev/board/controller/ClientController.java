@@ -161,12 +161,12 @@ public class ClientController {
 		Client user=(Client) session.getAttribute("client");
 		String login_id = user.getClient_id();
 		ClientEntity entity=repository.getById(login_id);
-		if(client_id.equals(user.getClient_id())) return "userProfile?client_id=";
+		if(client_id.equals(user.getClient_id())) return "userProfile?client_id="+client_id;
 		else {
 		user = service.toDto(entity);
 		model.addAttribute("user", user);
-		}
 		return "userProfile";
+		}
 	}
 
 	// 비밀번호 확인

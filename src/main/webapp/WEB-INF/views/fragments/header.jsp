@@ -83,7 +83,7 @@
 							<span class="_2dbep qNELH" role="link" tabindex="0"
 								style="width: 22px; height: 22px; cursor: pointer;"><img class="_6q-tv"
 								crossorigin="anonymous" data-testid="user-avatar"
-								draggable="false" onclick="location.href='/starting/userProfile'"
+								draggable="false" onclick="location.href='userProfile?client_id=${client.client_id}'"
 								src="${pageContext.request.contextPath}/resources/img/logo.jpg"></span>
 							<div class="poA5q" style="margin-left: -180px;"></div>
 						</div>
