@@ -7,7 +7,6 @@
 <meta charset="UTF-8">
 <title>인스타</title>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/header.css">
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/footer.css">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/main.css">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/board.css">
 <link
@@ -42,18 +41,18 @@
 								<div class="single-item">
 									<div class="">
 										<ul class="image_list single-item">
-										<li file="${list.whiteboard_img1 }"><img class="item_img"
-											src="/img/${list.whiteboard_img1 }"> <a href="#"
+										<li file="${board.whiteboard_img1 }"><img class="item_img"
+											src="/img/${board.whiteboard_img1 }"> <a href="#"
 											class="cvf_delete_image" title="Cancel"> <img
-												class="delete-btn" src="img/delete.png"></a></li>
-										<li file="${list.whiteboard_img2 }"><img class="item_img"
-											src="/img/${list.whiteboard_img2 }"> <a href="#"
+												class="delete-btn" src="/resources/img/delete.png"></a></li>
+										<li file="${board.whiteboard_img2 }"><img class="item_img"
+											src="/img/${board.whiteboard_img2 }"> <a href="#"
 											class="cvf_delete_image" title="Cancel"> <img
-												class="delete-btn" src="img/delete.png"></a></li>
-										<li file="${list.whiteboard_img3 }"><img class="item_img"
-											src="/img/${list.whiteboard_img3 }"> <a href="#"
+												class="delete-btn" src="/resources/img/delete.png"></a></li>
+										<li file="${board.whiteboard_img3 }"><img class="item_img"
+											src="/img/${board.whiteboard_img3 }"> <a href="#"
 											class="cvf_delete_image" title="Cancel"> <img
-												class="delete-btn" src="img/delete.png"></a></li>
+												class="delete-btn" src="/resources/img/delete.png"></a></li>
 										</ul>
 									</div>
 								</div>
@@ -63,7 +62,7 @@
 									<div class="profile-of-article">
 										<img class="img-profile1 pic" src="/resources/img/logo.jpg"> <input
 											type="hidden" value="whiteboard_client_id">
-										<h3 class="userID main-id point-span" style="margin-top: 8px;">${list.whiteboard_client_id}</h3>
+										<h3 class="userID main-id point-span" style="margin-top: 8px;">${board.whiteboard_client_id}</h3>
 										<h4 class="userID main-id point-span" style="margin-top: 8px;">${client.client_name}</h4>
 									</div>
 									<img class="icon-react icon-more"
@@ -83,8 +82,12 @@
 																		style="position: absolute; top: -5px; left: -5px; width: 42px; height: 42px;"></canvas>
 																</div>
 															</div>
-															<form action="save" method="post"
+															<form action="/starting/update" method="post"
 																enctype="multipart/form-data">
+																<input type = "hidden" name = "whiteboard_client_id" value="${client.client_id }">
+																<input type = "hidden" name = "whiteboard_no" value="${board.whiteboard_no }">
+																<input type = "hidden" name = "whiteboard_count" value="${board.whiteboard_count }">
+																<input type = "hidden" name = "whiteboard_like" value="${board.whiteboard_like }">
 																<div class="regist_box">
 																	<div class="">
 																		<dl class="regist_image_dl" id="images_box">
@@ -136,13 +139,14 @@
 																			<dd>
 																				<textarea rows="5" class="introduce"
 																					style="margin: 0px; width: 440px; height: 241px;"
-																					name="whiteboard__content" placeholder="내용을 입력해주세요">${list.whiteboard_content }</textarea>
+																					name="whiteboard_content" placeholder="내용을 입력해주세요">${board.whiteboard_content }</textarea>
 																			</dd>
 																		</dl>
 																	</div>
 																</div>
 																<div class="item_submit_box">
 																	<div class="item_area_submit_box">
+																	<a href="update?whiteboard_no=${board.whiteboard_no }">수정</a>
 																		<a href="userProfile">
 																			<button class="btn_item_cancel" type="button">취소</button>
 																		</a> <input class="btn_item_submit" type="submit"
@@ -166,6 +170,6 @@
 		</div>
 
 	</main>
-	<script type="text/javascript" src="/js/imgUpload.js"></script>
+	<script type="text/javascript" src="/resources/js/imgUpload.js"></script>
 </body>
 </html>

@@ -108,12 +108,6 @@ public class WhiteboardController {
 	}
 	
 	
-	@RequestMapping("/delete")
-	public String delete(int whiteboard_no) {
-		repository.deleteById(whiteboard_no);
-		return "redirect:test";
-	}
-	
 	@RequestMapping("board_test")
 	public void board_test() {
 	}
@@ -136,6 +130,71 @@ public class WhiteboardController {
 		System.out.println(whiteboard_client_id);
 		return "redirect:/starting/main?client_id="+ whiteboard_client_id;
 	}
+	
+	@RequestMapping(value="/starting/update",method = RequestMethod.GET)
+	   public String updateView(int whiteboard_no, Model model) {
+	      WhiteboardEntity entity = repository.findById(whiteboard_no).get();
+	      Whiteboard dto = service.toDto(entity);
+	      model.addAttribute("board", dto);
+	      
+	      return "boardUpdate";
+	   }
+	
+	@RequestMapping(value="/starting/update",method = RequestMethod.POST)
+	   public String update(@RequestParam MultipartFile whiteboard_img1, @RequestParam MultipartFile whiteboard_img2
+	         ,@RequestParam MultipartFile whiteboard_img3 ,String whiteboard_content, String whiteboard_client_id,
+	         int whiteboard_no, int whiteboard_count, int whiteboard_like, Model model) throws IllegalStateException, IOException {
+	      System.out.println("테스트합니다.");
+	      System.out.println(whiteboard_img1.getOriginalFilename());
+	      
+	      
+	      WhiteboardEntity entity = repository.findById(whiteboard_no).get();
+	      
+	      String randomimg1 = null,randomimg2 = null,randomimg3=null;
+
+	      if(!whiteboard_img1.isEmpty())
+	         randomimg1 =UUID.randomUUID().toString()+whiteboard_img1.getOriginalFilename();
+	      if(!whiteboard_img2.isEmpty())
+	         randomimg2 =UUID.randomUUID().toString()+ whiteboard_img2.getOriginalFilename();
+	      if(!whiteboard_img3.isEmpty())
+	         randomimg3 =UUID.randomUUID().toString()+ whiteboard_img3.getOriginalFilename();
+	      
+	      
+	      
+	      String path ="C:\\img\\test";
+	      File upfile = null;
+	      if(randomimg1 !=null) {
+	         String img = path+"\\"+randomimg1;
+	         upfile = new File(img);
+	         whiteboard_img1.transferTo(upfile);
+	      }
+	      if(randomimg2 !=null) {
+	         String img = path+"\\"+randomimg2;
+	         upfile = new File(img);
+	         whiteboard_img2.transferTo(upfile);
+	      }
+	      if(randomimg3 !=null) {
+	         String img = path+"\\"+randomimg3;
+	         upfile = new File(img);
+	         whiteboard_img3.transferTo(upfile);
+	      }
+	      
+	      Whiteboard whiteboard = new Whiteboard(whiteboard_no, whiteboard_client_id , randomimg1, randomimg2
+	            , randomimg3, whiteboard_content, null, whiteboard_count, whiteboard_like);
+	      
+	      entity = service.toEntity(whiteboard);
+	      repository.save(entity);
+	      
+	      
+	      System.out.println(whiteboard_img1);
+	      return "redirect:/starting/main?client_id="+whiteboard_client_id;
+	   }
+	
+	 @RequestMapping("/starting/delete")
+	   public String delete(int whiteboard_no) {
+	      repository.deleteById(whiteboard_no);
+	      return "redirect:/starting/main";
+	   }
 	
 //	@RequestMapping("/getOne")
 //	public String getOne() {
