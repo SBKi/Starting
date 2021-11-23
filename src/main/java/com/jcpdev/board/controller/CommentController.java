@@ -4,10 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.jcpdev.board.entity.CommentEntity;
 import com.jcpdev.board.entity.WhiteboardEntity;
@@ -34,7 +39,21 @@ public class CommentController {
 	WhiteboardService wb_service;
 	
 	@RequestMapping("starting/comment")
-	public String getComment(int whiteboard_no,Model model){
+	public String getComment(int whiteboard_no,Model model,HttpServletResponse response
+			,@CookieValue(name="readCount",defaultValue = "Count") String readCount){
+		
+		if(!readCount.contains(String.valueOf(whiteboard_no))) {
+			readCount += "/" + whiteboard_no;
+			wb_repository.updateCount(whiteboard_no);
+		}
+		
+		Cookie cookie = new Cookie("readCount", readCount);
+		cookie.setMaxAge(30*60);
+		cookie.setPath("/");
+		response.addCookie(cookie);
+		
+		System.out.println("test입니다.");
+		System.out.println(readCount);
 		
 		List<CommentEntity> list = repository.findByCommentboard_no(whiteboard_no);
 		List<Comment> result = new ArrayList<Comment>();
