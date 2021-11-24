@@ -40,7 +40,7 @@
                                  <div class="lf6L3">
                                  <input type="hidden" id="rid${status.count }" value="${item.roomid }">
                                  <a  onclick="getChat('${status.count}')">
-                                    <div style="cursor: pointer;">${item.roomid }</div>
+                                    <div style="cursor: pointer;">${clientlist.get(status.count-1).client_img}</div>
                                     </a>
                                  </div>
                                  <div class="">
