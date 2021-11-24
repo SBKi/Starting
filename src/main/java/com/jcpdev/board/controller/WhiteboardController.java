@@ -89,7 +89,7 @@ public class WhiteboardController {
 					status = true;
 				}
 			}
-			// 만약에 회원이 내가 팔로우 한사람들 중에 없거나 그아이디가 내 세션아이디랑 같지않으면
+			// 만약에 회원이 내가 팔로우 한사람들 중에 없고 그아이디가 내 세션아이디랑 같지않으면
 			if (status && !(client.getClient_id().equals(user.getClient_id()))) {
 				not_follow_list.add(client); // 추가
 			}
