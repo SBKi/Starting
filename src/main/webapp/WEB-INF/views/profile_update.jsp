@@ -109,8 +109,13 @@
 }
 
 .w3-black, .w3-hover-black:hover {
-    color: #fff!important;
-    background-color: #e5c7da!important;
+    color: #b77ead!important;
+    background-color: #f3eaed!important;
+}
+
+.w3-content,.w3-auto{
+   margin-left:5px;
+   margin-right:5px;
 }
 
 </style>

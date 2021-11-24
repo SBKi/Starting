@@ -170,7 +170,7 @@
 					<span class="userID point-span">${client.client_name}</span>
 				</div>
 				<div>
-					<span class="sub-span" onclick="location.href='/starting/myProfile'"
+					<span class="sub-span" onclick="location.href='/starting/userProfile'"
 						style="margin-left: 110px; color: #0095f6; font-weight: 600; font-size: 12px; cursor: pointer;">내계정</span>
 				</div>
 			</div>

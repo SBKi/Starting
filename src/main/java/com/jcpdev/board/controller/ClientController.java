@@ -1,8 +1,11 @@
 package com.jcpdev.board.controller;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -86,7 +89,7 @@ public class ClientController {
 	@RequestMapping(value = "/starting/register", method = RequestMethod.POST)
 	public String sign_up(Client client, Model model) {
 		if (client != null) {
-			client.setClient_img("default.png");
+			client.setClient_img("person.png");
 			client.setClient_status(0);
 			ClientEntity entity = service.toEntity(client);
 			repository.save(entity);
@@ -184,6 +187,37 @@ public class ClientController {
        return "userProfile";
 
     }
+    
+    @RequestMapping(value = "/starting/userProfile", method = RequestMethod.POST)
+    public String updateimg(@RequestParam MultipartFile client_img, String client_id, HttpSession session) throws IllegalStateException, IOException {
+    	 ClientEntity entity = repository.findById(client_id).get();
+    	 Client user = service.toDto(entity);
+    	 Client login = (Client) session.getAttribute("client");
+    	 
+    	 if(login == null) {
+    		 return "redirect:/starting/main";
+    	 }
+    	 String randomimg = null;
+    	 randomimg =UUID.randomUUID().toString()+client_img.getOriginalFilename();	
+    	 String path ="C:\\img\\test";
+    	 File upfile = null;
+    	 if(randomimg !=null) {
+    	 String img = path+"\\"+randomimg;
+         upfile = new File(img);
+         client_img.transferTo(upfile);
+    	 }
+    	 
+    	 user.setClient_img(randomimg);
+    	 entity = service.toEntity(user);
+    	 entity = repository.save(entity);
+    	 
+    	 session.removeAttribute("client");
+    	 session.setAttribute("client", service.toDto(entity));
+    	 
+    	return "redirect:userProfile?client_id="+client_id;
+    	
+    }
+    
 
 	// 비밀번호 확인
 	@RequestMapping(value = "/starting/password_check", method = RequestMethod.GET)
@@ -202,11 +236,10 @@ public class ClientController {
 
 	// 개인정보 수정
 	@RequestMapping(value = "/starting/profile_update", method = RequestMethod.GET)
-	public String profile_update(HttpSession session, HttpServletRequest request, Model model,@RequestParam MultipartFile client_img) {
+	public String profile_update(HttpSession session, HttpServletRequest request, Model model) {
 		Client user = (Client) session.getAttribute("client");
 		String client_id = user.getClient_id();
 		ClientEntity entity = repository.getById(client_id);
-		
 		user = service.toDto(entity);
 		model.addAttribute("user", user);
 		return "profile_update";

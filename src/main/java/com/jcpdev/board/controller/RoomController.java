@@ -44,7 +44,7 @@ public class RoomController {
    @Autowired
    ClientService c_service;
 
-   // 채팅방 목록 조회
+// 채팅방 목록 조회
    @RequestMapping(value = "/rooms", method = RequestMethod.GET)
    public ModelAndView message(HttpSession session) {
 
@@ -62,7 +62,18 @@ public class RoomController {
       for (ChatEntity entity : entities) {
          roomlist.add(service.toDto(entity));
       }
-      System.out.println("@@@"+roomlist);
+      
+      List<Client> clientlist = new ArrayList<Client>();
+      for(Chat temp : roomlist) {
+        String idlist[] = temp.getRoomid().split("@");
+        if(user.getClient_id().equals(idlist[0])) {
+           clientlist.add(c_service.toDto(c_repository.getById(idlist[1])));
+        }else {
+           clientlist.add(c_service.toDto(c_repository.getById(idlist[0])));
+        }
+      }
+      System.out.println(clientlist);
+      mv.addObject("clientlist",clientlist);
       mv.addObject("roomlist", roomlist);
       return mv;
    }

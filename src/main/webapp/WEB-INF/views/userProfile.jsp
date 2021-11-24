@@ -18,14 +18,17 @@
 				<div class="profile_left">
 					<div class="profile_imgbox">
 						<div class="profile_imgbox1">
+							<div class="filebox">
+								<form action="userProfile" method="post" enctype="multipart/form-data">
 								<div class="filebox">
-									<a>
-									 <img src="/img/${user.client_img }"
-										class="rounded-circle" width="150" height="150"
-										id="preview-image">
-									</a>
-									<a href="userProfile">
+									<img src="/img/${user.client_img }" class="rounded-circle" width="150" height="150" id="preview-image">
+										<label for="input-image"></label> 
+										<input type="file" id="input-image" name="client_img">
+										<input type="hidden" name="client_id" value="${user.client_id}">
 								</div>
+										<input type="submit" class="imgChange" value="변경">
+								</form>		
+							</div>
 						</div>
 					</div>
 				</div>
@@ -40,7 +43,7 @@
 						</c:if>
 						<c:if test="${user.client_id eq client.client_id }"> 
 						<div class="profile_update">
-							<a class="profile_update_button" href="profile_update"
+							<a class="profile_update_button" href="password_check"
 								tabindex="0">프로필 편집</a>
 						</div>
 						</c:if>
@@ -55,10 +58,10 @@
 					<div>
 								<span>주소 : ${user.client_address }</span>
 								<c:if test="${user.client_gender eq 'M' }">
-									<span>나이 : ${user.client_birth } 일생 (남성)</span>
+									<span>생년월일 : ${user.client_birth } (남성)</span>
 								</c:if>
 								<c:if test="${user.client_gender eq 'F' }">여자
-									<span>나이 : ${user.client_birth } 일생 (여자)</span>
+									<span>생년월일 : ${user.client_birth } (여자)</span>
 								</c:if>	
 								<span>키 : ${user.client_tall }</span>
 								<span>MBTI : ${user.client_info }</span>
@@ -148,6 +151,24 @@ const btnCansle = document.querySelector('#modal_cansle');
 btnCansle.addEventListener('click', () => { 
 	modal.style.display = 'none';
 });	
+
+//이미지 변경
+function readImage(input) {
+    if(input.files && input.files[0]) {
+        const reader = new FileReader()
+        reader.onload = e => {
+            const previewImage = document.getElementById("preview-image")
+            previewImage.src = e.target.result
+        }
+        reader.readAsDataURL(input.files[0])
+    }
+} 
+const inputImage = document.getElementById("input-image")
+inputImage.addEventListener("change", e => {
+    readImage(e.target)
+})
+
+
 </script>
 </body>
 

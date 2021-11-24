@@ -17,7 +17,7 @@
 							</div>
 						</div></a>
 				</div>
-				<div class="container-fluid">
+				<div>
 					<form class="d-flex" action="strating/Search" method="post"
 						name="formname" accept-charset="UTF-8">
 						<input class="form-control me-2 searchbox" type="text"
@@ -41,7 +41,7 @@
 						</div>
 						<div class="XrOey">
 							<a aria-label="Direct 메시지 - 새로운 알림 링크 0개" class="xWeGp"
-								href="/starting/message" tabindex="0"><svg
+								href="/starting/message/rooms" tabindex="0"><svg
 									aria-label="Direct" class="_8-yf5 " color="#262626"
 									fill="#262626" height="22" role="img" viewBox="0 0 48 48"
 									width="22">
