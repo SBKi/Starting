@@ -34,7 +34,7 @@
 						<h2 class="h2">${user.client_id }</h2>
 						<c:if test="${user.client_id ne client.client_id }">
 						<div class="profile_update">
-							<a class="profile_update_button" href="message"
+							<a class="profile_update_button" href="/starting/message/room?id=${user.client_id }"
 								tabindex="0">메시지 보내기</a>
 						</div>
 						</c:if>

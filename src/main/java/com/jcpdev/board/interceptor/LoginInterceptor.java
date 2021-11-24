@@ -19,7 +19,7 @@ public class LoginInterceptor implements HandlerInterceptor {
 		Client client = (Client) session.getAttribute("client");
 		
 		if(client == null) {
-  		response.sendRedirect(request.getContextPath() +"/login?alert=y");
+  		response.sendRedirect(request.getContextPath() +"/starting/login?alert=y");
 //		response.sendRedirect("login?alert=y");  //http://localhost:8080/board/community/login?alert=y  -> 오류
 			return false;		//handler 메소드로 제어(실행)가 이동되지 않습니다.
 		}else {

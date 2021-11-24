@@ -27,7 +27,7 @@
 					<table>
 					<tr> 
 					<td>아이디 : </td>
-					<td>${client.client_id}</td>
+					<td>${user.client_id}</td>
 					</tr>
 					</table>
 					

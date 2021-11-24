@@ -22,8 +22,8 @@
 						<div class="navigation_item ">01</div>
 						<div class="navigation_item on">02 본인인증</div>
 					</div>
-				<form action="update_password" method="post">
-				<input type="hidden" name="client_id" value="">
+				<form action="find_password_Com" method="post">
+				<input type="hidden" name="client_id" value="${client.client_id }">
 				<div class="login_line"></div>
 				<div class="input_section">
 				<input class="input" type="password" id="pswd1" name="client_password" placeholder="비밀번호(8자 이상)" required="required">

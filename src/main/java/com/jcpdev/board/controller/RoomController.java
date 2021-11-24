@@ -62,7 +62,18 @@ public class RoomController {
       for (ChatEntity entity : entities) {
          roomlist.add(service.toDto(entity));
       }
-      System.out.println("@@@"+roomlist);
+      
+      List<Client> clientlist = new ArrayList<Client>();
+      for(Chat temp : roomlist) {
+    	 String idlist[] = temp.getRoomid().split("@");
+    	 if(user.getClient_id().equals(idlist[0])) {
+    		 clientlist.add(c_service.toDto(c_repository.getById(idlist[1])));
+    	 }else {
+    		 clientlist.add(c_service.toDto(c_repository.getById(idlist[0])));
+    	 }
+      }
+      System.out.println(clientlist);
+      mv.addObject("clientlist",clientlist);
       mv.addObject("roomlist", roomlist);
       return mv;
    }
@@ -138,7 +149,7 @@ public class RoomController {
       if (chatlist == null || chatlist.size() <= 0) {
          Chat chat = new Chat();
          chat.setChat_no(0);
-         chat.setMessage("채팅방에 입장하22셨습니다.");
+         chat.setMessage("채팅방에 입장하셨습니다.");
          chat.setWriter(client.getClient_id());
          chat.setRoomid(client.getClient_id()+"@"+id);
          repository.save(service.toEntity(chat));

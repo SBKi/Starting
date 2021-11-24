@@ -54,7 +54,7 @@ public class WhiteboardController {
 		return "test";
 	}
 	
-	@RequestMapping("/starting/main")
+	@RequestMapping({"/starting/main","/starting","/"})
 	   public String getList(Model model){
 	      List<WhiteboardEntity> wb_list =repository.findByWhiteboard_Client();
 	      List<ClientEntity> c_list =c_repository.findByIdAll();

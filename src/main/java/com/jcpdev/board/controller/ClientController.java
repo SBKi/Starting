@@ -45,12 +45,15 @@ public class ClientController {
 
 
 	@RequestMapping(value = "/starting/login")
-	public String loginPage(HttpServletRequest request) {
-		HttpSession session = request.getSession();
-		if (session.getAttribute("client") != null) {
-			return "starting";
+	public String login(String alert,Model model) {
+		if(alert !=null && alert.equals("y")) {
+			model.addAttribute("message","로그인이 필요합니다." );  
+			model.addAttribute("url","login");
+			return "alertLogin";
+		}else {
+		
+			return "login";    // 로그인 버튼 => login.jsp(뷰) -> 로그인정보입력후 버튼(사용자) -> 
 		}
-		return "login";
 	}
 
 	// 로그아웃
@@ -76,9 +79,15 @@ public class ClientController {
 				session.setAttribute("client", service.toDto(client.get()));
 				return "redirect:/starting/main";
 			}
-			return "redirect:login";
+			String message="로그인 정보가 틀립니다.";
+			model.addAttribute("message",message );  
+			model.addAttribute("url","login");
+			return "alertLogin";
 		} else {
-			return "redirect:login";
+			String message="로그인 정보가 틀립니다.";
+			model.addAttribute("message",message );  
+			model.addAttribute("url","login");
+			return "alertLogin";
 		}
 	}
 
@@ -119,8 +128,8 @@ public class ClientController {
 			user = service.toDto(client.get());
 			if (client_email.equals(user.getClient_email()) && client_name.equals(user.getClient_name())
 					&& client_birth.equals(user.getClient_birth())) {
-				model.addAttribute("client", user);
-				return "redirect:find_id_C";
+				model.addAttribute("user", user);
+				return "find_id_C";
 			}
 			return "redirect:/starting/find_id";
 		}
@@ -145,16 +154,17 @@ public class ClientController {
 			Client user = null;
 			user = service.toDto(client.get());
 			model.addAttribute("client", user);
-			return "redirect:find_password_C";
+			return "find_password_C";
 		}
 		return "redirect:/starting/find_password";
 	}
 
 	@RequestMapping(value = "/starting/find_password_Com", method = RequestMethod.POST)
-	public String find_password_C(Client client) {
-		ClientEntity entity = service.toEntity(client);
-		repository.save(entity);
-		return "redirect:login";
+	public String find_password_C(String client_id, String client_password) {
+		Client old =  service.toDto(repository.getById(client_id));
+		old.setClient_password(client_password);
+		repository.save(service.toEntity(old));
+		return "redirect:/starting/login";
 	}
 
 	// 마이페이지
