@@ -246,10 +246,11 @@ public class ClientController {
 	}
 
 	@RequestMapping(value = "/starting/profile_update", method = RequestMethod.POST)
-	public String profile_updatePOST(Client client) {
+	public String profile_updatePOST(Client client,HttpSession session) {
 		ClientEntity entity = service.toEntity(client);
+		String client_id = client.getClient_id();
 		repository.save(entity);
-		return "redirect:userProfile";
+		return "redirect:userProfile?client_id="+client_id;
 	}
 	
 	//비밀번호 수정
@@ -263,12 +264,13 @@ public class ClientController {
 	public String password_updatePOST(HttpSession session, HttpServletRequest request, String old_password, String new_password, String new_password2) {
 		Client user = (Client) session.getAttribute("client");
 		String client_password = user.getClient_password();
+		String client_id = user.getClient_id();
 		if(client_password.equals(old_password)) {
 			if(new_password.equals(new_password2)) {
 				user.setClient_password(new_password);
 				ClientEntity entity = service.toEntity(user);
 				repository.save(entity);
-				return "redirect:userProfile";
+				return "redirect:userProfile?client_id="+client_id;
 			}else return "password_update";
 			
 		}else return "password_update";

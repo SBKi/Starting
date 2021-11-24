@@ -162,6 +162,9 @@
 						<input class="w3-input" type="hidden" id="pw" name="client_password" value="${ user.client_password }">
 					</p>
 					<p>
+						<input class="w3-input" type="hidden" id="img" name="client_img" value="${ user.client_img }">
+					</p>
+					<p>
 						<label>Email</label> 
 						<input class="w3-input" type="text" id="email" name="client_email" readonly value="${ user.client_email }"> 
 					</p>
