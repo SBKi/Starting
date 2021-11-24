@@ -28,7 +28,6 @@
 <body>
 <jsp:include page="fragments/header.jsp"></jsp:include>
 	<main>
-	${client }
 		<div class="modal">
 			<div class="modal_body">
 				<div class="modal_body2">

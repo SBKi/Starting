@@ -6,26 +6,16 @@
 <head>
 <meta charset="UTF-8">
 <title>Starting</title>
-<link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/resources/css/header.css">
-<link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/resources/css/main.css">
-<link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/resources/css/comment.css">	
-<link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/resources/css/userProfile.css">	
-<link
-	href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css"
-	rel="stylesheet">
-<link rel="stylesheet" type="text/css"
-	href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
-<link rel="stylesheet" type="text/css"
-	href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" />
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<link rel="stylesheet" type="text/css"href="${pageContext.request.contextPath}/resources/css/header.css">
+<link rel="stylesheet" type="text/css"href="${pageContext.request.contextPath}/resources/css/comment.css">	
+<link rel="stylesheet" type="text/css"href="${pageContext.request.contextPath}/resources/css/main.css">
+<link rel="stylesheet" type="text/css"href="${pageContext.request.contextPath}/resources/css/userProfile.css">	
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css"	rel="stylesheet">
+<link rel="stylesheet" type="text/css"href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+<link rel="stylesheet" type="text/css"href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
-<script type="text/javascript"
-	src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+<script type="text/javascript"src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 <style type="text/css">
 .slick-prev {
 	left: 10px;
@@ -60,11 +50,10 @@
 			<div class="section-story ">
 				<div class="menu-title "></div>
 				<ul class="story-list slider">
-				<c:forEach var="client" items="${followlist }">
+				<c:forEach var="client" items="${follow_list }">
 					<li class="story-list_li">
 						<div class="gradient-wrap">
-							<img class="img-profile story"
-								src="/img/${client.client_img }"
+							<img class="img-profile story"	src="/img/${client.client_img }"
 								onclick="location.href='userProfile?client_id=${client.client_id}'" style="cursor: pointer;">
 						</div>
 						<div class="profile-text">
@@ -76,9 +65,10 @@
 			</div>
 			<!-- article -->
 			<article>
-			<c:forEach var="board" items="${list }">
+			<c:forEach var="board" items="${board_All_list }">
+			<div class="article_item">
 				<header style="justify-content: left;">
-				<c:forEach var="clients" items="${c_A_list }">
+				<c:forEach var="clients" items="${client_All_list }">
 					<div class="profile-of-article">
 					<c:if test="${board.whiteboard_client_id eq clients.client_id }">
 						<img class="img-profile1 pic"
@@ -115,8 +105,7 @@
 						</c:if>
 							<!-- 이미 관심등록 되어있음 -->
 						<c:if test="${heartCheck }">
-								<i class="fa heart heart-clicked fa-heart" style="color: red; cursor: pointer;"
-									onclick="unLike(heart)"></i> <span class="visually-hidden"></span>
+								<i class="fa heart heart-clicked fa-heart" style="color: red; cursor: pointer;"	onclick="unLike(heart)"></i> <span class="visually-hidden"></span>
 						</c:if>
 						<img class="icon-react" onclick="location.href='/starting/comment?whiteboard_no=${board.whiteboard_no}&client_id=${board.whiteboard_client_id }'"
 							src="https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/bearu/comment.png">
@@ -127,25 +116,14 @@
 				</div>
 				<!-- article text data -->
 				<div class="reaction">
-					<div class="liked-people">
-						<p>
-							<span class="point-span" style="margin-left: 11px;" id="heart_count">${board.whiteboard_like }</span>
-						</p>
-					</div>
+					
 					<div class="description">
-						<p>
-							<span class="point-span userID">${board.whiteboard_client_id }</span> <span>
-								${board.whiteboard_content }</span>
-						</p>
+						<p>${board.whiteboard_content }</p>
 					</div>
-					<div class="comment-section">
-						<ul class="comments">
-							<li><a id="commentsAll" onclick="#commentsAll" href="/starting/comment?whiteboard_no=${board.whiteboard_no}&client_id=${board.whiteboard_client_id }">댓글보기</a></li>
-						</ul>
-					</div>
+						<p class="point-span" id="heart_count">${board.whiteboard_like }</p>
 				</div>
 				<div class="hl"></div>
-				<div class="comment" style="margin-bottom: 20px; border-bottom: 1px solid #DBDBDB;">
+				<div class="comment">
 										<form action="comment/save" method="post">
 											<input type="hidden" name="comment_no" value="0">
 											<input type="hidden" name="comment_whiteboard_no" value="${board.whiteboard_no }">
@@ -157,7 +135,7 @@
 										</form>
 									</div>
 									<div style="border-bottom: 1px solid #DBDBDB"></div>
-						
+						</div>
 				</c:forEach>
 			</article>
 		</div>
@@ -180,7 +158,7 @@
 					<span class="sub-title">회원님을 위한 추천</span> <span class="find-more">모두	보기</span>
 				</div>
 				<ul class="recommend-list">
-					<c:forEach var="client" items="${c_list }">
+					<c:forEach var="client" items="${not_follow_list }">
 					<li>
 						<div class="recommend-friend-profile">
 						
@@ -197,7 +175,7 @@
 								</c:if>
 							</div>
 						</div> 
-						<span class="btn-follow"><a href="/starting/send_follow?id=${client.client_id }">팔로우</a></span>
+						<a href="/starting/send_follow?id=${client.client_id }"><div class="btn-follow">팔로우</div></a>
 					</li>
 					</c:forEach>
 				</ul>

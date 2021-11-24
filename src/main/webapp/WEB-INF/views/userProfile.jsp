@@ -123,8 +123,8 @@
 						<button class="modal_button" tabindex="0" onclick="location.href='password_check'">개인정보 변경</button>
 						<button class="modal_button" tabindex="0" onclick="location.href='board'">게시물 올리기</button>
 						<button class="modal_button" tabindex="0" onclick="location.href='follower'">팔로워 확인</button>
-						<button class="modal_button" tabindex="0" onclick="location.href='follws'">팔로우 확인</button>
-						<button class="modal_button" tabindex="0" onclick="location.href='/starting/message/rooms'">message 확인</button>
+						<button class="modal_button" tabindex="0" onclick="location.href='follower'">팔로우 확인</button>
+						<button class="modal_button" tabindex="0" onclick="location.href='message/rooms'">message 확인</button>
 						<button class="modal_button" tabindex="0" onclick="location.href='logout'">로그아웃</button>
 						<button id="modal_cansle" class="modal_button" tabindex="0">취소</button>
 						</c:if>

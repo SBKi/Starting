@@ -40,9 +40,9 @@ public class FollowController {
 	public String follow(Model model, HttpSession session) {
 		Client user = (Client) session.getAttribute("client");
 		List<Client> c_list = new ArrayList<Client>();
-		for(FollowEntity temp : repository.findByYourFollow(user.getClient_id())) {
-			Optional<ClientEntity> ent  =   c_repository.findById(service.toDto(temp).getFollow_client_id());
-			if(ent.isPresent()) {
+		for (FollowEntity temp : repository.findByYourFollow(user.getClient_id())) {
+			Optional<ClientEntity> ent = c_repository.findById(service.toDto(temp).getFollow_client_id());
+			if (ent.isPresent()) {
 				c_list.add(c_service.toDto(ent.get()));
 			}
 		}
@@ -53,13 +53,11 @@ public class FollowController {
 	@RequestMapping(value = "/starting/follower", method = RequestMethod.GET)
 	public String follower(Model model, HttpSession session) {
 		Client user = (Client) session.getAttribute("client");
-		List<Object> list = repository.findByMyFollow(user.getClient_id());
-		
 		List<Client> c_list = new ArrayList<Client>();
-		for(int i =0; i<list.size();i++) {
-			Optional<ClientEntity> entity =  c_repository.findById(list.get(i).toString());
-			if(!entity.isEmpty()) {
-				c_list.add(c_service.toDto(entity.get()));
+		for (FollowEntity temp : repository.findByMyFollow(user.getClient_id())) {
+			Optional<ClientEntity> ent = c_repository.findById(service.toDto(temp).getFollowing_id());
+			if (ent.isPresent()) {
+				c_list.add(c_service.toDto(ent.get()));
 			}
 		}
 		model.addAttribute("list", c_list);
@@ -69,16 +67,16 @@ public class FollowController {
 	@RequestMapping(value = "/starting/send_follow", method = RequestMethod.GET)
 	public String send_follow(String id, HttpSession session, HttpServletRequest request) {
 		String url = request.getServletPath();
-		if(url.equals("/starting/send_follow")) {
+		if (url.equals("/starting/send_follow")) {
 			Client user = (Client) session.getAttribute("client");
 			Follow temp = new Follow(0, user.getClient_id(), id);
 			repository.save(service.toEntity(temp));
 			return "redirect:/starting/";
-		}else {
-		Client user = (Client) session.getAttribute("client");
-		Follow temp = new Follow(0, user.getClient_id(), id);
-		repository.save(service.toEntity(temp));
-		return "redirect:/starting/userProfile?client_id="+id;
+		} else {
+			Client user = (Client) session.getAttribute("client");
+			Follow temp = new Follow(0, user.getClient_id(), id);
+			repository.save(service.toEntity(temp));
+			return "redirect:/starting/userProfile?client_id=" + id;
 		}
 	}
 }

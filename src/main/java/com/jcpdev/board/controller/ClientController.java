@@ -98,7 +98,7 @@ public class ClientController {
 	@RequestMapping(value = "/starting/register", method = RequestMethod.POST)
 	public String sign_up(Client client, Model model) {
 		if (client != null) {
-			client.setClient_img("person.png");
+			client.setClient_img("defalut.png");
 			client.setClient_status(0);
 			ClientEntity entity = service.toEntity(client);
 			repository.save(entity);
