@@ -12,7 +12,7 @@
 
 <body>
 <div id="login">
-		<div id="body" style="padding-top: 75px;">
+		<div id="body" style="padding-top: 28px;">
 			<div class="container">
 				<div class="instagram_logo">
 					<img src="${pageContext.request.contextPath}/resources/img/logo.jpg"

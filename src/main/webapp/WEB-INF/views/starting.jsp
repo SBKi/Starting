@@ -10,6 +10,10 @@
 	href="${pageContext.request.contextPath}/resources/css/header.css">
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/resources/css/main.css">
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/resources/css/comment.css">	
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/resources/css/userProfile.css">	
 <link
 	href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css"
 	rel="stylesheet">
@@ -58,106 +62,18 @@
 			<div class="section-story ">
 				<div class="menu-title "></div>
 				<ul class="story-list slider">
-					<li class="story-list_li ">
-						<div class="gradient-wrap">
-							<img class="img-profile story"
-								src="${pageContext.request.contextPath}/resources/img/logo.jpg"
-								onclick="location.href='userProfile'" style="cursor: pointer;">
-						</div>
-						<div class="profile-text">
-							<span class="userID point-span">김범진</span>
-						</div>
-					</li>
+				<c:forEach var="client" items="${c_list }">
 					<li class="story-list_li">
 						<div class="gradient-wrap">
 							<img class="img-profile story"
-								src="${pageContext.request.contextPath}/resources/img/logo.jpg"
-								onclick="location.href='userProfile'" style="cursor: pointer;">
-						</div>
-						<div class="profile-text">
-							<span class="userID point-span">김민재</span>
-						</div>
-					</li>
-					<li class="story-list_li">
-						<div class="gradient-wrap">
-							<img class="img-profile story"
-								src="${pageContext.request.contextPath}/resources/img/logo.jpg"
+								src="/img/${client.client_img }"
 								onclick="location.href='userProfile?client_id=${client.client_id}'" style="cursor: pointer;">
 						</div>
 						<div class="profile-text">
-							<span class="userID point-span">신범기</span>
+							<span class="userID point-span">${client.client_name }</span>
 						</div>
 					</li>
-					<li class="story-list_li">
-						<div class="gradient-wrap">
-							<img class="img-profile story"
-								src="${pageContext.request.contextPath}/resources/img/logo.jpg"
-								onclick="location.href='userProfile'" style="cursor: pointer;">
-						</div>
-						<div class="profile-text">
-							<span class="userID point-span">장치영</span>
-						</div>
-					</li>
-					<li class="story-list_li">
-						<div class="gradient-wrap">
-							<img class="img-profile story"
-								src="${pageContext.request.contextPath}/resources/img/logo.jpg"
-								onclick="location.href='userProfile'" style="cursor: pointer;">
-						</div>
-						<div class="profile-text">
-							<span class="userID point-span">한병훈</span>
-						</div>
-					</li>
-					<li class="story-list_li">
-						<div class="gradient-wrap">
-							<img class="img-profile story"
-								src="${pageContext.request.contextPath}/resources/img/logo.jpg"
-								onclick="location.href='userProfile'" style="cursor: pointer;">
-						</div>
-						<div class="profile-text">
-							<span class="userID point-span">한병훈</span>
-						</div>
-					</li>
-					<li class="story-list_li">
-						<div class="gradient-wrap">
-							<img class="img-profile story"
-								src="${pageContext.request.contextPath}/resources/img/logo.jpg"
-								onclick="location.href='userProfile'" style="cursor: pointer;">
-						</div>
-						<div class="profile-text">
-							<span class="userID point-span">한병훈</span>
-						</div>
-					</li>
-					<li class="story-list_li">
-						<div class="gradient-wrap">
-							<img class="img-profile story"
-								src="${pageContext.request.contextPath}/resources/img/logo.jpg"
-								onclick="location.href='userProfile'" style="cursor: pointer;">
-						</div>
-						<div class="profile-text">
-							<span class="userID point-span">한병훈</span>
-						</div>
-					</li>
-					<li class="story-list_li">
-						<div class="gradient-wrap">
-							<img class="img-profile story"
-								src="${pageContext.request.contextPath}/resources/img/logo.jpg"
-								onclick="location.href='userProfile'" style="cursor: pointer;">
-						</div>
-						<div class="profile-text">
-							<span class="userID point-span">한병훈</span>
-						</div>
-					</li>
-					<li class="story-list_li">
-						<div class="gradient-wrap">
-							<img class="img-profile story"
-								src="${pageContext.request.contextPath}/resources/img/logo.jpg"
-								onclick="location.href='userProfile'" style="cursor: pointer;">
-						</div>
-						<div class="profile-text">
-							<span class="userID point-span">한병훈</span>
-						</div>
-					</li>
+				</c:forEach>
 				</ul>
 			</div>
 			<!-- article -->
@@ -166,27 +82,32 @@
 				<header>
 					<div class="profile-of-article">
 						<img class="img-profile1 pic"
-							src="${pageContext.request.contextPath}/resources/img/logo.jpg"
-							onclick="location.href='/starting/userProfile?${board.whiteboard_client_id}'"> <span
-							class="userID main-id point-span" style="margin-top: 8px;">${board.whiteboard_client_id }</span>
+							src="/img/${client.client_img }"
+							onclick="location.href='userProfile?client_id=${board.whiteboard_client_id}'"> 
+							<span class="userID main-id point-span" style="margin-top: 9px;">${board.whiteboard_client_id }</span>
 					</div>
-					<img class="icon-react icon-more"
+					<img class="icon-react icon-more" id="option" onclick="option"
 						src="https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/bearu/more.png"
 						alt="more">
+					   <a href="update?whiteboard_no=${board.whiteboard_no }">수정</a>	
 				</header>
 				<div class="single-item">
 					<div>
 						<img style="height: 600px;"
 							src="/img/${board.whiteboard_img1 }">
 					</div>
-					<div>
+						<c:if test="${board.whiteboard_img2 != null }">
+						<div>
 						<img style="height: 600px;"
 							src="/img/${board.whiteboard_img2 }">
-					</div>
-					<div>
+						</div>
+						</c:if>	
+						<c:if test="${board.whiteboard_img3 != null }">
+						<div>
 						<img style="height: 600px;"
 							src="/img/${board.whiteboard_img3 }">
-					</div>
+						</div>
+						</c:if>	
 				</div>
 				<div class="icons-react">
 					<div class="icons-left">
@@ -199,16 +120,16 @@
 								<i class="fa heart heart-clicked fa-heart" style="color: red; cursor: pointer;"
 									onclick="unLike(heart)"></i> <span class="visually-hidden"></span>
 						</c:if>
-						<img class="icon-react" onclick="location.href='/starting/comment?whiteboard_no=${board.whiteboard_no}'"
+						<img class="icon-react" onclick="location.href='/starting/comment?whiteboard_no=${board.whiteboard_no}&client_id=${board.whiteboard_client_id }'"
 							src="https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/bearu/comment.png">
-						<img class="icon-react" onclick="location.href='/starting/message'"  src="/resources/img/dm.png">
+						<img class="icon-react" onclick="location.href='/starting/message/room?id=${board.whiteboard_client_id}'"  src="/resources/img/dm.png">
 					</div>
 				</div>
 				<!-- article text data -->
 				<div class="reaction">
 					<div class="liked-people">
 						<p>
-							<span class="point-span" id="heart_count">${board.whiteboard_like }</span>
+							<span class="point-span" style="margin-left: 11px;" id="heart_count">${board.whiteboard_like }</span>
 						</p>
 					</div>
 					<div class="description">
@@ -219,7 +140,7 @@
 					</div>
 					<div class="comment-section">
 						<ul class="comments">
-							<li><a id="commentsAll" onclick="#commentsAll" href="comment?whiteboard_no=${board.whiteboard_no }">댓글보기</a></li>
+							<li><a id="commentsAll" onclick="#commentsAll" href="/starting/comment?whiteboard_no=${board.whiteboard_no}&client_id=${board.whiteboard_client_id }">댓글보기</a></li>
 						</ul>
 					</div>
 				</div>
@@ -236,6 +157,7 @@
 										</form>
 									</div>
 									<div style="border-bottom: 1px solid #DBDBDB"></div>
+						
 				</c:forEach>
 			</article>
 		</div>
@@ -243,62 +165,123 @@
 		<div class="main-right">
 			<div class="myProfile">
 				<img class="pic"
-					src="${pageContext.request.contextPath}/resources/img/logo.jpg"
-					onclick="location.href='#'" style="cursor: pointer;">
+					src="/img/${client.client_img}" style="cursor: pointer;">
 				<div>
 					<span class="userID point-span">${client.client_name}</span>
 				</div>
 				<div>
-					<span class="sub-span"
-						style="margin-left: 110px; color: #0095f6; font-weight: 600; font-size: 12px; cursor: pointer;">내
-						계정</span>
+					<span class="sub-span" onclick="location.href='/starting/myProfile'"
+						style="margin-left: 110px; color: #0095f6; font-weight: 600; font-size: 12px; cursor: pointer;">내계정</span>
 				</div>
 			</div>
 			<!-- recommendation section -->
 			<div class="section-recommend">
 				<div class="menu-title">
-					<span class="sub-title">회원님을 위한 추천</span> <span class="find-more">모두
-						보기</span>
+					<span class="sub-title">회원님을 위한 추천</span> <span class="find-more">모두	보기</span>
 				</div>
 				<ul class="recommend-list">
+					<c:forEach var="client" items="${c_list }">
 					<li>
 						<div class="recommend-friend-profile">
+						
 							<img class="img-profile1 story"
-								src="${pageContext.request.contextPath}/resources/img/logo.jpg"
-								onclick="location.href='#'" style="cursor: pointer;">
+								src="/img/${client.client_img }"
+								onclick="location.href='userProfile?client_id=${client.client_id}'" style="cursor: pointer;">
 							<div class="profile-text1">
-								<span class="userID point-span">홍길동</span> <span
-									class="sub-span">신범기님 외 5명이 팔로우합니다</span>
+								<span class="userID point-span">${client.client_id} ${client.client_name }</span> 
+								<c:if test="${client.client_gender eq 'M' }">
+								<span class="sub-span">${client.client_birth } (남) </span>
+								</c:if>
+								<c:if test="${client.client_gender eq 'F' }">
+								<span class="sub-span">${client.client_birth } (여) </span>
+								</c:if>
 							</div>
 						</div> <span class="btn-follow">팔로우</span>
 					</li>
-					<li>
-						<div class="recommend-friend-profile">
-							<img class="img-profile1 story"
-								src="${pageContext.request.contextPath}/resources/img/logo.jpg"
-								onclick="location.href='#'" style="cursor: pointer;">
-							<div class="profile-text1">
-								<span class="userID point-span">강호동</span> <span
-									class="sub-span">jang123님이 팔로우합니다</span>
-							</div>
-						</div> <span class="btn-follow">팔로우</span>
-					</li>
-					<li>
-						<div class="recommend-friend-profile">
-							<img class="img-profile1 story"
-								src="${pageContext.request.contextPath}/resources/img/logo.jpg"
-								onclick="location.href='#'" style="cursor: pointer;">
-							<div class="profile-text1">
-								<span class="userID point-span">유재석</span> <span
-									class="sub-span">hgggggggg님 외 5명이 팔로우합니다</span>
-							</div>
-						</div> <span class="btn-follow">팔로우</span>
-					</li>
+					</c:forEach>
 				</ul>
 			</div>
 		</div>
 	</main>
-
+	<div class="RnEpo  Yx5HN " id="modal">
+		<div class="pbNvD  fPMEg">
+			<div class="_1XyCr  ">
+				<div class="piCib">
+					<div class="modal_button_body">
+						<!-- 상대방 글 이면 -->
+						<button class="modal_button" id="report_option" tabindex="0" onclick="location.href='/starting/comment?whiteboard_no=${board.whiteboard_no }'">게시물로 이동</button>
+						<button class="modal_button" id="report_option" tabindex="0" onclick="report_modal">신고하기</button>
+						<button class="modal_button" id="meaning_option" tabindex="0" onclick="meaning_modal">차단하기</button>
+						<button id="modal_cansle" class="modal_button" tabindex="0">취소</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>								
+	<div class="RnEpo  Yx5HN " id="report_modal">
+		<div class="pbNvD  fPMEg" style="margin-top: 50px;">
+			<div class="_1XyCr  ">
+				<div class="piCib">
+					<div class="modal_button_body">
+						<h3>신고</h3>
+						<h3>이 게시물을 신고하는 이유</h3>
+						<button class="modal_button" tabindex="0" onclick="meaning_modal">스팸</button>
+						<button class="modal_button" tabindex="0"
+							onclick="location.href='/report/${1}'">나체 이미지 또는 성적 행위</button>
+						<button class="modal_button" tabindex="0"
+							onclick="location.href='/report/${2}'">혐오발언 또는 상징</button>
+						<button class="modal_button" tabindex="0"
+							onclick="location.href='/report/${3}'">폭력 또는 위험한 단체</button>
+						<button class="modal_button" tabindex="0"
+							onclick="location.href='/report/${4}'">불법 또는 규제 상품 판매</button>
+						<button class="modal_button" tabindex="0"
+							onclick="location.href='/report/${5}'">따돌림 또는 괴롭힘</button>
+						<button class="modal_button" tabindex="0"
+							onclick="location.href='/report/${6}'">지적 재산권 침해</button>
+						<button class="modal_button" tabindex="0"
+							onclick="location.href='/report/${7}'">자살 또는 자해</button>
+						<button class="modal_button" tabindex="0"
+							onclick="location.href='/report/${8}'">자살 또는 자해</button>
+						<button class="modal_button" tabindex="0"
+							onclick="location.href='/report/${9}'">사기 또는 거짓</button>
+						<button class="modal_button" tabindex="0"
+							onclick="location.href='/report/${10}'">거짓 정보</button>
+						<button class="modal_button" tabindex="0"
+							onclick="location.href='/report/${11}'">마음에 들지 않습니다</button>
+						<button id="report_modal_cansle" class="modal_button" tabindex="0">취소</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="RnEpo  Yx5HN " id="meaning_modal">
+		<div class="pbNvD  fPMEg" style="margin-top: 250px;">
+			<div class="_1XyCr  ">
+				<div class="piCib">
+					<div class="modal_button_body">
+						<div class="">
+							<div class="">
+								<div class="">
+									<h3 style="margin-top: 20px;">이 내용을 보고 싶지 않으세요?</h3>
+								</div>
+								<div class="">
+									<div class="">
+										<h4 style="padding: 15px;">starting에서 마음에 들지 않는 게시물이 표시될
+											때 게시물을 신고하거나 해당 게시물을 공유한 사람이 회원님에게 보이지 않도록 삭제할 수 있습니다.</h4>
+									</div>
+								</div>
+							</div>
+						</div>
+						<button class="modal_button" tabindex="0"
+							onclick="location.href='/starting/meaning/${jang123}'">{jang123}
+							님 차단</button>
+						<button id="meaning_modal_cansle" class="modal_button"
+							tabindex="0">취소</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 	<script type="text/javascript">
 $(document).ready(function(){
   $('.single-item').slick({
@@ -367,36 +350,43 @@ $(function(){
     
 </script>
 <script>
-	var id = '${client_id}'; // postid
-	function likeview() {
-		$.ajax({
-			url : '/board',
-			type : 'post',
-			async : true,
-			data : {'id' : id}, // postid 보냄
-			dataType : "json", // data가 json타입
-			success : function(data) {
-				var a = '';
-				if (data.cnt == 1) {   // 현재 로그인 유저가 포스팅 좋아요를 눌렀음
-					a += '<a onclick="likeDelete('+ id +');"' // likeDelete는 밑에서
-						+ 'class="glyphicon glyphicon-heart heart" aria-hidden="true"></a>'
-					a += '<span class="glyphicon glyphicon-comment" aria-hidden="true"></span> <br />'
-					a += '<span><b>좋아요 ' + data.total_cnt + '개</b></span>' // 총 좋아요 개수
-				} else if (data.cnt == 0) { // 안눌렀음
-					a += '<a onclick="likeInsert('+ id +');"' // likeInsert는 밑에서
-						+'class="glyphicon glyphicon-heart-empty heart" aria-hidden="true"></a>'
-					a += '<span class="glyphicon glyphicon-comment" aria-hidden="true"></span> <br />'
-					a += '<span><b>좋아요 ' + data.total_cnt + '개</b></span>'		
-				}
-				$('.like').html(a); // <div class="like></div> 이부분에 나타남
-			}
-		});
-	}
-	$(document).ready(function() { // 페이지가 준비되면
-		likeview(); // 함수 likeview ㄱ
-	});
-</script>
+	/*옵션 모달  */
+const modal = document.querySelector('#modal'); 
+const btnOpenPopup = document.getElementById('option');
+const btnCansle = document.querySelector('#modal_cansle');
 
+btnOpenPopup.addEventListener('click', () => { 
+	modal.style.display = 'block';
+	});
+	
+btnCansle.addEventListener('click', () => { 
+	modal.style.display = 'none';
+});	
+	/*신고옵션 모달  */
+const report_modal = document.querySelector('#report_modal'); 
+const report_btnOpenPopup = document.getElementById('report_option');
+const report_btnCansle = document.querySelector('#report_modal_cansle');
+
+report_btnOpenPopup.addEventListener('click', () => { 
+	modal.style.display = 'none';
+	report_modal.style.display = 'block';
+	});
+report_btnCansle.addEventListener('click', () => { 
+	report_modal.style.display = 'none';
+});	
+	/*차단 모달  */
+const meaning_modal = document.querySelector('#meaning_modal'); 
+const meaning_btnOpenPopup = document.getElementById('meaning_option')
+const meaning_btnCansle = document.querySelector('#meaning_modal_cansle');
+
+meaning_btnOpenPopup.addEventListener('click', () => { 
+	meaning_modal.style.display = 'block';
+	modal.style.display = 'none';
+	});
+meaning_btnCansle.addEventListener('click', () => { 
+	meaning_modal.style.display = 'none';
+});	
+</script>
 </body>
 
 

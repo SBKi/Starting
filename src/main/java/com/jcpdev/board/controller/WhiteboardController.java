@@ -20,9 +20,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.jcpdev.board.entity.ClientEntity;
 import com.jcpdev.board.entity.WhiteboardEntity;
+import com.jcpdev.board.model.Client;
 import com.jcpdev.board.model.Whiteboard;
+import com.jcpdev.board.service.ClientService;
 import com.jcpdev.board.service.WhiteboardService;
+import com.jcpdev.board.repository.ClientRepository;
 import com.jcpdev.board.repository.WhiteboardRepository;
 
 @Controller
@@ -35,6 +39,12 @@ public class WhiteboardController {
 	@Autowired
 	WhiteboardService service;
 	
+	@Autowired
+	ClientRepository c_repository;
+	
+	@Autowired
+	ClientService c_service;
+	
 	
 	@GetMapping("/instagram/board")
 	public String boardinsert() {
@@ -45,17 +55,23 @@ public class WhiteboardController {
 	}
 	
 	@RequestMapping("/starting/main")
-	public String getList(Model model){
-		List<WhiteboardEntity> list =repository.findByWhiteboard_Client();
-		//		List<WhiteboardEntity> list = repository.findAll(Sort.by(Sort.Direction.DESC,"whiteboard_no"));
-		//if(list.equals("[]")) {list = repository.findAll();}
-		List<Whiteboard> result = new ArrayList<Whiteboard>();
-		list.forEach(item-> {
-			result.add(service.toDto(item));
-		});
-		model.addAttribute("list", result);
-		return "starting";
-	}
+	   public String getList(Model model){
+	      List<WhiteboardEntity> wb_list =repository.findByWhiteboard_Client();
+	      List<ClientEntity> c_list =c_repository.findByIdAll();
+	      //      List<WhiteboardEntity> list = repository.findAll(Sort.by(Sort.Direction.DESC,"whiteboard_no"));
+	      //if(list.equals("[]")) {list = repository.findAll();}
+	      List<Whiteboard> result = new ArrayList<Whiteboard>();
+	      List<Client> client = new ArrayList<Client>();
+	      wb_list.forEach(item-> {
+	         result.add(service.toDto(item));
+	      });
+	      c_list.forEach(item-> {
+	         client.add(c_service.toDto(item));
+	      });
+	      model.addAttribute("list", result);
+	      model.addAttribute("c_list", client);
+	      return "starting";
+	   }
 	
 	@RequestMapping(value = "/starting/board" ,method = RequestMethod.GET)
 	public String board() {
@@ -77,7 +93,7 @@ public class WhiteboardController {
 		Whiteboard whiteboard = new Whiteboard(0, whiteboard_client_id ,randomimg1,randomimg2
 				,randomimg3, whiteboard_content, null, 0, 0);
 		
-		String path ="C:\\upload";
+		String path ="C:\\img\\test";
 		File upfile = null;
 		if(randomimg1 !=null) {
 			String img = path+"\\"+randomimg1;

@@ -146,8 +146,7 @@
 																</div>
 																<div class="item_submit_box">
 																	<div class="item_area_submit_box">
-																	<a href="update?whiteboard_no=${board.whiteboard_no }">수정</a>
-																		<a href="userProfile">
+																		<a onclick="goBack()">
 																			<button class="btn_item_cancel" type="button">취소</button>
 																		</a> <input class="btn_item_submit" type="submit"
 																			value="게시물 등록">
@@ -171,5 +170,6 @@
 
 	</main>
 	<script type="text/javascript" src="/resources/js/imgUpload.js"></script>
+	<script type="text/javascript" src="/resources/js/main.js"></script>
 </body>
 </html>

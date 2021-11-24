@@ -199,3 +199,7 @@ function checkGender() {
 		error[6].style.display = "block";
 	}
 }
+
+function goBack() {
+		window.history.back();
+	}

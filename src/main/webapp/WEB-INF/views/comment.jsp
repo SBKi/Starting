@@ -68,14 +68,18 @@
 											<img style="height: 475px;"
 												src="/img/${whiteboard.whiteboard_img1 }">
 										</div>
+											<c:if test="${whiteboard.whiteboard_img2 != null }">								
 										<div>
 											<img style="height: 475px;"
 												src="/img/${whiteboard.whiteboard_img2 }">
 										</div>
+											</c:if>	
+											<c:if test="${whiteboard.whiteboard_img3 != null }">								
 										<div>
 											<img style="height: 475px;"
 												src="/img/${whiteboard.whiteboard_img3 }">
 										</div>
+											</c:if>	
 									</div>
 								</div>
 								<div class="modal_right1"
@@ -84,7 +88,7 @@
 										<div class="profile-of-article">
 											<img class="img-profile1 pic"
 												src="${pageContext.request.contextPath}/resources/img/logo.jpg"
-												onclick="location.href='/userProfile/jang123'">
+												onclick="location.href='/starting/userProfile?${whiteboard.whiteboard_client_id}'">
 											<h3 class="userID main-id point-span"
 												style="margin-top: 8px;">${whiteboard.whiteboard_client_id }</h3>
 
@@ -107,10 +111,10 @@
 																	<div class="RR-M-  TKzGu  " role="button" tabindex="-1">
 																		<canvas class="CfWVH" height="53" width="53"
 																			style="position: absolute; top: -5px; left: -5px; width: 42px; height: 42px;"></canvas>
-																		<a class="_2dbep qNELH kIKUG" href="/zeromin_96/"
+																		<a class="_2dbep qNELH kIKUG" href="/string/userProfile?"
 																			tabindex="0"
 																			style="width: 32px; height: 32px; display: block;"><img
-																			src="${pageContext.request.contextPath}/resources/img/person.png"
+																			src="${pageContext.request.contextPath}/img/person.png"
 																			class="_6q-tv"></a>
 																	</div>
 																</div>
@@ -170,8 +174,7 @@
 											<input type="hidden" name="comment_whiteboard_no" value="${whiteboard.whiteboard_no }">
 											<input type="hidden" name="comment_id" value="${client.client_id }">
 											<input id="input-comment" name="comment_content" style="width: 420px;"
-												class="input-comment" type="text" placeholder="댓글 달기..."
-												>
+												class="input-comment" type="text" placeholder="댓글 달기...">
 											<button type="submit" class="submit-comment">게시</button>
 										</form>
 									</div>
@@ -180,10 +183,8 @@
 						</article>
 					</div>
 				</div>
-
 			</div>
 			<div class="profile_board_body">
-
 				<div class="profile_board">
 					<a aria-selected="true" class="_9VEo1 T-jvg" role="tab" href=""
 						tabindex="0"><span class="smsjF"><svg aria-label=""
@@ -196,22 +197,18 @@
 				<div>
 					<span class="PJXu4">게시물</span>
 				</div>
-
 			</div>
 			<div class="profile_board_imgs">
 				<div class="board_imgs">
-				<c:forEach var="board" items="${list }">
-					<div class="board_img">
-						<img onclick="location.href='/comment?whiteboard_no=${board.whiteboard_no}'" class="img" alt="1"
-							src="/img/${board.whiteboard_img1 }"><a
-							href="/comment?whiteboard_no=${board.whiteboard_no}'"></a>
+					<c:forEach var="board" items="${board_list }">
+					<div>
+						<img class="board_img img" onclick="location.href='/starting/comment?whiteboard_no=${board.whiteboard_no}&client_id=${board.whiteboard_client_id }'"
+							src="/img/${board.whiteboard_img1 }">
 					</div>
 				</c:forEach>
 				</div>
 			</div>
-
 		</div>
-
 	</main>
 	<div class="RnEpo  Yx5HN " id="modal">
 		<div class="pbNvD  fPMEg">
@@ -219,15 +216,21 @@
 				<div class="piCib">
 					<div class="modal_button_body">
 						<!--내 글 이면-->
+						<c:if test="${client.client_id eq whiteboard.whiteboard_client_id}">
 						<button class="modal_button" tabindex="0"
-							onclick="location.href='delete'">삭제하기</button>
+							onclick="location.href='delete?whiteboard_no=${whiteboard.whiteboard_no}'">삭제하기</button>
+						<button class="modal_button" tabindex="0"
+							onclick="location.href='update?whiteboard_no=${whiteboard.whiteboard_no}'">수정하기</button>
 						<button id="modal_cansle" class="modal_button" tabindex="0">취소</button>
+						</c:if>
 						<!-- 상대방 글 이면 -->
+						<c:if test="${client.client_id ne whiteboard.whiteboard_client_id}">
 						<button class="modal_button" id="report_option" tabindex="0"
 							onclick="report_modal">신고하기</button>
 						<button class="modal_button" id="meaning_option" tabindex="0"
 							onclick="meaning_modal">차단하기</button>
 						<button id="modal_cansle" class="modal_button" tabindex="0">취소</button>
+						</c:if>
 					</div>
 				</div>
 			</div>

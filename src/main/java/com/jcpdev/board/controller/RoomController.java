@@ -34,115 +34,116 @@ import lombok.extern.log4j.Log4j2;
 @Log4j2
 public class RoomController {
 
-	@Autowired
-	ChatRoomRepository repository;
-	@Autowired
-	ClientRepository c_repository;
+   @Autowired
+   ChatRoomRepository repository;
+   @Autowired
+   ClientRepository c_repository;
 
-	@Autowired
-	ChatService service;
-	@Autowired
-	ClientService c_service;
+   @Autowired
+   ChatService service;
+   @Autowired
+   ClientService c_service;
 
-	// 채팅방 목록 조회
-	@RequestMapping(value = "/rooms", method = RequestMethod.GET)
-	public ModelAndView message(HttpSession session) {
+   // 채팅방 목록 조회
+   @RequestMapping(value = "/rooms", method = RequestMethod.GET)
+   public ModelAndView message(HttpSession session) {
 
-		log.info("# All Chat Rooms");
-		ModelAndView mv = new ModelAndView("message");
+      log.info("# All Chat Rooms");
+      ModelAndView mv = new ModelAndView("message");
 
-		Client user = (Client) session.getAttribute("client");
-		if (user == null) {
-			mv.setViewName("redirect:/starting");
-			return mv;
-		}
+      Client user = (Client) session.getAttribute("client");
+      if (user == null) {
+         mv.setViewName("redirect:/starting");
+         return mv;
+      }
 
-		List<Chat> roomlist = new ArrayList<Chat>();
-		List<ChatEntity> entities = repository.findcustom(user.getClient_id());
-		for (ChatEntity entity : entities) {
-			roomlist.add(service.toDto(entity));
-		}
-		mv.addObject("roomlist", roomlist);
-		return mv;
-	}
+      List<Chat> roomlist = new ArrayList<Chat>();
+      List<ChatEntity> entities = repository.findcustom(user.getClient_id());
+      for (ChatEntity entity : entities) {
+         roomlist.add(service.toDto(entity));
+      }
+      System.out.println("@@@"+roomlist);
+      mv.addObject("roomlist", roomlist);
+      return mv;
+   }
 
-	// 채팅방 개설
+   // 채팅방 개설
 //    @RequestMapping(value = "/room", method = RequestMethod.POST)
 //    public String create(String id,HttpServletRequest request){
-//    	HttpSession session = request.getSession();
-//    	
-//    	Client client = null;
-//    	if(session.getAttribute("client") != null) {
-//    		client = (Client)session.getAttribute("client");
-//    	}else {
-//    		System.out.println("세션아이디 없음");
-//    	}
-//    	String myid = client.getClient_id();
-//    	Chat chat = new Chat();
-//    	chat.setChat_no(0);
-//    	chat.setMessage("채팅방에 입장하셨습니다.");
-//    	chat.setWriter(myid);
-//    	chat.setRoomid(myid+"@"+id);
-//    	
-//    	repository.save(service.toEntity(chat));
+//       HttpSession session = request.getSession();
+//       
+//       Client client = null;
+//       if(session.getAttribute("client") != null) {
+//          client = (Client)session.getAttribute("client");
+//       }else {
+//          System.out.println("세션아이디 없음");
+//       }
+//       String myid = client.getClient_id();
+//       Chat chat = new Chat();
+//       chat.setChat_no(0);
+//       chat.setMessage("채팅방에 입장하셨습니다.");
+//       chat.setWriter(myid);
+//       chat.setRoomid(myid+"@"+id);
+//       
+//       repository.save(service.toEntity(chat));
 //        log.info("# Create Chat Room , id: " + id);
-//    	return "redirect:/starting/message/rooms";
+//       return "redirect:/starting/message/rooms";
 //    }
 
-	// 채팅방 조회
-	@SuppressWarnings("unchecked")
-	@ResponseBody 
-	@RequestMapping(value = "/room", method = RequestMethod.POST)
-	public JSONObject getRoom(@RequestBody ChatRoom room, HttpServletRequest request) {
-		HttpSession session = request.getSession();
-		Client client = null;
-		client = (Client) session.getAttribute("client");
-		log.info("# 채팅내역 조회");
-		List<ChatEntity> list = repository.findchatlist(room.getRoomId(),room.getRoomId());
-		List<Chat> chatlist = new ArrayList<Chat>();
-		for (ChatEntity temp : list) {
-			chatlist.add(service.toDto(temp));
-		}
-		if (chatlist == null || chatlist.size() <= 0) {
-			Chat chat = new Chat();
-			chat.setChat_no(0);
-			chat.setMessage("채팅방에 입장하22셨습니다.");
-			chat.setWriter(client.getClient_id());
-			chat.setRoomid(room.getRoomId());
-			repository.save(service.toEntity(chat));
-		}
-		JSONArray jsonlist = new JSONArray();
-		JSONObject result = new JSONObject();
-		for(Chat index : chatlist) {
-			JSONObject temp = new JSONObject();
-			temp.put("roomid", index.getRoomid());
-			temp.put("writer", index.getWriter());
-			temp.put("message",index.getMessage());
-			jsonlist.add(temp);
-		}
-		result.put("list", jsonlist);
-		return result;
-	}
-	
-	@RequestMapping(value = "/room", method = RequestMethod.GET)
-	public String getRoom(String id, HttpServletRequest request) {
-		HttpSession session = request.getSession();
-		Client client = null;
-		client = (Client) session.getAttribute("client");
-		List<ChatEntity> list = repository.findchatlist(id+"@"+client.getClient_id(),client.getClient_id()+"@"+id);
-		List<Chat> chatlist = new ArrayList<Chat>();
-		for (ChatEntity temp : list) {
-			chatlist.add(service.toDto(temp));
-		}
-		if (chatlist == null || chatlist.size() <= 0) {
-			Chat chat = new Chat();
-			chat.setChat_no(0);
-			chat.setMessage("채팅방에 입장하22셨습니다.");
-			chat.setWriter(client.getClient_id());
-			chat.setRoomid(client.getClient_id()+"@"+id);
-			repository.save(service.toEntity(chat));
-		}
-		
-		return "redirect:/starting/message/rooms";
-	}
+   // 채팅방 조회
+   @SuppressWarnings("unchecked")
+   @ResponseBody 
+   @RequestMapping(value = "/room", method = RequestMethod.POST)
+   public JSONObject getRoom(@RequestBody ChatRoom room, HttpServletRequest request) {
+      HttpSession session = request.getSession();
+      Client client = null;
+      client = (Client) session.getAttribute("client");
+      log.info("# 채팅내역 조회");
+      List<ChatEntity> list = repository.findchatlist(room.getRoomid(),room.getRoomid());
+      List<Chat> chatlist = new ArrayList<Chat>();
+      for (ChatEntity temp : list) {
+         chatlist.add(service.toDto(temp));
+      }
+      if (chatlist == null || chatlist.size() <= 0) {
+         Chat chat = new Chat();
+         chat.setChat_no(0);
+         chat.setMessage("채팅방에 입장하22셨습니다.");
+         chat.setWriter(client.getClient_id());
+         chat.setRoomid(room.getRoomid());
+         repository.save(service.toEntity(chat));
+      }
+      JSONArray jsonlist = new JSONArray();
+      JSONObject result = new JSONObject();
+      for(Chat index : chatlist) {
+         JSONObject temp = new JSONObject();
+         temp.put("roomid", index.getRoomid());
+         temp.put("writer", index.getWriter());
+         temp.put("message",index.getMessage());
+         jsonlist.add(temp);
+      }
+      result.put("list", jsonlist);
+      return result;
+   }
+   
+   @RequestMapping(value = "/room", method = RequestMethod.GET)
+   public String getRoom(String id, HttpServletRequest request) {
+      HttpSession session = request.getSession();
+      Client client = null;
+      client = (Client) session.getAttribute("client");
+      List<ChatEntity> list = repository.findchatlist(id+"@"+client.getClient_id(),client.getClient_id()+"@"+id);
+      List<Chat> chatlist = new ArrayList<Chat>();
+      for (ChatEntity temp : list) {
+         chatlist.add(service.toDto(temp));
+      }
+      if (chatlist == null || chatlist.size() <= 0) {
+         Chat chat = new Chat();
+         chat.setChat_no(0);
+         chat.setMessage("채팅방에 입장하22셨습니다.");
+         chat.setWriter(client.getClient_id());
+         chat.setRoomid(client.getClient_id()+"@"+id);
+         repository.save(service.toEntity(chat));
+      }
+      
+      return "redirect:/starting/message/rooms";
+   }
 }

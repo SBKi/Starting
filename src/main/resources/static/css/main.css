@@ -27,7 +27,6 @@ span.point-span {
     color: #262626;
     overflow: hidden;
     text-overflow: ellipsis;
-    margin-left: 12px;
 }
 /* nav */
 nav {
@@ -521,10 +520,11 @@ article, aside, figcaption, figure, footer, hgroup, main, nav, section {
     overflow: auto;
 }
 .XQXOT {
-    height: auto;
+    height: 290px;
     left: 0;
     padding: 16px;
     scrollbar-width: none;
+    overflow: auto;
 }
 .X7jCj {
     width: 100%;
@@ -643,4 +643,14 @@ input[type=date], input[type=email], input[type=number], input[type=password], i
 	.input-comment {
     width: 89%;
 	}
+}
+.hidden {
+	position: absolute;
+    left: 5px;
+    bottom: 12px;
+    right: 26px;
+    width: 27px;
+    height: 26px;
+    cursor: pointer;
+    opacity: 0;
 }

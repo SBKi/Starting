@@ -43,12 +43,7 @@ a, abbr, acronym, address, applet, article, aside, audio, b, big,
 	position: relative;
 }
 
-.left_main .left_main_header {
-	display: none;
-}
-
 .left_main ul {
-	height: 77vh;
 	overflow-y: auto;
 	overflow-x: hidden;
 }
@@ -173,6 +168,8 @@ a {
 	border-bottom: 1px solid #ebebeb;
 	padding: 15px 20px;
 	height: 80px;
+	display: flex;
+    flex-direction: row;
 }
 
 .right_main .chat_header .image_box {
@@ -328,12 +325,14 @@ a {
 }
 
 .chat_footer {
-	height: 40px;
+	height: 70px;
 	padding: 15px 15px 15px 21px;
+	display: flex;
+    flex-flow: row;
 }
 
 .chat_footer .chat_input {
-	width: 568px;
+	width: 560px;
 	overflow: auto;
 	height: 40px;
 	outline: 0;
@@ -357,7 +356,7 @@ a {
 
 .chat_footer button {
 	color: #fff;
-	background-color: #198754;
+	background-color: #ff80ab;
 	border-radius: 3px;
 	font-size: 15px;
 	font-weight: 700;
@@ -577,94 +576,7 @@ content: "";
     justify-content: space-between;
     width: 100%;
 }
-.xkdid {
-    margin-right: 8px;
-}
-._2NzhO {
-    -webkit-flex-basis: 32px;
-    -ms-flex-preferred-size: 32px;
-    flex-basis: 23px;
-    -webkit-box-orient: horizontal;
-    -webkit-box-direction: normal;
-    -webkit-flex-direction: row;
-    -ms-flex-direction: row;
+.input-group{
+	display: flex;
     flex-direction: row;
-}
-.m7ETg {
-    -webkit-box-align: center;
-    -webkit-align-items: center;
-    -ms-flex-align: center;
-    align-items: center;
-    color: #262626;
-    color: rgba(var(--i1d,38,38,38),1);
-    display: inline-block;
-    -webkit-box-flex: 1;
-    -webkit-flex: 1;
-    -ms-flex: 1;
-    flex: 1;
-    -webkit-box-pack: center;
-    -webkit-justify-content: center;
-    -ms-flex-pack: center;
-    justify-content: center;
-    min-width: 0;
-    overflow: hidden;
-    text-align: center;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-}
-._4EzTm {
-    -webkit-box-flex: 0;
-    -webkit-flex: 0 0 auto;
-    -ms-flex: 0 0 auto;
-    flex: 0 0 auto;
-}
-.eGOV_ {
-    -webkit-box-pack: start;
-    -webkit-justify-content: flex-start;
-    -ms-flex-pack: start;
-    justify-content: flex-start;
-}
-.yWX7d, .yWX7d:visited, a.yWX7d, a.yWX7d:visited {
-    border: 0;
-    color: #0095f6;
-    color: rgba(var(--d69,0,149,246),1);
-    display: inline;
-    padding: 0;
-    position: relative;
-}
-._4EzTm {
-    -webkit-box-flex: 0;
-    -webkit-flex: 0 0 auto;
-    -ms-flex: 0 0 auto;
-    flex: 0 0 auto;
-}
-.fDxYl {
-    display: block;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-}
-
-.KV-D4 {
-    color: #262626;
-    color: rgba(var(--i1d,38,38,38),1);
-}
-.qyrsm {
-    font-weight: 600;
-}
-.T0kll {
-    margin: 0;
-}
-.vy6Bb {
-    font-size: 16px;
-    line-height: 24px;
-    margin: -6px 0 -6px;
-}
-.HVWg4 {
-    padding-bottom: 8px;
-    padding-top: 8px;
-}
-.lC6p0 {
-    padding-left: 8px;
-    padding-right: 8px;
 }

@@ -23,7 +23,7 @@ nav img {
 .profile{
 	flex-direction: row;
 	display: flex;
-	height: 184px;
+	height: 245px;
 	border-bottom: 1px solid #dbdbdb;
 }
 .profile_left {
@@ -105,10 +105,6 @@ nav img {
 .board_img{
 	padding: 14px;
     border-radius: 20px;
-    -webkit-box-flex: 1;
-    -webkit-flex: 1 0 0%;
-    -ms-flex: 1 0 0%;
-    flex: 1 0 0%;
 }
 .profile_info {
 	height: 175px;
@@ -136,9 +132,10 @@ nav img {
 }
 .img {
 	width: 285px;
-	align-items: center;
-	border-radius: 20px;
-	cursor: pointer;
+    align-items: center;
+    border-radius: 20px;
+    cursor: pointer;
+    height: 285px;
 }
 .profile_board {
 	align-items: center;

@@ -118,7 +118,7 @@ input {
     width: 100%;
 }
 .image_list li .item_img {
-    width: 100%;
+    width: 560px;
     height: 600px;
     left: 0;
     top: 0;

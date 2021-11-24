@@ -230,6 +230,8 @@ a, a:visited {
 .s4Iyt {
     max-height: 100%;
     max-width: 100%;
+    width: 106px;
+    height: 43px;
     -o-object-fit: contain;
     object-fit: contain;
 }

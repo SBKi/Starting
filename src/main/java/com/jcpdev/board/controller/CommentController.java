@@ -39,37 +39,29 @@ public class CommentController {
 	WhiteboardService wb_service;
 	
 	@RequestMapping("starting/comment")
-	public String getComment(int whiteboard_no,Model model,HttpServletResponse response
-			,@CookieValue(name="readCount",defaultValue = "Count") String readCount){
-		
-		if(!readCount.contains(String.valueOf(whiteboard_no))) {
-			readCount += "/" + whiteboard_no;
-			wb_repository.updateCount(whiteboard_no);
-		}
-		
-		Cookie cookie = new Cookie("readCount", readCount);
-		cookie.setMaxAge(30*60);
-		cookie.setPath("/");
-		response.addCookie(cookie);
-		
-		System.out.println("test입니다.");
-		System.out.println(readCount);
-		
-		List<CommentEntity> list = repository.findByCommentboard_no(whiteboard_no);
-		List<Comment> result = new ArrayList<Comment>();
-		list.forEach(item->{
-			result.add(service.toDto(item));
-		});
-		
-		WhiteboardEntity whiteBoardEntity = wb_repository.findById(whiteboard_no).get();
-		Whiteboard whiteboard = wb_service.toDto(whiteBoardEntity);
-		
-		model.addAttribute("commentlist", result);
-		model.addAttribute("whiteboard", whiteboard);
-		
-		System.out.println(result);
-		return "comment";
-	}
+	   public String getComment(String client_id, int whiteboard_no,Model model){
+	      
+	      List<CommentEntity> list = repository.findByCommentboard_no(whiteboard_no);
+	      List<Comment> result = new ArrayList<Comment>();
+	      list.forEach(item->{
+	         result.add(service.toDto(item));
+	      });
+	      
+	      Optional<WhiteboardEntity> whiteBoardEntity = wb_repository.findById(whiteboard_no);
+	      Whiteboard whiteboard = wb_service.toDto(whiteBoardEntity.get());
+	      
+	      model.addAttribute("commentlist", result);
+	      model.addAttribute("whiteboard", whiteboard);
+	      // 게시물 리스트 
+	      List<WhiteboardEntity> wb_list =wb_repository.findByWhiteboard_Client1(client_id);
+	        List<Whiteboard> board_list = new ArrayList<Whiteboard>();
+	        wb_list.forEach(item-> {
+	        board_list.add(wb_service.toDto(item));
+	        });
+	        model.addAttribute("board_list", board_list);
+	      System.out.println(result);
+	      return "comment";
+	   }
 	
 	@RequestMapping("starting/comment/save")
 	public String insert(Comment comment, Model model) {
@@ -79,5 +71,7 @@ public class CommentController {
 		
 		return "redirect:/starting/comment?whiteboard_no="+comment.getComment_whiteboard_no();
 	}
+	
+	
 	
 }

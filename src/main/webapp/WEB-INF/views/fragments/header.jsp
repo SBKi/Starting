@@ -9,11 +9,11 @@
 		<div class="_lz6s" style="display: flex;">
 			<div class="MWDvN">
 				<div class="oJZym">
-					<a href="/starting" tabindex="0"><div
+					<a href="/starting/main" tabindex="0"><div
 							class="             qF0y9          Igw0E   rBNOH        eGOV_     ybXk5    _4EzTm                                                                                                              ">
 							<div class="cq2ai">
-								<img alt="#" class="s4Iyt"
-									src="${pageContext.request.contextPath}/resources/img/logo.jpg">
+								<img class="s4Iyt" style="border-radius: 0;" 
+									src="${pageContext.request.contextPath}/resources/img/logo.png">
 							</div>
 						</div></a>
 				</div>
@@ -32,7 +32,7 @@
 					<div class="_47KiJ">
 						<div class="XrOey">
 							<div class="">
-								<a href="/starting" tabindex="0"><svg aria-label="홈"
+								<a href="/starting/main" tabindex="0"><svg aria-label="홈"
 										class="_8-yf5 " color="#262626" fill="#262626" height="22"
 										role="img" viewBox="0 0 48 48" width="22">
 													<path
@@ -49,7 +49,7 @@
 										d="M47.8 3.8c-.3-.5-.8-.8-1.3-.8h-45C.9 3.1.3 3.5.1 4S0 5.2.4 5.7l15.9 15.6 5.5 22.6c.1.6.6 1 1.2 1.1h.2c.5 0 1-.3 1.3-.7l23.2-39c.4-.4.4-1 .1-1.5zM5.2 6.1h35.5L18 18.7 5.2 6.1zm18.7 33.6l-4.4-18.4L42.4 8.6 23.9 39.7z"></path></svg></a>
 						</div>
 						<div class="XrOey">
-							<a class="wpO6b ZQScA " href="/starting/board"> <svg
+							<a class="wpO6b ZQScA " href="/starting/board?${sessionScope.client_id}"> <svg
 									aria-label="새로운 게시물" class="_8-yf5 " color="#262626"
 									fill="#262626" height="22" role="img" viewBox="0 0 48 48"
 									width="22">
@@ -84,7 +84,7 @@
 								style="width: 22px; height: 22px; cursor: pointer;"><img class="_6q-tv"
 								crossorigin="anonymous" data-testid="user-avatar"
 								draggable="false" onclick="location.href='userProfile?client_id=${client.client_id}'"
-								src="${pageContext.request.contextPath}/resources/img/logo.jpg"></span>
+								src="/img/${client.client_img}"></span>
 							<div class="poA5q" style="margin-left: -180px;"></div>
 						</div>
 					</div>

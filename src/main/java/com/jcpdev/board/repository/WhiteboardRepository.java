@@ -9,6 +9,7 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import com.jcpdev.board.entity.ClientEntity;
 import com.jcpdev.board.entity.WhiteboardEntity;
 
 public interface WhiteboardRepository extends JpaRepository<WhiteboardEntity, Integer>{
@@ -29,4 +30,7 @@ public interface WhiteboardRepository extends JpaRepository<WhiteboardEntity, In
 	@Query("update WhiteboardEntity wb set wb.whiteboard_like = wb.whiteboard_like +1 where wb.whiteboard_no = :whiteboard_no")
 	void updateLike(@Param("whiteboard_no")Integer whiteboard_no);
 	
+	@Query("select wb from WhiteboardEntity wb where wb.whiteboard.client_id = :client_id ORDER BY whiteboard_no DESC")
+    List<WhiteboardEntity> findByWhiteboard_Client1(@Param("client_id") String client_id);
+
 }

@@ -1,8 +1,7 @@
 package com.jcpdev.board.controller;
 
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
@@ -14,20 +13,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.SessionAttributes;
-import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.jcpdev.board.entity.ClientEntity;
+import com.jcpdev.board.entity.WhiteboardEntity;
 import com.jcpdev.board.model.Client;
+import com.jcpdev.board.model.Whiteboard;
 import com.jcpdev.board.repository.ClientRepository;
+import com.jcpdev.board.repository.WhiteboardRepository;
 import com.jcpdev.board.service.ClientService;
+import com.jcpdev.board.service.WhiteboardService;
 
 @Controller
 public class ClientController {
@@ -38,6 +36,13 @@ public class ClientController {
 
 	@Autowired
 	ClientService service;
+	
+	@Autowired
+	WhiteboardRepository wb_repository;
+
+	@Autowired
+	WhiteboardService wb_service;
+
 
 	@RequestMapping(value = "/starting/login")
 	public String loginPage(HttpServletRequest request) {
@@ -81,7 +86,7 @@ public class ClientController {
 	@RequestMapping(value = "/starting/register", method = RequestMethod.POST)
 	public String sign_up(Client client, Model model) {
 		if (client != null) {
-			client.setClient_img("defalut.png");
+			client.setClient_img("default.png");
 			client.setClient_status(0);
 			ClientEntity entity = service.toEntity(client);
 			repository.save(entity);
@@ -153,24 +158,32 @@ public class ClientController {
 	}
 
 	// 마이페이지
-	@RequestMapping(value = "/starting/userProfile", method = RequestMethod.GET)
-	public String mypage(String client_id, HttpSession session, Model model, HttpServletRequest request) {
-		Client user = (Client) session.getAttribute("client");
-		String temp = null;
-		if (client_id == null || client_id.equals("")) {
-			if (user == null || user.getClient_id().equals("")) {
-				return "redirect:starting";
-			} else {
-				temp = user.getClient_id();
-			}
-		} else {
-			temp = client_id;
-		}
-		ClientEntity entity = repository.getById(temp);
-		model.addAttribute("user", service.toDto(entity));
-		return "userProfile";
+    @RequestMapping(value = "/starting/userProfile", method = RequestMethod.GET)
+    public String mypage(String client_id, HttpSession session, Model model, HttpServletRequest request) {
+       //회원 프로필
+       Client user = (Client) session.getAttribute("client");
+       String temp = null;
+       if (client_id == null || client_id.equals("")) {
+          if (user == null || user.getClient_id().equals("")) {
+             return "redirect:starting";
+          } else {
+             temp = user.getClient_id();
+          }
+       } else {
+          temp = client_id;
+       }
+       ClientEntity entity = repository.getById(temp);
+       // 게시물 리스트 
+       List<WhiteboardEntity> wb_list =wb_repository.findByWhiteboard_Client1(client_id);
+       List<Whiteboard> board_list = new ArrayList<Whiteboard>();
+       wb_list.forEach(item-> {
+          board_list.add(wb_service.toDto(item));
+       });
+       model.addAttribute("board_list", board_list);
+       model.addAttribute("user", service.toDto(entity));
+       return "userProfile";
 
-	}
+    }
 
 	// 비밀번호 확인
 	@RequestMapping(value = "/starting/password_check", method = RequestMethod.GET)
@@ -189,10 +202,11 @@ public class ClientController {
 
 	// 개인정보 수정
 	@RequestMapping(value = "/starting/profile_update", method = RequestMethod.GET)
-	public String profile_update(HttpSession session, HttpServletRequest request, Model model) {
+	public String profile_update(HttpSession session, HttpServletRequest request, Model model,@RequestParam MultipartFile client_img) {
 		Client user = (Client) session.getAttribute("client");
 		String client_id = user.getClient_id();
 		ClientEntity entity = repository.getById(client_id);
+		
 		user = service.toDto(entity);
 		model.addAttribute("user", user);
 		return "profile_update";
