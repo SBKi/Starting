@@ -23,4 +23,7 @@ public interface ClientRepository extends JpaRepository<ClientEntity, String> {
 	@Query("select c from ClientEntity c ORDER BY client_id DESC")
     List<ClientEntity> findByIdAll();
 	
+	   @Query("select c.client_id from ClientEntity c where c.client_id != :client_id")
+	   List<Object> findUesr(@Param("client_id") String client_id);
+	
 }

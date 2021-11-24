@@ -109,8 +109,13 @@
 }
 
 .w3-black, .w3-hover-black:hover {
-    color: #fff!important;
-    background-color: #e5c7da!important;
+    color: #b77ead!important;
+    background-color: #f3eaed!important;
+}
+
+.w3-content,.w3-auto{
+   margin-left:5px;
+   margin-right:5px;
 }
 
 </style>
@@ -155,6 +160,9 @@
 					</p>
 					<p>
 						<input class="w3-input" type="hidden" id="pw" name="client_password" value="${ user.client_password }">
+					</p>
+					<p>
+						<input class="w3-input" type="hidden" id="img" name="client_img" value="${ user.client_img }">
 					</p>
 					<p>
 						<label>Email</label> 

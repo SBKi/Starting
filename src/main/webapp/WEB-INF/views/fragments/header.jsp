@@ -17,7 +17,7 @@
 							</div>
 						</div></a>
 				</div>
-				<div class="container-fluid">
+				<div>
 					<form class="d-flex" action="strating/Search" method="post"
 						name="formname" accept-charset="UTF-8">
 						<input class="form-control me-2 searchbox" type="text"

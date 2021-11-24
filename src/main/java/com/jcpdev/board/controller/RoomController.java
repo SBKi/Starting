@@ -8,10 +8,8 @@ import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
-import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -44,7 +42,7 @@ public class RoomController {
    @Autowired
    ClientService c_service;
 
-   // 채팅방 목록 조회
+// 채팅방 목록 조회
    @RequestMapping(value = "/rooms", method = RequestMethod.GET)
    public ModelAndView message(HttpSession session) {
 
@@ -65,41 +63,18 @@ public class RoomController {
       
       List<Client> clientlist = new ArrayList<Client>();
       for(Chat temp : roomlist) {
-    	 String idlist[] = temp.getRoomid().split("@");
-    	 if(user.getClient_id().equals(idlist[0])) {
-    		 clientlist.add(c_service.toDto(c_repository.getById(idlist[1])));
-    	 }else {
-    		 clientlist.add(c_service.toDto(c_repository.getById(idlist[0])));
-    	 }
+        String idlist[] = temp.getRoomid().split("@");
+        if(user.getClient_id().equals(idlist[0])) {
+           clientlist.add(c_service.toDto(c_repository.getById(idlist[1])));
+        }else {
+           clientlist.add(c_service.toDto(c_repository.getById(idlist[0])));
+        }
       }
-      System.out.println(clientlist);
+      
       mv.addObject("clientlist",clientlist);
       mv.addObject("roomlist", roomlist);
       return mv;
    }
-
-   // 채팅방 개설
-//    @RequestMapping(value = "/room", method = RequestMethod.POST)
-//    public String create(String id,HttpServletRequest request){
-//       HttpSession session = request.getSession();
-//       
-//       Client client = null;
-//       if(session.getAttribute("client") != null) {
-//          client = (Client)session.getAttribute("client");
-//       }else {
-//          System.out.println("세션아이디 없음");
-//       }
-//       String myid = client.getClient_id();
-//       Chat chat = new Chat();
-//       chat.setChat_no(0);
-//       chat.setMessage("채팅방에 입장하셨습니다.");
-//       chat.setWriter(myid);
-//       chat.setRoomid(myid+"@"+id);
-//       
-//       repository.save(service.toEntity(chat));
-//        log.info("# Create Chat Room , id: " + id);
-//       return "redirect:/starting/message/rooms";
-//    }
 
    // 채팅방 조회
    @SuppressWarnings("unchecked")
@@ -118,7 +93,7 @@ public class RoomController {
       if (chatlist == null || chatlist.size() <= 0) {
          Chat chat = new Chat();
          chat.setChat_no(0);
-         chat.setMessage("채팅방에 입장하22셨습니다.");
+         chat.setMessage("채팅방에 입장하셨습니다.");
          chat.setWriter(client.getClient_id());
          chat.setRoomid(room.getRoomid());
          repository.save(service.toEntity(chat));
