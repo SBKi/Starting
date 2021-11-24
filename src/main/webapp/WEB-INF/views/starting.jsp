@@ -54,9 +54,7 @@
 <body>
 	<jsp:include page="fragments/header.jsp"></jsp:include>
 	<main>
-	${sessionScope.client }
 	<br>
-	${asd.client }
 		<div class="feeds">
 			<!-- story section -->
 			<div class="section-story ">
@@ -79,17 +77,17 @@
 			<!-- article -->
 			<article>
 			<c:forEach var="board" items="${list }">
-				<header>
+				<header style="justify-content: left;">
+				<c:forEach var="clients" items="${c_A_list }">
 					<div class="profile-of-article">
+					<c:if test="${board.whiteboard_client_id eq clients.client_id }">
 						<img class="img-profile1 pic"
-							src="/img/${client.client_img }"
+							src="/img/${clients.client_img }"
 							onclick="location.href='userProfile?client_id=${board.whiteboard_client_id}'"> 
 							<span class="userID main-id point-span" style="margin-top: 9px;">${board.whiteboard_client_id }</span>
+					</c:if>	
 					</div>
-					<img class="icon-react icon-more" id="option" onclick="option"
-						src="https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/bearu/more.png"
-						alt="more">
-					   <a href="update?whiteboard_no=${board.whiteboard_no }">수정</a>	
+				</c:forEach>
 				</header>
 				<div class="single-item">
 					<div>
@@ -122,7 +120,9 @@
 						</c:if>
 						<img class="icon-react" onclick="location.href='/starting/comment?whiteboard_no=${board.whiteboard_no}&client_id=${board.whiteboard_client_id }'"
 							src="https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/bearu/comment.png">
+							<c:if test="${client.client_id ne board.whiteboard_client_id }">
 						<img class="icon-react" onclick="location.href='/starting/message/room?id=${board.whiteboard_client_id}'"  src="/resources/img/dm.png">
+						</c:if>
 					</div>
 				</div>
 				<!-- article text data -->
@@ -170,7 +170,7 @@
 					<span class="userID point-span">${client.client_name}</span>
 				</div>
 				<div>
-					<span class="sub-span" onclick="location.href='/starting/userProfile'"
+					<span class="sub-span" onclick="location.href='/starting/userProfile?client_id=${client.client_id}'"
 						style="margin-left: 110px; color: #0095f6; font-weight: 600; font-size: 12px; cursor: pointer;">내계정</span>
 				</div>
 			</div>
@@ -196,92 +196,14 @@
 								<span class="sub-span">${client.client_birth } (여) </span>
 								</c:if>
 							</div>
-						</div> <span class="btn-follow">팔로우</span>
+						</div> 
+						<span class="btn-follow"><a href="/starting/send_follow?id=${client.client_id }">팔로우</a></span>
 					</li>
 					</c:forEach>
 				</ul>
 			</div>
 		</div>
 	</main>
-	<div class="RnEpo  Yx5HN " id="modal">
-		<div class="pbNvD  fPMEg">
-			<div class="_1XyCr  ">
-				<div class="piCib">
-					<div class="modal_button_body">
-						<!-- 상대방 글 이면 -->
-						<button class="modal_button" id="report_option" tabindex="0" onclick="location.href='/starting/comment?whiteboard_no=${board.whiteboard_no }'">게시물로 이동</button>
-						<button class="modal_button" id="report_option" tabindex="0" onclick="report_modal">신고하기</button>
-						<button class="modal_button" id="meaning_option" tabindex="0" onclick="meaning_modal">차단하기</button>
-						<button id="modal_cansle" class="modal_button" tabindex="0">취소</button>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>								
-	<div class="RnEpo  Yx5HN " id="report_modal">
-		<div class="pbNvD  fPMEg" style="margin-top: 50px;">
-			<div class="_1XyCr  ">
-				<div class="piCib">
-					<div class="modal_button_body">
-						<h3>신고</h3>
-						<h3>이 게시물을 신고하는 이유</h3>
-						<button class="modal_button" tabindex="0" onclick="meaning_modal">스팸</button>
-						<button class="modal_button" tabindex="0"
-							onclick="location.href='/report/${1}'">나체 이미지 또는 성적 행위</button>
-						<button class="modal_button" tabindex="0"
-							onclick="location.href='/report/${2}'">혐오발언 또는 상징</button>
-						<button class="modal_button" tabindex="0"
-							onclick="location.href='/report/${3}'">폭력 또는 위험한 단체</button>
-						<button class="modal_button" tabindex="0"
-							onclick="location.href='/report/${4}'">불법 또는 규제 상품 판매</button>
-						<button class="modal_button" tabindex="0"
-							onclick="location.href='/report/${5}'">따돌림 또는 괴롭힘</button>
-						<button class="modal_button" tabindex="0"
-							onclick="location.href='/report/${6}'">지적 재산권 침해</button>
-						<button class="modal_button" tabindex="0"
-							onclick="location.href='/report/${7}'">자살 또는 자해</button>
-						<button class="modal_button" tabindex="0"
-							onclick="location.href='/report/${8}'">자살 또는 자해</button>
-						<button class="modal_button" tabindex="0"
-							onclick="location.href='/report/${9}'">사기 또는 거짓</button>
-						<button class="modal_button" tabindex="0"
-							onclick="location.href='/report/${10}'">거짓 정보</button>
-						<button class="modal_button" tabindex="0"
-							onclick="location.href='/report/${11}'">마음에 들지 않습니다</button>
-						<button id="report_modal_cansle" class="modal_button" tabindex="0">취소</button>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="RnEpo  Yx5HN " id="meaning_modal">
-		<div class="pbNvD  fPMEg" style="margin-top: 250px;">
-			<div class="_1XyCr  ">
-				<div class="piCib">
-					<div class="modal_button_body">
-						<div class="">
-							<div class="">
-								<div class="">
-									<h3 style="margin-top: 20px;">이 내용을 보고 싶지 않으세요?</h3>
-								</div>
-								<div class="">
-									<div class="">
-										<h4 style="padding: 15px;">starting에서 마음에 들지 않는 게시물이 표시될
-											때 게시물을 신고하거나 해당 게시물을 공유한 사람이 회원님에게 보이지 않도록 삭제할 수 있습니다.</h4>
-									</div>
-								</div>
-							</div>
-						</div>
-						<button class="modal_button" tabindex="0"
-							onclick="location.href='/starting/meaning/${jang123}'">{jang123}
-							님 차단</button>
-						<button id="meaning_modal_cansle" class="modal_button"
-							tabindex="0">취소</button>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
 	<script type="text/javascript">
 $(document).ready(function(){
   $('.single-item').slick({
@@ -348,44 +270,6 @@ $(function(){
 	});
 });
     
-</script>
-<script>
-	/*옵션 모달  */
-const modal = document.querySelector('#modal'); 
-const btnOpenPopup = document.getElementById('option');
-const btnCansle = document.querySelector('#modal_cansle');
-
-btnOpenPopup.addEventListener('click', () => { 
-	modal.style.display = 'block';
-	});
-	
-btnCansle.addEventListener('click', () => { 
-	modal.style.display = 'none';
-});	
-	/*신고옵션 모달  */
-const report_modal = document.querySelector('#report_modal'); 
-const report_btnOpenPopup = document.getElementById('report_option');
-const report_btnCansle = document.querySelector('#report_modal_cansle');
-
-report_btnOpenPopup.addEventListener('click', () => { 
-	modal.style.display = 'none';
-	report_modal.style.display = 'block';
-	});
-report_btnCansle.addEventListener('click', () => { 
-	report_modal.style.display = 'none';
-});	
-	/*차단 모달  */
-const meaning_modal = document.querySelector('#meaning_modal'); 
-const meaning_btnOpenPopup = document.getElementById('meaning_option')
-const meaning_btnCansle = document.querySelector('#meaning_modal_cansle');
-
-meaning_btnOpenPopup.addEventListener('click', () => { 
-	meaning_modal.style.display = 'block';
-	modal.style.display = 'none';
-	});
-meaning_btnCansle.addEventListener('click', () => { 
-	meaning_modal.style.display = 'none';
-});	
 </script>
 </body>
 

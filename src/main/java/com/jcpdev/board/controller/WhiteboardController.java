@@ -6,6 +6,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,6 +24,7 @@ import com.jcpdev.board.model.Whiteboard;
 import com.jcpdev.board.service.ClientService;
 import com.jcpdev.board.service.WhiteboardService;
 import com.jcpdev.board.repository.ClientRepository;
+import com.jcpdev.board.repository.FollowRepository;
 import com.jcpdev.board.repository.WhiteboardRepository;
 
 @Controller
@@ -38,9 +42,12 @@ public class WhiteboardController {
 
    @Autowired
    ClientService c_service;
+   
+   @Autowired
+   FollowRepository f_repository;
    //메인 페이지에서 게시물 불러오기
    @RequestMapping({"/starting/main","/starting/","/"})
-   public String getList(Model model){
+   public String getList(Model model,HttpServletRequest request){
       List<WhiteboardEntity> wb_list =repository.findByWhiteboard_Client();
       List<ClientEntity> c_list =c_repository.findByIdAll();
       //      List<WhiteboardEntity> list = repository.findAll(Sort.by(Sort.Direction.DESC,"whiteboard_no"));
@@ -51,10 +58,49 @@ public class WhiteboardController {
          result.add(service.toDto(item));
       });
       c_list.forEach(item-> {
-         client.add(c_service.toDto(item));
-      });
-      model.addAttribute("list", result);
-      model.addAttribute("c_list", client);
+          client.add(c_service.toDto(item));
+       });
+       
+       //추가중
+       HttpSession session = request.getSession();
+       String user_id = ((Client)session.getAttribute("client")).getClient_id();
+       
+       String users = String.valueOf(c_repository.findUesr(user_id));
+       users = users.substring(1, users.length()-1);
+       ArrayList<String> userlist = new ArrayList<String>();
+       String [] userArray = users.split(", ");
+       for(String u : userArray)
+         userlist.add(u);
+       
+       String follow = String.valueOf(f_repository.findByMyFollow(user_id));
+       follow = follow.substring(1, follow.length()-1);
+       String [] follows = follow.split(", ");
+       for(String f : follows)
+          System.out.print(f+",");
+       for(int i=0; i<userlist.size();i++) {
+          for(int j=0; j<follows.length; j++) {
+             if(userlist.get(i).equals(follows[j]))
+                userlist.remove(i);
+          }
+       }
+       
+       ClientEntity c =null;
+       List<Client> client1  = new ArrayList<Client>();
+         for(int i=0; i<userlist.size();i++) {
+            c = c_repository.findById(userlist.get(i)).get();
+            Client dto = c_service.toDto(c);
+            client1.add(dto);
+            }
+       
+       List<Client> allList = new ArrayList<Client>();
+       List<ClientEntity> enli = c_repository.findAll();
+       for(ClientEntity temp : enli) {
+    	   allList.add(c_service.toDto(temp));
+       }
+       model.addAttribute("c_A_list", allList);
+       model.addAttribute("nofollow", userlist);
+       model.addAttribute("list", result);
+       model.addAttribute("c_list", client1);
       return "starting";
    }
    //게시물올리기 페이지

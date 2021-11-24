@@ -240,82 +240,10 @@ a {
 
 .chat_description {
 	overflow: auto;
-	height: calc(77vh - 151px);
+	height:  415px;
 	border-bottom: 1px solid #ebebeb;
-}
-
-.chat_description .chat_timeago {
-	margin-top: 20px;
-}
-
-.chat_description .chat_timeago_box {
-	width: 106px;
-	height: 20px;
-	border-radius: 9.8px;
-	background-color: #f5f5f5;
-	text-align: center;
-	margin: 0 auto;
-}
-
-.chat_description .chat_timeago_box .chat_timeago_text {
-	font-size: 11px;
-	color: #687383;
-}
-
-.chat_description .chat_type2 {
-	overflow: hidden;
-	margin-top: 20px;
-}
-
-.chat_description .chat_type2_image_box {
-	float: left;
-	margin: 0 18px 0 11px;
-}
-
-.chat_description .chat_type2_image_box .chat_type2_image {
-	width: 38px;
-	height: 38px;
-	border-radius: 50%;
-}
-
-.chat_description .chat_type2_message {
-	position: relative;
-	float: left;
-	text-align: left;
-	width: 222px;
-	background-color: #ebebeb;
-	border: 1px solid #ebebeb;
-}
-
-.chat_description .chat_type2_message_image {
-	width: 222px;
-	display: block;
-}
-
-.chat_description .chat_type2_message_main {
-	width: 222px;
-	background-color: #fff;
-	margin: 0 auto;
-	border-top: 1px solid #ebebeb;
-}
-
-.chat_description .chat_type2_message_title {
-	width: 180px;
-	font-size: 14px;
-	padding: 10px 27px 10px 11px;
-}
-
-.chat_description .chat_timeago {
-	margin-top: 20px;
-}
-
-.chat_description .chat_timeago_box {
-	width: 106px;
-	height: 20px;
-	border-radius: 9.8px;
-	background-color: #f5f5f5;
-	text-align: center;
-	margin: 0 auto;
+	margin-top: 18px;
+	
 }
 
 .content .main_area:after {
@@ -374,16 +302,17 @@ button {
 
 .right_div {
 	margin-bottom: 1em;
-	text-align: right;
-	overflow: hidden;
+    text-align: left;
+    overflow: hidden;
     border-radius: 8px;
     width: 100%;
     top: 0;
     bottom: 49px;
     left: 0;
     right: 0;
+    float: right;
+    flex-direction: row-reverse;
 }
-
 .left_div {
 	margin-bottom: 1em;
 	overflow: hidden;
@@ -430,31 +359,31 @@ button {
 	margin-top: 12px;
 }
 .mail_right_content {
-	background-color: #28a745;
+	background-color: #ebebeb;
     margin-right: 21px;
-    word-break: break-all;
-    position: relative;
     float: right;
-    text-align: left;
-    max-width: 200px;
+    width: max-content;
     padding: 9px 12px;
-    border-radius: 10px 0 10px 10px;
+    border-radius: 50px;
     font-size: 13.5px;
-    color: #fff;
+    color: #000;
+    display: flex;
+    position: relative;
+    text-align: left;
 }
 .mail_left_content {
-	background-color: #ebebeb;
+	background-color: #fff;
+	border: 1px solid #ebebeb;
     margin-left: 21px;
-    word-break: break-all;
-    position: relative;
     float: left;
-    text-align: right;
-    max-width: 200px;
+    text-align: center;
+    width: max-content;
     padding: 9px 12px;
-    border-radius: 0 10px 10px 10px;
+    border-radius: 50px;
     font-size: 13.5px;
     color: #000;
     margin-top: 10px;
+    display: flex;
 }
 .profile_div {
 	width: 200px;
@@ -468,72 +397,12 @@ button {
     height: 36px;
     border-radius: 50%;
     border: 1px solid #ebebeb;
-	
 }
-.mail_left_content:after {
-content: "";
-    position: absolute;
-    border-color: transparent transparent #ebebeb!important;
-    border: 10px solid #000;
-    transform-origin: 0 0;
-    left: 0px;
-    top: -15px;
-    -webkit-transform: rotate( -315deg );
-    -moz-transform: rotate(-315deg);
-    transform: rotate(-315deg);
-}
-.mail_right_content:after {
-content: "";
-    position: absolute;
-    border-color: transparent transparent #28a745!important;
-    border: 10px solid #000;
-    transform-origin: 0 0;
-    right: 0;
-    top: 0;
-    -webkit-transform: rotate(-45deg);
-    -moz-transform: rotate(-45deg);
-    transform: rotate(-45deg);
-}
-@charset "UTF-8";
-
-.sender-wrap {
-	border-bottom: 1px solid lightgray;
-	padding-bottom: 5px;
-	margin-bottom: 5px;
-}
-
-.sender-wrap p {
-	font-size: 0.8em;
-}
-
-.sender-wrap span {
-	margin-left: 10px;
-	font-size: 0.7em;
-}
-
-.getter-wrap span {
-	margin-right: 10px;
-	font-size: 0.7em;
-}
-
-.getter-wrap {
-	border-bottom: 1px solid lightgray;
-	padding-bottom: 5px;
-	margin-bottom: 5px;
-	text-align: right;
-}
-
 .mail-chat {
 	border: 1px solid lightgray;
 	border-radius: 4px;
 	padding: 2em;
 	margin-bottom: 1em;
-}
-.btn-success-cus{
-	width: 50%;
-}
-.btn-danger-cus {
-	width: 50%;
 }
 .S-mcP {
     background-color: #fff;
@@ -579,4 +448,9 @@ content: "";
 .input-group{
 	display: flex;
     flex-direction: row;
+}
+.col {
+    overflow: auto;
+    height: calc(77vh - 151px);
+    border-bottom: 1px solid #ebebeb;
 }

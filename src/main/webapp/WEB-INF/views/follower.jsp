@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -9,6 +10,7 @@
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/follow.css">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/main.css">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/userProfile.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 <body style="background-color: #fafafa;">
 	<jsp:include page="fragments/header.jsp"></jsp:include>
@@ -19,13 +21,14 @@
 			</div>
 			<div class="follows_body">
 				<div class="follow_list">
+				<c:forEach items="${list }" var="list">
 					<div class="follow_lists">
 						<div class="follow_list_user">
 							<div class="follow_list_img">
 								<div class="img_box">
 									<div>
 										<a>
-											<img style="width: 60px;" alt="" src="${pageContext.request.contextPath}/resources/img/person.png">
+											<img style="width: 60px;"src="/img/${list.client_img}">
 										</a>
 									</div>
 								</div>
@@ -34,65 +37,29 @@
 								<div class="user_id">
 									<div>
 										<span>
-											<a href="userProfile">client_id</a>
+											<a href="userProfile/${list.client_id }">${list.client_id }</a>
 										</span>
 									</div>
 								</div>
 								<div class="user_name">
 									<div>
-										<span>client_name</span>
+										<span>${list.client_name }</span>
 									</div>
 								</div>
 								<div class="user_info">
 									<div >
 										<div>
-											<span>client_info</span>
+											<span>${list.client_info }</span>
 										</div>
 									</div>
 								</div>
 							</div>
 							<div class="follow_list_button">
-								<button id="follow_update" class="follow_list_button">팔로우</button>
-							</div>
+								<button type="button" class="follow_list_button" id="follow_update">팔로우</button>
+							</div> 
 						</div>
 					</div>
-					<div class="follow_lists">
-						<div class="follow_list_user">
-							<div class="follow_list_img">
-								<div class="img_box">
-									<div>
-										<a>
-											<img style="width: 60px;" alt="" src="${pageContext.request.contextPath}/resources/img/person.png/${list.client_img}">
-										</a>
-									</div>
-								</div>
-							</div>
-							<div class="follow_list_name">
-								<div class="user_id">
-									<div>
-										<span>
-											<a href="userProfile/${list.client_id }">${list.clientid_id }</a>
-										</span>
-									</div>
-								</div>
-								<div class="user_name">
-									<div>
-										<span>${list.clientid_name }</span>
-									</div>
-								</div>
-								<div class="user_info">
-									<div >
-										<div>
-											<span>${list.clientid_info }</span>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="follow_list_button">
-								<button type="button" class="follow_list_button">팔로우</button>
-							</div>
-						</div>
-					</div>
+					</c:forEach>
 				</div>
 			</div>
 		</div>
@@ -104,7 +71,7 @@
 				<div class="piCib">
 					<div class="modal_button_body">
 						<div class="user_profile">
-							<img class="user_img" src="${pageContext.request.contextPath}/resources/img/person.png">
+							<img class="user_img" src="/img/person.png">
 							<div>
 								<h4 class="h4">{client_id} 님을 팔로우 하시겠습니까?</h4>
 							</div>

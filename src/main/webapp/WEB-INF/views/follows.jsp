@@ -9,6 +9,7 @@
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/follow.css">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/main.css">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/userProfile.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 <body style="background-color: #fafafa;">
 	<jsp:include page="fragments/header.jsp"></jsp:include>

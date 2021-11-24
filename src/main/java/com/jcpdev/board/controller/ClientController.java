@@ -291,5 +291,6 @@ public class ClientController {
 	public String like_list() {
 		return "like_list";
 	}
+	
 
 }

@@ -65,11 +65,11 @@ public class CommentController {
 	
 	@RequestMapping("starting/comment/save")
 	public String insert(Comment comment, Model model) {
-		System.out.println(comment);
 		CommentEntity entity = service.toEntity(comment);
+		
 		repository.save(entity);
 		
-		return "redirect:/starting/comment?whiteboard_no="+comment.getComment_whiteboard_no();
+		return "redirect:/starting/comment?whiteboard_no="+comment.getComment_whiteboard_no()+"&client_id="+wb_repository.getById(comment.getComment_whiteboard_no()).getWhiteboard().getClient_id();
 	}
 	
 	

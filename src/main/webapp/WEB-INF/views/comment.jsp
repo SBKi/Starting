@@ -109,13 +109,9 @@
 															<div class="C7I1f X7jCj">
 																<div class="Jv7Aj mArmR   pZp3x">
 																	<div class="RR-M-  TKzGu  " role="button" tabindex="-1">
-																		<canvas class="CfWVH" height="53" width="53"
-																			style="position: absolute; top: -5px; left: -5px; width: 42px; height: 42px;"></canvas>
-																		<a class="_2dbep qNELH kIKUG" href="/string/userProfile?"
-																			tabindex="0"
-																			style="width: 32px; height: 32px; display: block;"><img
-																			src="${pageContext.request.contextPath}/img/person.png"
-																			class="_6q-tv"></a>
+																		<canvas class="CfWVH" height="53" width="53" style="position: absolute; top: -5px; left: -5px; width: 42px; height: 42px;"></canvas>
+																		<a class="_2dbep qNELH kIKUG" href="/string/userProfile?"tabindex="0" style="width: 32px; height: 32px; display: block;">
+																		<img src="${pageContext.request.contextPath}/img/person.png" class="_6q-tv"></a>
 																	</div>
 																</div>
 																
@@ -144,7 +140,8 @@
 									</div>
 									<div class="icons-react">
 										<div class="icons-left">
-											<c:if test="${!heartCheck }">
+										<c:if test="${client.client_id ne whiteboard.whiteboard_client_id }">
+											<c:if test="${!heartCheck}">
 												<i class="fa fa-heart-o heart" style="cursor: pointer;"
 													onclick="like(heart)"></i>
 												<span class="visually-hiddewn"></span>
@@ -156,9 +153,8 @@
 													onclick="unLike(heart)"></i>
 												<span class="visually-hidden"></span>
 											</c:if>
-											<img class="icon-react"
-												onclick="location.href='/starting/message'"
-												src="/resources/img/dm.png">
+												<img class="icon-react" onclick="location.href='/starting/message/room?id=${board.whiteboard_client_id}'"  src="/resources/img/dm.png">
+										</c:if>
 										</div>
 									</div>
 									<div class="reaction">

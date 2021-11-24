@@ -26,7 +26,9 @@
 										<input type="file" id="input-image" name="client_img">
 										<input type="hidden" name="client_id" value="${user.client_id}">
 								</div>
+								<c:if test="${user.client_id eq client.client_id }">
 										<input type="submit" class="imgChange" value="변경">
+								</c:if>		
 								</form>		
 							</div>
 						</div>
@@ -70,9 +72,9 @@
 						<ul class="profile_list">
 							<li class="profile_follow_"><span class="spaan">게시물</span><span
 								class="sub_span">1</span></li>
-							<li class="profile_follow_"><a class="spaan" href="follower">팔로워</a><span
+							<li class="profile_follow_"><a class="spaan" href="/starting/follow">팔로워</a><span
 								class="sub_span">14556</span></li>
-							<li class="profile_follow_"><a class="spaan" href="follows">팔로우</a><span
+							<li class="profile_follow_"><a class="spaan" href="/starting/follower">팔로우</a><span
 								class="sub_span">12342</span></li>
 						</ul>
 					</div>
@@ -118,20 +120,20 @@
 					<div class="modal_button_body">
 					<!-- 내정보 일경우 -->
 					<c:if test="${user.client_id eq client.client_id }">
-						<button class="modal_button" tabindex="0" onclick="location.href='mypage'">개인정보 변경</button>
+						<button class="modal_button" tabindex="0" onclick="location.href='password_check'">개인정보 변경</button>
 						<button class="modal_button" tabindex="0" onclick="location.href='board'">게시물 올리기</button>
 						<button class="modal_button" tabindex="0" onclick="location.href='follower'">팔로워 확인</button>
 						<button class="modal_button" tabindex="0" onclick="location.href='follws'">팔로우 확인</button>
-						<button class="modal_button" tabindex="0" onclick="location.href='message'">message 확인</button>
+						<button class="modal_button" tabindex="0" onclick="location.href='/starting/message/rooms'">message 확인</button>
 						<button class="modal_button" tabindex="0" onclick="location.href='logout'">로그아웃</button>
 						<button id="modal_cansle" class="modal_button" tabindex="0">취소</button>
 						</c:if>
 						
 					<!-- 상대방 정보 일경우 -->
 					<c:if test="${user.client_id ne client.client_id }">
-						<button class="modal_button" tabindex="0" onclick="location.href='follower'">팔로우 하기</button>
+						<button class="modal_button" tabindex="0" onclick="location.href='/starting/send_follow?id=${user.client_id }'">팔로우 하기</button>
 						<button class="modal_button" tabindex="0" onclick="location.href='follows'">팔로우 취소</button>
-						<button class="modal_button" tabindex="0" onclick="location.href='message'">message 보내기</button>
+						<button class="modal_button" tabindex="0" onclick="location.href='/starting/message/room?id=${user.client_id}'">message 보내기</button>
 						<button class="modal_button" tabindex="0" onclick="location.href='declare'">신고하기</button>
 						<button id="modal_cansle" class="modal_button" tabindex="0">취소</button>
 						</c:if>
