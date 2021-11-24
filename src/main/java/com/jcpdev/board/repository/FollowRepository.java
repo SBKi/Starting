@@ -15,4 +15,5 @@ public interface FollowRepository extends JpaRepository<FollowEntity, Integer> {
    @Query("select f from FollowEntity f where f.following_id = :following_id")
    List<FollowEntity> findByYourFollow(@Param("following_id") String following_id);
    
+   
 }

@@ -60,7 +60,7 @@
 			<div class="section-story ">
 				<div class="menu-title "></div>
 				<ul class="story-list slider">
-				<c:forEach var="client" items="${c_list }">
+				<c:forEach var="client" items="${followlist }">
 					<li class="story-list_li">
 						<div class="gradient-wrap">
 							<img class="img-profile story"

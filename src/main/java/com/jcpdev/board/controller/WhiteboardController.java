@@ -4,11 +4,13 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.aspectj.apache.bcel.generic.InstructionConstants.Clinit;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,10 +20,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.jcpdev.board.entity.ClientEntity;
+import com.jcpdev.board.entity.FollowEntity;
 import com.jcpdev.board.entity.WhiteboardEntity;
 import com.jcpdev.board.model.Client;
 import com.jcpdev.board.model.Whiteboard;
 import com.jcpdev.board.service.ClientService;
+import com.jcpdev.board.service.FollowService;
 import com.jcpdev.board.service.WhiteboardService;
 import com.jcpdev.board.repository.ClientRepository;
 import com.jcpdev.board.repository.FollowRepository;
@@ -45,6 +49,8 @@ public class WhiteboardController {
    
    @Autowired
    FollowRepository f_repository;
+   @Autowired
+   FollowService f_service;
    //메인 페이지에서 게시물 불러오기
    @RequestMapping({"/starting/main","/starting/","/"})
    public String getList(Model model,HttpServletRequest request){
@@ -91,6 +97,12 @@ public class WhiteboardController {
             Client dto = c_service.toDto(c);
             client1.add(dto);
             }
+       List<Client> followlist = new ArrayList<Client>();
+       List<Object> enty =  f_repository.findByMyFollow(user_id);
+       	for(Object temp : enty) {
+       		ClientEntity cen =  c_repository.getById(temp.toString());
+       		followlist.add(c_service.toDto(cen));
+       	}
        
        List<Client> allList = new ArrayList<Client>();
        List<ClientEntity> enli = c_repository.findAll();
@@ -98,7 +110,7 @@ public class WhiteboardController {
     	   allList.add(c_service.toDto(temp));
        }
        model.addAttribute("c_A_list", allList);
-       model.addAttribute("nofollow", userlist);
+       model.addAttribute("followlist", followlist);
        model.addAttribute("list", result);
        model.addAttribute("c_list", client1);
       return "starting";
