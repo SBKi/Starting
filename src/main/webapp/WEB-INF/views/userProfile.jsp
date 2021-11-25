@@ -45,7 +45,7 @@
 						</c:if>
 						<c:if test="${user.client_id eq client.client_id }"> 
 						<div class="profile_update">
-							<a class="profile_update_button" href="password_check"
+							<a class="profile_update_button" href="profile_update"
 								tabindex="0">프로필 편집</a>
 						</div>
 						</c:if>
@@ -71,17 +71,18 @@
 					<div class="profile_follow">
 						<ul class="profile_list">
 							<li class="profile_follow_"><span class="spaan">게시물</span><span
-								class="sub_span">1</span></li>
+								class="sub_span">${board_count }</span></li>
 							<li class="profile_follow_"><a class="spaan" href="/starting/follow">팔로워</a><span
-								class="sub_span">14556</span></li>
+								class="sub_span">${follower_count }</span></li>
 							<li class="profile_follow_"><a class="spaan" href="/starting/follower">팔로우</a><span
-								class="sub_span">12342</span></li>
+								class="sub_span">${following_count }</span></li>
 						</ul>
 					</div>
 				</div>
 			</div>
 			<div class="profile_info">
-					<div class="profile_info1">${user.client_instruction }</div>
+					<div class="profile_info1" id="instruction">
+					<pre style="font-size: 18px; margin: 0;">${user.client_instruction }</pre></div>
 			</div>
 			<div class="profile_board_body">
 				<div class="profile_board">
@@ -120,7 +121,7 @@
 					<div class="modal_button_body">
 					<!-- 내정보 일경우 -->
 					<c:if test="${user.client_id eq client.client_id }">
-						<button class="modal_button" tabindex="0" onclick="location.href='password_check'">개인정보 변경</button>
+						<button class="modal_button" tabindex="0" onclick="location.href='profile_update'">개인정보 변경</button>
 						<button class="modal_button" tabindex="0" onclick="location.href='board'">게시물 올리기</button>
 						<button class="modal_button" tabindex="0" onclick="location.href='follower'">팔로워 확인</button>
 						<button class="modal_button" tabindex="0" onclick="location.href='follower'">팔로우 확인</button>
@@ -169,7 +170,11 @@ const inputImage = document.getElementById("input-image")
 inputImage.addEventListener("change", e => {
     readImage(e.target)
 })
+var str = document.getElementById("#instruction").value;
 
+str = str.replaceAll("<br/>", "\r\n");
+
+document.getElementById("#instruction").value = str;
 
 </script>
 </body>

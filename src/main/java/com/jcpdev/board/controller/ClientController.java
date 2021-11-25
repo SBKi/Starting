@@ -24,6 +24,7 @@ import com.jcpdev.board.entity.WhiteboardEntity;
 import com.jcpdev.board.model.Client;
 import com.jcpdev.board.model.Whiteboard;
 import com.jcpdev.board.repository.ClientRepository;
+import com.jcpdev.board.repository.FollowRepository;
 import com.jcpdev.board.repository.WhiteboardRepository;
 import com.jcpdev.board.service.ClientService;
 import com.jcpdev.board.service.WhiteboardService;
@@ -42,6 +43,9 @@ public class ClientController {
 
 	@Autowired
 	WhiteboardService wb_service;
+	
+	@Autowired
+	FollowRepository f_repository;
 
 
 	@RequestMapping(value = "/starting/login")
@@ -186,9 +190,16 @@ public class ClientController {
        // 게시물 리스트 
        List<WhiteboardEntity> wb_list =wb_repository.findByWhiteboard_Client1(client_id);
        List<Whiteboard> board_list = new ArrayList<Whiteboard>();
+       
+       String wb_count = wb_repository.findBoardCount(client_id);
+       String follow_count = f_repository.findFollowerCount(client_id);
+       String following_count = f_repository.findFollowingCount(client_id);
        wb_list.forEach(item-> {
           board_list.add(wb_service.toDto(item));
        });
+       model.addAttribute("board_count", wb_count);
+       model.addAttribute("follower_count",follow_count);
+       model.addAttribute("following_count",following_count);
        model.addAttribute("board_list", board_list);
        model.addAttribute("user", service.toDto(entity));
        return "userProfile";

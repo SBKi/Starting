@@ -1,138 +1,98 @@
 @charset "UTF-8";
 
-html {
-	height: 100%;
-}
 
-.slick-prev {
-	left: 10px;
-}
-
-.slick-next {
-	right: 10px;
-}
-
-.slick-arrow {
-	z-index: 1;
-}
-
-.modal {
-	position: absolute;
+#modal, #report_modal, #meaning_modal, #follow_modal{
 	top: 0;
 	left: 0;
 	bottom: 0;
 	right: 0;
 	width: auto;
 	height: 100%;
-	display: none;
 }
-
-.single-item {
-	height: 100%;
+.Yx5HN {
+    -webkit-justify-content: space-around;
+    -ms-flex-pack: distribute;
+    justify-content: space-around;
 }
-
-main {
-	height: 100%;
-	width: 100%;
-	background-color: rgba(var(--b3f, 250, 250, 250), 1);
-}
-
-.article {
-	display: flex;
-	flex-flow: row;
-	max-width: 936px;
-	margin: 0 auto;
-	border: 1px solid rgba(var(--b6a, 219, 219, 219), 1);
-	background-color: rgba(var(--d87, 255, 255, 255), 1);
-	border-radius: 3px;
-}
-
-.article_left {
-	width: 20%;
-}
-
-.article_right {
-	width: 100%;
-}
-
-.article_right_item {
-	display: flex;
-	flex-flow: row;
-	width: 100%;
-	padding: 1em 0;
-}
-
-.article_right_item input {
-	width: 15em;
-}
-
-.article_right_item span {
-	width: 10em;
-}
-
-.article_left li {
-	border-left: 2px solid transparent;
-	display: block;
-	font-size: 16px;
-	height: inherit;
-	line-height: 20px;
-	padding: 16px 16px 16px 30px;
-	width: calc(100% - 48px);
-}
-
-.article_left ul {
-	border-right: 1px solid rgba(var(--b6a, 219, 219, 219), 1);
-}
-
-/* 사이드바 */
-/* 사이드바 래퍼 스타일 */
-  #page-wrapper {
-    padding-left: 250px;
-  }
-  #sidebar-wrapper {
-    position: fixed;
-    width: 250px;
-    height: 100%;
-    margin-left: -250px;
-    background: #f3eaed;
-    overflow-x: hidden;
+.RnEpo {
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    background-color: rgba(0,0,0,.65);
+    bottom: 0;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    left: 0;
+    -webkit-overflow-scrolling: touch;
     overflow-y: auto;
-  }
-  #page-content-wrapper {
-    width: 70%;
-    padding: 20px;
-  }
-  /* 사이드바 스타일 */
-  .sidebar-nav {
-    width: 250px;
+    position: fixed;
+    right: 0;
+    -webkit-tap-highlight-color: #000;
+    top: 0;
+    z-index: 100;
+}
+.fPMEg {
+    width: 400px;
+}
+.pbNvD {
+    -webkit-animation: IGCoreModalShow .1s ease-out;
+    animation: IGCoreModalShow .1s ease-out;
+    -webkit-flex-shrink: 1;
+    -ms-flex-negative: 1;
+    flex-shrink: 1;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    margin: 20px;
+    max-height: calc(100% - 40px);
+	margin: auto;
+    margin-top: 260px;
+    height: 300px;
+    width: 540px;
+}
+._1XyCr {
+    background-color: #fff;
+    background-color: rgba(var(--f23,255,255,255),1);
+    border-radius: 12px;
+    -webkit-mask-image: -webkit-radial-gradient(#fff,#000);
+    max-height: 100%;
+    overflow: hidden;
+}
+.piCib {
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+}
+.modal_button_body {
+    margin-top: 16px;
+    height: 160px;
+}
+.modal_button_body:only-child .modal_button:first-child {
+    border-top: none;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+}
+.modal_button {
+    background-color: transparent;
+    border-bottom: 0;
+    border-left: 0;
+    border-right: 0;
+    border-top: 1px solid #dbdbdb;
+    cursor: pointer;
+    line-height: 1.5;
     margin: 0;
-    padding: 0;
-    list-style: none;
-  }
-  .sidebar-nav li {
-    text-indent: 1.5em;
-    line-height: 2.8em;
-  }
-  .sidebar-nav li a {
-    display: block;
-    text-decoration: none;
-    color: #a75b8f;
-  }
-  .sidebar-nav li a:hover {
-    color: #fff;
-    background: rgba(255, 255, 255, 0.2);
-  }
-  .sidebar-nav > .sidebar-brand {
-    font-size: 1.3em;
-    line-height: 3em;
-  }
-    h2{
-  font-family: "Lucida Console", "Courier New", monospace;
-  color: pink;
-  }
-  body {
-    font-family: 'Nanum Gothic', '맑은 고딕', Helvetica, Arial, sans-serif;
-    line-height: 100%;
-    color: #676767;
-    border-top: 7px solid #7cc0cb; /*넓이 스타일 색상*/
+    min-height: 48px;
+    padding: 4px 8px;    
+	text-align: center;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    vertical-align: middle;
 }

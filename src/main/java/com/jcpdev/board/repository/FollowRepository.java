@@ -15,5 +15,9 @@ public interface FollowRepository extends JpaRepository<FollowEntity, Integer> {
    @Query("select f from FollowEntity f where f.following_id = :following_id")
    List<FollowEntity> findByYourFollow(@Param("following_id") String following_id);
    
+   @Query("select count(f) from FollowEntity f where f.follow.client_id = :client_id")
+   String findFollowerCount(@Param("client_id") String client_id);
    
+   @Query("select count(f) from FollowEntity f where f.following_id = :client_id")
+   String findFollowingCount(@Param("client_id") String client_id);
 }

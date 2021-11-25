@@ -1,85 +1,102 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-   pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
 <title>Starting</title>
-<link rel="stylesheet" type="text/css"href="${pageContext.request.contextPath}/resources/css/header.css">
-<link rel="stylesheet" type="text/css"href="${pageContext.request.contextPath}/resources/css/main.css">
-<link rel="stylesheet" type="text/css"href="${pageContext.request.contextPath}/resources/css/message.css">
-<script   src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script   src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
-<script   src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/resources/css/header.css">
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/resources/css/main.css">
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/resources/css/message.css">
+<link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"
+  />
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/latest/js/bootstrap.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
 <style>
-   .alert-secondary{
-       float: right;
-   }
+.alert-secondary {
+	float: right;
+}
 </style>
 </head>
 <body>
-   <jsp:include page="fragments/header.jsp"></jsp:include>
-   <main>
-      <div class="main_area">
-         <div class="left_main">
-            <div class="left_main_header">
-               <!-- room 반복 -->
-               <c:forEach items="${roomlist }" var="item" varStatus="status">
-               <div class="S-mcP">
-                  <div class="AjEzM ">
-                     <div class="">
-                        <img src="/img/${clientlist.get(status.count-1).client_img }"onclick="location.href='/starting/userProfile?client_id=${clientlist.get(status.count-1).client_id}'"
-                           style="cursor: pointer; border-radius: 30px; width: 35px; height: 35px;">
-                     </div>
-                     <div class="m7ETg">
-                        <div class="" style="width: 100%;">
-                           <button class="" type="button">
-                              <div class="" style="width: 100%;">
-                                 <div class="lf6L3">
-                                 <input type="hidden" id="rid${status.count }" value="${item.roomid }">
-                                 <a  onclick="getChat('${status.count}')">
-                                    <div style="cursor: pointer;">${clientlist.get(status.count-1).client_name }</div>
-                                    </a>
-                                 </div>
-                                 <div class="">
-                                 </div>
-                              </div>
-                           </button>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-            </c:forEach>
-               </div>
-         </div>
-         <div class="right_main">
-            <div id="message">
-               <div class="chat_header">
-                  <div class="image_box">
-                     <div class="image_table">
-                        <img onclick="location.href='/starting/userProfile?client_id=${client.client_id}'"src="/img/${client.client_img }">
-                     </div>
-                  </div>
-                  <div class="profile-of-article">
-                              <input type="hidden" value="whiteboard_client_id">
-                              <h3 class="userID main-id point-span" style="margin-top: 8px;">${client.client_id}</h3>
-                              <h4 class="userID main-id point-span" style="margin-top: 8px;">${client.client_name}</h4>
-                           </div>
-               </div>
-                   <div id="msgArea" class="chat_description">
-
-            </div>
-         </div>
-         <div id="footer_input" class="chat_footer">
-            <div class="input-group mb-3" id="aas">
-            </div>
-         </div>
-      </div>
-      </div>
-      <input type="hidden" id="seid" value="${client.client_id }">
-   </main>
-           <script type="text/javascript">
+	<jsp:include page="fragments/header.jsp"></jsp:include>
+	<main>
+		<c:forEach items="${roomlist }" var="item" varStatus="status">
+			<div class="main_area">
+				<div class="left_main">
+					<div class="left_main_header">
+						<!-- room 반복 -->
+						<div class="S-mcP">
+							<div class="AjEzM ">
+								<div class="">
+									<img src="/img/${clientlist.get(status.count-1).client_img }"
+										onclick="location.href='/starting/userProfile?client_id=${clientlist.get(status.count-1).client_id}'"
+										style="cursor: pointer; border-radius: 30px; width: 35px; height: 35px;">
+								</div>
+								<div class="m7ETg">
+									<div class="" style="width: 100%;">
+										<button class="" type="button">
+											<div class="" style="width: 100%;">
+												<div class="lf6L3">
+													<input type="hidden" id="rid${status.count }"
+														value="${item.roomid }"> <a
+														onclick="getChat('${status.count}')">
+														<div style="cursor: pointer;">${clientlist.get(status.count-1).client_name }</div>
+													</a>
+												</div>
+											</div>
+										</button>
+									</div>
+								</div>
+								<div style="cursor: pointer;">${clientlist.get(status.count-1).client_birth }</div>
+									<c:if test="${clientlist.get(status.count-1).client_gender eq 'M'}">
+								<div style="cursor: pointer;"><i class="fas fa-male" style="width: 20px;"></i></div>
+									</c:if>
+									<c:if test="${clientlist.get(status.count-1).client_gender eq 'F'}">
+								<div style="cursor: pointer;"><i class="fas fa-female" style="width: 20px;"></i></div>
+									</c:if>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="right_main">
+					<div id="message">
+						<div class="chat_header">
+							<div class="image_box">
+								<div class="image_table">
+									<img
+										onclick="location.href='/starting/userProfile?client_id=${client.client_id}'"
+										src="/img/${client.client_img }">
+								</div>
+							</div>
+							<div class="profile-of-article">
+								<input type="hidden" value="whiteboard_client_id">
+								<h3 class="userID main-id point-span" style="margin-top: 8px;">${clientlist.get(status.count-1).client_id}</h3>
+								<h4 class="userID main-id point-span" style="margin-top: 8px;">${clientlist.get(status.count-1).client_name}</h4>
+							</div>
+						</div>
+						<div id="msgArea" class="chat_description"></div>
+					</div>
+					<div id="footer_input" class="chat_footer">
+						<div class="input-group mb-3" id="aas"></div>
+					</div>
+				</div>
+			</div>
+			<input type="hidden" id="seid" value="${client.client_id }">
+		</c:forEach>
+	</main>
+	<script type="text/javascript">
            
            const sockJs = new SockJS("/stomp/chat");
             const stomp = Stomp.over(sockJs);

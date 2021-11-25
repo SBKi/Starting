@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,40 +11,18 @@
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/main.css">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/common.css">
 <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script src="//code.jquery.com/jquery.min.js"></script>
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/latest/js/bootstrap.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-<script>
-	$(function(){
-		if(${msg ne null}){
-			alert('${msg}');
-		};
-		
-		if($("#pwForm").submit(function(){
-			if($("#pw").val() !== $("#pw2").val()){
-				alert("비밀번호가 다릅니다.");
-				$("#pw").val("").focus();
-				$("#pw2").val("");
-				return false;
-			}else if ($("#pw").val().length < 8) {
-				alert("비밀번호는 8자 이상으로 설정해야 합니다.");
-				$("#pw").val("").focus();
-				return false;
-			}else if($.trim($("#pw").val()) !== $("#pw").val()){
-				alert("공백은 입력이 불가능합니다.");
-				return false;
-			}
-		}));
-	})
-</script>
 
 <style>
 /* 공통 */
@@ -54,15 +33,14 @@
   #sidebar-wrapper {
     position: fixed;
     width: 250px;
-    height: 100%;
-    margin-left: -250px;
+    height: 606px;
+    margin-left: -179px;
     background: #f3eaed;
-    overflow-x: hidden;
-    overflow-y: auto;
+    border: 1px solid #ebebeb;
   }
   #page-content-wrapper {
     width: 100%;
-    padding: 20px;
+    margin-left: 20px;
   }
   /* 사이드바 스타일 */
   .sidebar-nav {
@@ -117,7 +95,40 @@
    margin-left:5px;
    margin-right:5px;
 }
-
+.w3-input {
+	border-radius: 8px;
+	width: 280px;
+}
+.input_div {
+	display: flex;
+	flex-direction: row;
+	margin-bottom: 5px;
+}
+label {
+    display: inline-block;
+    margin-bottom: 0.5rem;
+    margin-top: 11px;
+    width: 80px;
+}
+.select_box_div {
+	border-radius: 7px;
+    height: 30px;
+    width: 180px;
+    text-align: center;
+}    
+.w3-margin-top {
+    margin-top: auto;
+}
+.w3-content {
+    width: 580px;
+}
+.instruction {
+    width: 435px;
+    border-radius: 14px;
+}
+.w3-card-4 {
+    border: 1px solid #EBEBEB;
+}
 </style>
 </head>
 <body>
@@ -133,70 +144,72 @@
       <li><a class="leftitems" href="./userProfile">마이페이지</a></li>
 			<li><a class="leftitems" href="./profile_update">개인정보 변경</a></li>
 			<li><a class="leftitems" href="./password_update">비밀번호 변경</a></li>
-			<li><a class="leftitems" href="./like_list">이상형 리스트</a></li>
-			<li><a class="leftitems" href="./matching_list">매칭된 리스트</a></li>
     </ul>
   </div>
   <!-- /사이드바 -->
 
   <!-- 본문 -->
   <div id="page-content-wrapper">
-  <h2>개인정보</h2>
     <div class="container-fluid">
 	<div class="container">
-    
-    
-    <div class="w3-content w3-container w3-margin-top">
+    <div class="w3-content w3-container ">
 		<div class="w3-container w3-card-4">
-			<div class="w3-center w3-large w3-margin-top">
-				<h3>Profile</h3>
+			<div class="w3-center w3-large ">
+				<h3 style="margin: 24px;">개인정보 변경</h3>
 			</div>
 			<div>
 				<form id="myForm" action="profile_update" method="post">
 				
-					<p>
+					<div class="input_div">
 						<label>ID</label> 
 						<input class="w3-input" type="text" id="id" name="client_id" readonly value="${ user.client_id }"> 
-					</p>
-					<p>
-						<input class="w3-input" type="hidden" id="pw" name="client_password" value="${ user.client_password }">
-					</p>
-					<p>
+					</div>
+					<div class="input_div" style="display: none;">
+						<input class="w3-input" type="hidden" id="pswd1" name="client_password" value="${ user.client_password }">
+					</div>
+					<div class="input_div" style="display: none;">
 						<input class="w3-input" type="hidden" id="img" name="client_img" value="${ user.client_img }">
-					</p>
-					<p>
+					</div>
+					<div class="input_div">
 						<label>Email</label> 
 						<input class="w3-input" type="text" id="email" name="client_email" readonly value="${ user.client_email }"> 
-					</p>
-					<p>
+					</div>
+					<div class="input_div">
 						<label>이름</label> 
 						<input class="w3-input" type="text" id="name" name="client_name" readonly value="${ user.client_name}" required> 
-					</p>
-					<p>
-						<label>성별</label> 
-						<input class="w3-input" type="text" id="gender" name="client_gender" readonly value="${ user.client_gender } "> 
-					</p>
-					<p>
+					</div>
+					<div class="input_div">
+						<label>성별</label>
+						<c:if test="${ user.client_gender eq 'M' }">
+						<input class="w3-input" type="text" readonly value="남자"> 
+						<input class="w3-input" style="display: none;" type="hidden" id="gender" name="client_gender" readonly value="${user.client_gender}"> 
+						</c:if>
+						<c:if test="${ user.client_gender eq 'F' }">
+						<input class="w3-input" type="text" readonly value="여자"> 
+						<input class="w3-input" style="display: none;" type="hidden" id="gender" name="client_gender" readonly value="${user.client_gender }"> 
+						</c:if>
+					</div>
+					<div class="input_div">
 						<label>생년월일</label> 
-						<input class="w3-input" type="text" id="birth" name="client_birth" readonly value="${ user.client_birth }"> 
-					</p>
-					<p>
+						<input class="w3-input" type="date" id="birth" name="client_birth" min="1985-01-01" max="2001-12-31" value="${user.client_birth }">
+					</div>
+					<div class="input_div">
 						<label>주소</label> 
-						<input class="w3-input" type="text" id="address" name="client_address" value="${ user.client_address }"> 
-					</p>
-					<p>
+						<input class="input1" type="button" style="border-radius: 5px; border: 0px;" value="주소 검색" onclick="findAddr()"><br>
+						<input class="w3-input" type="text" style="width: 203px" id="userAddress" name="client_address" value="${ user.client_address }"> 
+					</div>
+					<div class="input_div">
 						<label>신장</label> 
-						<input class="w3-input" type="text" id="tall" name="client_tall" value="${ user.client_tall }"> 
-					</p>
-					<p>
+						<input class="w3-input" type="number" id="tall" name="client_tall" value="${ user.client_tall }"> 
+					</div>
+					<div class="input_div">
 						<label>자기소개</label> 
-						<input class="w3-input" type="text" id="instruction" name="client_instruction" value="${ user.client_instruction }"> 
-					</p>
-					<p>
+						<textarea rows="6" cols="200" class="instruction" id="instruction" name="client_instruction">${ user.client_instruction }</textarea>
+					</div>
+					<div class="input_div">
 						<label>MBTI</label> 
-					</p>
 					<div class="info_select_box">
-							<select name="Client_info" id="info">
+							<select name="Client_info" id="info" class="select_box_div">
 								<option  value="${user.client_info }" >${user.client_info }</option>
 								<option value="INTJ">INTJ</option>
 								<option value="INTP">INTP</option>
@@ -216,7 +229,7 @@
 								<option value="ESFP">ESFP</option>
 							</select>
 						</div>
-
+					</div>
 					<p class="w3-center">
 						<button type="submit" class="w3-button w3-block w3-black w3-ripple w3-margin-top w3-round">회원정보 변경</button>
 					</p>
@@ -234,5 +247,70 @@
   </div>
   <!-- /본문 -->
 </main>
+	<div class="RnEpo  Yx5HN " id="modal">
+		<div class="pbNvD  fPMEg">
+			<div class="_1XyCr  ">
+				<div class="piCib">
+					<div class="modal_button_body">
+						<div class="w3-content w3-container ">
+							<div class="w3-center w3-large ">
+								<h3>비밀번호 확인</h3>
+							</div>
+							<div class="input_div" style="margin-top: 30px;">
+								<label>비밀번호</label> 
+								<input class="w3-input" id="pswd2"
+									name="client_password" type="password" required>
+									 <input
+									type="submit" id="joinBtn" style="width: 138px;"
+									class="w3-button w3-block w3-black w3-ripple  w3-round"
+									value="비밀번호 확인" />
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript">
+function findAddr() {
+	daum.postcode.load(function() {
+		new daum.Postcode({
+			oncomplete : function(data) {
+				// 각 주소의 규칙에 따라 주소 조합
+				// 가져올 변수가 없을때는 공백을 가지기 때문에 이를 참고해 분기한다고 한다
+				var addr = ''; //주소 변수
+				// 사용자가 선택한 주소타입(도로명/지번)에 따라 해당 값 가져오기
+				// 만약 사용자가 도로명 주소를 선택했을 때
+				if (data.userSelectedType == 'R') {
+					addr += data.sido+" ";
+					addr += data.sigungu+" ";
+					addr += data.bname;
+					// 만약 사용자가 구주소를 선택했을 때
+				} else {
+					addr += data.sido+" ";
+					addr += data.sigungu+" ";
+					addr += data.bname;
+				}
+				// 주소정보
+				document.getElementById('userAddress').value = addr;
+			}
+		}).open();
+	});
+}
+const pw1 = document.querySelector('#pswd1'); //비밀번호
+
+const pw2 = document.querySelector('#pswd2'); //비밀번호 재확인
+
+const modal = document.querySelector('#modal'); 
+const btnCansle = document.querySelector('#joinBtn');
+btnCansle.addEventListener('click', () => { 
+	if (pw2.value === pw1.value) {
+		modal.style.display = 'none';
+	} else if (pw2.value !== pw1.value) {
+		alert("비밀번호 일치하지 않습니다.");
+		history.back();
+	}
+});	
+</script>
 </body>
 </html>

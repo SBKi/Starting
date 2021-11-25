@@ -118,9 +118,9 @@
 				<div class="reaction">
 					
 					<div class="description">
-						<p>${board.whiteboard_content }</p>
-					</div>
 						<p class="point-span" id="heart_count">${board.whiteboard_like }</p>
+					</div>
+						<p>${board.whiteboard_content }</p>
 				</div>
 				<div class="hl"></div>
 				<div class="comment">

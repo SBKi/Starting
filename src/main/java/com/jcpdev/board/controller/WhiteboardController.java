@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,19 +15,24 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.jcpdev.board.entity.ClientEntity;
 import com.jcpdev.board.entity.FollowEntity;
+import com.jcpdev.board.entity.HeartEntity;
 import com.jcpdev.board.entity.WhiteboardEntity;
 import com.jcpdev.board.model.Client;
+import com.jcpdev.board.model.Heart;
 import com.jcpdev.board.model.Whiteboard;
-import com.jcpdev.board.service.ClientService;
-import com.jcpdev.board.service.FollowService;
-import com.jcpdev.board.service.WhiteboardService;
 import com.jcpdev.board.repository.ClientRepository;
 import com.jcpdev.board.repository.FollowRepository;
+import com.jcpdev.board.repository.HeartRepository;
 import com.jcpdev.board.repository.WhiteboardRepository;
+import com.jcpdev.board.service.ClientService;
+import com.jcpdev.board.service.FollowService;
+import com.jcpdev.board.service.HeartService;
+import com.jcpdev.board.service.WhiteboardService;
 
 @Controller
 public class WhiteboardController {
@@ -46,8 +52,15 @@ public class WhiteboardController {
 
 	@Autowired
 	FollowRepository f_repository;
+
 	@Autowired
 	FollowService f_service;
+
+	@Autowired
+	HeartRepository h_repository;
+	@Autowired
+
+	HeartService h_service;
 
 	// 메인 페이지에서 게시물 불러오기
 	@RequestMapping({ "/starting/main", "/starting/", "/" })
@@ -208,6 +221,40 @@ public class WhiteboardController {
 	public String delete(int whiteboard_no) {
 		repository.deleteById(whiteboard_no);
 		return "redirect:/starting/main";
+	}
+
+	@ResponseBody
+	@RequestMapping(value = "/heart", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
+	public void heart(int no, HttpServletRequest request) {
+
+		List<Heart> heart_list = new ArrayList<Heart>();
+		List<HeartEntity> h_entity = h_repository.findByBoardNo(no);
+		for (HeartEntity h : h_entity)
+			heart_list.add(h_service.toDto(h));
+
+		HttpSession session = request.getSession();
+		Client user = (Client) session.getAttribute("client");
+
+		boolean check = true;
+		Heart test = null;
+
+		for (Heart h : heart_list) {
+			test = h;
+			if (h.getC_heart_client_id().equals(user.getClient_id())) {
+				check = false; // 값 추가
+				break;
+			}
+		}
+
+		if (check) {
+			// 토글
+			h_repository.save(h_service.toEntity(Heart.builder().w_heart_whiteboard_no(no)
+					.c_heart_client_id(user.getClient_id()).heart_no(0).build()));
+			repository.updateLike(no);
+		} else {
+			h_repository.delete(h_service.toEntity(test));
+			repository.downdateLike(no);
+		}
 	}
 
 }
