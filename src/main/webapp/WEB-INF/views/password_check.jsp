@@ -113,6 +113,11 @@
     background-color: #e5c7da!important;
 }
 
+.w3-content, .w3-auto {
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
 </style>
 </head>
 <body>

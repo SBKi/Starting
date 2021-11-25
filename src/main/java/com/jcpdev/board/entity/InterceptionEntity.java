@@ -20,20 +20,18 @@ import lombok.ToString;
 @Getter
 @Builder
 @ToString
-@Table(name = "Report")
-public class ReportEntity {
+@Table(name = "Interception")
+public class InterceptionEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int report_no;
-
+	private Integer interception_no;
+	
+	
 	@Column(nullable = false)
-	private String report_content;
+	private String interception_id;
 	
-	@ManyToOne(targetEntity = ClientEntity.class)				
-	private ClientEntity c_report;
-	
-	@ManyToOne(targetEntity = WhiteboardEntity.class)
-	private WhiteboardEntity w_report;
+	@ManyToOne(targetEntity = ClientEntity.class)
+	private ClientEntity interception;
 	
 }

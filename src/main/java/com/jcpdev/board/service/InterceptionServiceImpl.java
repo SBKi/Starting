@@ -3,6 +3,6 @@ package com.jcpdev.board.service;
 import org.springframework.stereotype.Service;
 
 @Service
-public class ReportServiceImpl implements ReportService {
+public class InterceptionServiceImpl implements InterceptionService {
 
 }

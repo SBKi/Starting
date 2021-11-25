@@ -10,8 +10,6 @@ import java.util.UUID;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -32,7 +30,6 @@ import com.jcpdev.board.service.WhiteboardService;
 
 @Controller
 public class ClientController {
-	private static final Logger logger = LoggerFactory.getLogger(ClientController.class);
 
 	@Autowired
 	ClientRepository repository;
@@ -82,12 +79,12 @@ public class ClientController {
 				session.setAttribute("client", service.toDto(client.get()));
 				return "redirect:/starting/main";
 			}
-			String message="로그인 정보가 틀립니다.";
+			String message="로그인 정보가 다릅니다.";
 			model.addAttribute("message",message );  
 			model.addAttribute("url","login");
 			return "alertLogin";
 		} else {
-			String message="로그인 정보가 틀립니다.";
+			String message="로그인 정보가 다릅니다.";
 			model.addAttribute("message",message );  
 			model.addAttribute("url","login");
 			return "alertLogin";
@@ -98,7 +95,7 @@ public class ClientController {
 	@RequestMapping(value = "/starting/register", method = RequestMethod.POST)
 	public String sign_up(Client client, Model model) {
 		if (client != null) {
-			client.setClient_img("defalut.png");
+			client.setClient_img("default.png");
 			client.setClient_status(0);
 			ClientEntity entity = service.toEntity(client);
 			repository.save(entity);
@@ -236,12 +233,16 @@ public class ClientController {
 	}
 
 	@RequestMapping(value = "/starting/password_check", method = RequestMethod.POST)
-	public String password_check(String client_password, HttpSession session) {
+	public String password_check(String client_password, HttpSession session, Model model) {
 		Client user = (Client) session.getAttribute("client");
 		if (client_password.equals(user.getClient_password()))
 			return "redirect:profile_update";
-		else
-			return "password_check";
+		else {
+			String message="비밀번호가 다릅니다.";
+			model.addAttribute("message",message );  
+			model.addAttribute("url","password_check");
+			return "alertLogin";
+		}
 	}
 
 	// 개인정보 수정
@@ -271,7 +272,7 @@ public class ClientController {
 
 	@GetMapping
 	@RequestMapping(value = "/starting/password_update", method = RequestMethod.POST)
-	public String password_updatePOST(HttpSession session, HttpServletRequest request, String old_password, String new_password, String new_password2) {
+	public String password_updatePOST(HttpSession session, HttpServletRequest request, String old_password, String new_password, String new_password2, Model model) {
 		Client user = (Client) session.getAttribute("client");
 		String client_password = user.getClient_password();
 		String client_id = user.getClient_id();
@@ -281,9 +282,19 @@ public class ClientController {
 				ClientEntity entity = service.toEntity(user);
 				repository.save(entity);
 				return "redirect:userProfile?client_id="+client_id;
-			}else return "password_update";
+			}else {
+				String message="새로운 비밀번호가 다릅니다.";
+				model.addAttribute("message",message );  
+				model.addAttribute("url","password_update");
+				return "alertLogin";
+			}
 			
-		}else return "password_update";
+		}else {
+			String message="기존 비밀번호가 다릅니다.";
+			model.addAttribute("message",message );  
+			model.addAttribute("url","password_update");
+			return "alertLogin";
+		}
 	}
 
 	@GetMapping

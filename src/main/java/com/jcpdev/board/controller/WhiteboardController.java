@@ -4,13 +4,10 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
-import org.aspectj.apache.bcel.generic.InstructionConstants.Clinit;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,7 +20,6 @@ import com.jcpdev.board.entity.ClientEntity;
 import com.jcpdev.board.entity.FollowEntity;
 import com.jcpdev.board.entity.WhiteboardEntity;
 import com.jcpdev.board.model.Client;
-import com.jcpdev.board.model.Follow;
 import com.jcpdev.board.model.Whiteboard;
 import com.jcpdev.board.service.ClientService;
 import com.jcpdev.board.service.FollowService;

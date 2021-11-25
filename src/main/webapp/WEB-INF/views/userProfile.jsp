@@ -134,7 +134,7 @@
 						<button class="modal_button" tabindex="0" onclick="location.href='/starting/send_follow?id=${user.client_id }'">팔로우 하기</button>
 						<button class="modal_button" tabindex="0" onclick="location.href='follows'">팔로우 취소</button>
 						<button class="modal_button" tabindex="0" onclick="location.href='/starting/message/room?id=${user.client_id}'">message 보내기</button>
-						<button class="modal_button" tabindex="0" onclick="location.href='declare'">신고하기</button>
+						<button class="modal_button" tabindex="0" onclick="location.href='/starting/interception?instruction_client_id=${user.client_id }'">차단하기</button>
 						<button id="modal_cansle" class="modal_button" tabindex="0">취소</button>
 						</c:if>
 					</div>

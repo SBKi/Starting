@@ -8,7 +8,6 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import com.jcpdev.board.model.Whiteboard;
 
 import lombok.Builder;
 import lombok.Data;

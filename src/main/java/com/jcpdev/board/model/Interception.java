@@ -9,11 +9,10 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class Report {
-	private int report_no;
-	private int w_report_whiteboard_no;
-	private String c_report_client_id;
-	private String report_content;
+public class Interception {
+	private Integer interception_no;
+	private String interception_client_id;
+	private String interception_id;
 
 
 }

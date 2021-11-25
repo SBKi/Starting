@@ -9,7 +9,6 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
-import com.jcpdev.board.entity.ClientEntity;
 import com.jcpdev.board.entity.WhiteboardEntity;
 
 public interface WhiteboardRepository extends JpaRepository<WhiteboardEntity, Integer>{
