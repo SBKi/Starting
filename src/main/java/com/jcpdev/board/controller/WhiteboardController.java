@@ -224,9 +224,9 @@ public class WhiteboardController {
 	}
 
 	@ResponseBody
-	@RequestMapping(value = "/heart", method = RequestMethod.POST, produces = "text/plain;charset=UTF-8")
-	public void heart(int no, HttpServletRequest request) {
-
+	@RequestMapping(value = "/heart", method = RequestMethod.POST)
+	public String heart(int no, HttpServletRequest request) {
+		
 		List<Heart> heart_list = new ArrayList<Heart>();
 		List<HeartEntity> h_entity = h_repository.findByBoardNo(no);
 		for (HeartEntity h : h_entity)
@@ -255,6 +255,7 @@ public class WhiteboardController {
 			h_repository.delete(h_service.toEntity(test));
 			repository.downdateLike(no);
 		}
+		return "ss";
 	}
 
 }
