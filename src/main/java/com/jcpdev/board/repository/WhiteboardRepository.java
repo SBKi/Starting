@@ -9,6 +9,7 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import com.jcpdev.board.entity.ClientEntity;
 import com.jcpdev.board.entity.WhiteboardEntity;
 
 public interface WhiteboardRepository extends JpaRepository<WhiteboardEntity, Integer> {
@@ -37,4 +38,7 @@ public interface WhiteboardRepository extends JpaRepository<WhiteboardEntity, In
 
 	@Query("select w from WhiteboardEntity w where w.whiteboard.client_id not in((select i.interception.client_id from InterceptionEntity i where i.interception_id = :client_id)) ORDER BY w.whiteboard_no DESC")
 	List<WhiteboardEntity> findByWhiteboard(@Param("client_id") String client_id);
+
+	@Query("select c from ClientEntity c where c.client_id not in((select i.interception.client_id from InterceptionEntity i where i.interception_id = :client_id))")
+	List<ClientEntity> findByUser(@Param("client_id") String client_id);
 }

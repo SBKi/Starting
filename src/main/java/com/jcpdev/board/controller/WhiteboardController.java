@@ -72,7 +72,7 @@ public class WhiteboardController {
 	      List<Client> follow_list = new ArrayList<Client>();
 	      List<Client> not_follow_list = new ArrayList<Client>();
 	      List<WhiteboardEntity> board_All_list_et = repository.findByWhiteboard(user.getClient_id()); // 전체 게시글 리스트
-	      List<ClientEntity> client_All_list_et = c_repository.findByIdAll(); // 전체 회원 리스트
+	      List<ClientEntity> client_All_list_et = repository.findByUser(user.getClient_id()); // 전체 회원 리스트
 	      List<FollowEntity> follow_list_en = f_repository.findByMyFollow(user.getClient_id()); // 내가 팔로우한 리스트
 
 	      // 전체 게시글 리스트
