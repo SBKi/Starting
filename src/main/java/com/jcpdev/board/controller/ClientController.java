@@ -10,13 +10,16 @@ import java.util.UUID;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.jcpdev.board.entity.ClientEntity;
@@ -256,6 +259,18 @@ public class ClientController {
 		}
 	}
 
+	@ResponseBody
+	@RequestMapping(value="/starting/checkId",method = RequestMethod.POST)
+		public String idck(@RequestBody String id) {
+		if(repository.getById(id) == null) {
+			return "0";
+		}else {
+			return "32";
+		}
+		
+	}
+	
+	
 	// 개인정보 수정
 	@RequestMapping(value = "/starting/profile_update", method = RequestMethod.GET)
 	public String profile_update(HttpSession session, HttpServletRequest request, Model model) {

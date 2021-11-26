@@ -34,9 +34,9 @@ function checkId() {
 	let tempInt = 0;
 	$.ajax({
 		type: 'post', //post 방식으로 전송
-		url: '/checkId', //데이터를 주고받을 파일 주소
-		data: { "id": id.value }, //위의 변수에 담긴 데이터를 전송해준다.
-		dataType: "text", //html 파일 형식으로 값을 담아온다.
+		url: '/starting/checkId', //데이터를 주고받을 파일 주소
+		data: id.value, //위의 변수에 담긴 데이터를 전송해준다.
+		dataType: "text",
 		success: function(data) { //파일 주고받기가 성공했을 경우. data 변수 안에 값을 담아온다.
 			let result = data.trim();
 			tempInt = parseInt(result);
