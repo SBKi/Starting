@@ -20,4 +20,5 @@ public interface CommentRepository extends JpaRepository<CommentEntity, Integer>
 	@Query("select c from CommentEntity c where c.comment.whiteboard_no = :commentboard_no")
 	List<CommentEntity> findByCommentboard_no(@Param("commentboard_no") Integer commentboard_no);
 	
+	
 }

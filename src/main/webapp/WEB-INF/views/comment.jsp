@@ -101,7 +101,8 @@
 									<div>
 										<div class="EtaWk">
 											<ul class="XQXOT    pXf-y ">
-											<c:forEach var="comment" items="${commentlist }">
+											<c:forEach var="comment" items="${commentlist }" varStatus="status">
+											
 												<div role="button" class="ZyFrc" tabindex="0">
 													<li class="gElp9 rUo9f  PpGvg " role="menuitem"><div
 															class="P9YgZ">
@@ -110,16 +111,15 @@
 																<div class="Jv7Aj mArmR   pZp3x">
 																	<div class="RR-M-  TKzGu  " role="button" tabindex="-1">
 																		<canvas class="CfWVH" height="53" width="53" style="position: absolute; top: -5px; left: -5px; width: 42px; height: 42px;"></canvas>
-																		<a class="_2dbep qNELH kIKUG" href="/string/userProfile?"tabindex="0" style="width: 32px; height: 32px; display: block;">
-																		<img src="${pageContext.request.contextPath}/img/person.png" class="_6q-tv"></a>
+																		<a class="_2dbep qNELH kIKUG" href="/starting/userProfile?client_id=${comment.comment_id }"tabindex="0" style="width: 32px; height: 32px; display: block;">
+																				<img src="/img/${clientlist.get(status.count-1).client_img }" class="_6q-tv">ss</a>
 																	</div>
 																</div>
 																
 																<div class="C4VMK">
 																	<h3 class="_6lAjh ">
 																		<div>
-																			<span><a href="/starting/${comment.comment_id }">${comment.comment_id
-																					}</a></span>
+																			<span><a href="/starting/userProfile?client_id=${comment.comment_id }">${comment.comment_id}</a></span>
 																		</div>
 																	</h3>
 																	<span class="">${comment.comment_content} </span>

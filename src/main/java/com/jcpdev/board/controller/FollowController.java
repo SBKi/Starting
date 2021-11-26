@@ -36,8 +36,8 @@ public class FollowController {
 	ClientService c_service;
 
 	@RequestMapping(value = "/starting/follow", method = RequestMethod.GET)
-	public String follow(Model model, HttpSession session) {
-		Client user = (Client) session.getAttribute("client");
+	public String follow(Model model, String search_id) {
+		Client user = c_service.toDto(c_repository.getById(search_id));
 		List<Client> c_list = new ArrayList<Client>();
 		for (FollowEntity temp : repository.findByYourFollow(user.getClient_id())) {
 			Optional<ClientEntity> ent = c_repository.findById(service.toDto(temp).getFollow_client_id());
@@ -50,8 +50,8 @@ public class FollowController {
 	}
 
 	@RequestMapping(value = "/starting/follower", method = RequestMethod.GET)
-	public String follower(Model model, HttpSession session) {
-		Client user = (Client) session.getAttribute("client");
+	public String follower(Model model, String search_id) {
+		Client user = c_service.toDto(c_repository.getById(search_id));
 		List<Client> c_list = new ArrayList<Client>();
 		for (FollowEntity temp : repository.findByMyFollow(user.getClient_id())) {
 			Optional<ClientEntity> ent = c_repository.findById(service.toDto(temp).getFollowing_id());

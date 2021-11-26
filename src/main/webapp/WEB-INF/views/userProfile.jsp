@@ -58,11 +58,12 @@
 								fill-rule="evenodd"></path></svg>
 					</div>
 					<div>
+								<span>이름 : ${user.client_name }</span>
 								<span>주소 : ${user.client_address }</span>
 								<c:if test="${user.client_gender eq 'M' }">
 									<span>생년월일 : ${user.client_birth } (남성)</span>
 								</c:if>
-								<c:if test="${user.client_gender eq 'F' }">여자
+								<c:if test="${user.client_gender eq 'F' }">
 									<span>생년월일 : ${user.client_birth } (여자)</span>
 								</c:if>	
 								<span>키 : ${user.client_tall }</span>
@@ -72,10 +73,10 @@
 						<ul class="profile_list">
 							<li class="profile_follow_"><span class="spaan">게시물</span><span
 								class="sub_span">${board_count }</span></li>
-							<li class="profile_follow_"><a class="spaan" href="/starting/follow">팔로워</a><span
-								class="sub_span">${follower_count }</span></li>
-							<li class="profile_follow_"><a class="spaan" href="/starting/follower">팔로우</a><span
+							<li class="profile_follow_"><a class="spaan" href="/starting/follow?search_id=${user.client_id }">팔로워</a><span
 								class="sub_span">${following_count }</span></li>
+							<li class="profile_follow_"><a class="spaan" href="/starting/follower?search_id=${user.client_id }">팔로우</a><span
+								class="sub_span">${follower_count }</span></li>
 						</ul>
 					</div>
 				</div>
