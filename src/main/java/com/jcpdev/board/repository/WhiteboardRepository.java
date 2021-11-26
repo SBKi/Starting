@@ -14,8 +14,8 @@ import com.jcpdev.board.entity.WhiteboardEntity;
 
 public interface WhiteboardRepository extends JpaRepository<WhiteboardEntity, Integer> {
 
-//	@Query("select wb from WhiteboardEntity wb where wb.whiteboard.client_id = :client_id ORDER BY whiteboard_no DESC")
-//	List<WhiteboardEntity> findByWhiteboard_Client(@Param("client_id") String client_id);
+	@Query("select wb from WhiteboardEntity wb where wb.whiteboard.client_id = :client_id ORDER BY whiteboard_no DESC")
+	List<WhiteboardEntity> findByWhiteboard_Client(@Param("client_id") String client_id);
 
 	@Query("select wb from WhiteboardEntity wb ORDER BY whiteboard_no DESC")
 	List<WhiteboardEntity> findByWhiteboard_Client();

@@ -97,10 +97,18 @@
             </div>
             <div class="icons-react">
                <div class="icons-left">
-                  <c:if test="${!heartCheck }">
-                        <i id = "heart" class="fa fa-heart-o heart" style="cursor: pointer;" onclick="like('${board.whiteboard_no}')"></i> <span
-                           class="visually-hiddewn"></span>
-                  </c:if>
+               <c:set var="loop" value="false"/>
+               <c:forEach var="item" items="${likelist }">
+               	<c:if test="${not loop}">
+               		<c:if test="${board.whiteboard_no eq item.w_heart_whiteboard_no }">
+                        <i id = "heart" class="fa fa-heart heart" style="cursor: pointer;" onclick="like('${board.whiteboard_no}',this)"></i>
+                        <c:set var="loop" value="true"/>
+               		</c:if>
+               	</c:if>
+               	</c:forEach>
+               	<c:if test="${not loop}">
+                        <i id = "heart" class="fa fa-heart-o heart" style="cursor: pointer;" onclick="like('${board.whiteboard_no}',this)"></i>
+               	</c:if>
                   <img class="icon-react" onclick="location.href='/starting/comment?whiteboard_no=${board.whiteboard_no}&client_id=${board.whiteboard_client_id }'"
                      src="https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/bearu/comment.png">
                      <c:if test="${client.client_id ne board.whiteboard_client_id }">
@@ -178,6 +186,7 @@
    </main>
    <script type="text/javascript">
 $(document).ready(function(){
+
 	
   $('.single-item').slick({
       infinite : true,    //무한 반복 옵션    
@@ -208,8 +217,17 @@ $(document).ready(function(){
 });
 
    // 좋아요버튼 클릭시(좋아요 추가 또는 좋아요 취소)
-      function like(idx){
+      function like(idx,e){
       var data ={ no : idx  };
+      var className= $(e).attr('class')
+      if(className == 'fa fa-heart-o heart'){
+    	  className = 'fa fa-heart heart';
+      }else{
+    	  className = 'fa fa-heart-o heart';
+      }
+      
+      $(e).attr('class',className);
+      
       $.ajax({
         	url: "/heart",
             type: "POST",

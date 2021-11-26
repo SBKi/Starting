@@ -61,23 +61,31 @@ public class WhiteboardController {
 	@Autowired
 	HeartRepository h_repository;
 	@Autowired
-
 	HeartService h_service;
 
 	@RequestMapping({ "/starting/main", "/starting/", "/" })
-	public String getList(Model model, HttpServletRequest request) {
+	public String getList(Model model, HttpServletRequest request,String search_name) {
 		Client user = (Client) request.getSession().getAttribute("client");
 		List<Whiteboard> board_All_list = new ArrayList<Whiteboard>(); //
 		List<Client> client_All_list = new ArrayList<Client>();
 		List<Client> follow_list = new ArrayList<Client>();
 		List<Client> not_follow_list = new ArrayList<Client>();
+		List<Heart> likelist =  new ArrayList<Heart>();
+		List<HeartEntity> likelist_et = h_repository.findByIdtoIdx(user.getClient_id());  
 		List<WhiteboardEntity> board_All_list_et = repository.findByWhiteboard(user.getClient_id()); // 전체 게시글 리스트
 		List<ClientEntity> client_All_list_et = repository.findByUser(user.getClient_id()); // 전체 회원 리스트
 		List<FollowEntity> follow_list_en = f_repository.findByMyFollow(user.getClient_id()); // 내가 팔로우한 리스트
+		 for(ClientEntity c :client_All_list_et)
+	            if(c.getClient_id().equals(search_name))
+	               board_All_list_et = repository.findByWhiteboard_Client(search_name);
 
 		// 전체 게시글 리스트
 		for (WhiteboardEntity temp : board_All_list_et) {
 			board_All_list.add(service.toDto(temp));
+		}
+		// 내가 좋아요 누른  리스트
+		for (HeartEntity temp : likelist_et) {
+			likelist.add( h_service.toDto(temp));
 		}
 		// 전체 회원 리스트
 		for (ClientEntity temp : client_All_list_et) {
@@ -104,6 +112,9 @@ public class WhiteboardController {
 				not_follow_list.add(client); // 추가
 			}
 		}
+		
+		System.out.println(likelist);
+		model.addAttribute("likelist", likelist); // 전체 회원 리스트
 		model.addAttribute("client_All_list", client_All_list); // 전체 회원 리스트
 		model.addAttribute("follow_list", follow_list); // 내가 팔로우한 리스트
 		model.addAttribute("board_All_list", board_All_list); // 전체 게시글 리스트

@@ -13,4 +13,7 @@ public interface HeartRepository extends JpaRepository<HeartEntity, Integer> {
 	@Query("select h from HeartEntity h where h.w_heart.whiteboard_no = :no")
 	List<HeartEntity> findByBoardNo(@Param("no") Integer whiteboard_no);
 	
+	@Query("select h from HeartEntity h where h.c_heart.client_id = :id")
+	List<HeartEntity> findByIdtoIdx(@Param("id") String id);
+	
 }

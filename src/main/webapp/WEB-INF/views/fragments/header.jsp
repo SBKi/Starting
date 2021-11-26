@@ -18,7 +18,7 @@
 						</div></a>
 				</div>
 				<div>
-					<form class="d-flex" action="strating/Search" method="post"
+					<form class="d-flex" action="main" method="post"
 						name="formname" accept-charset="UTF-8">
 						<input class="form-control me-2 searchbox" type="text"
 							onkeyup="enterkey()" name="search_name" placeholder="검색">
