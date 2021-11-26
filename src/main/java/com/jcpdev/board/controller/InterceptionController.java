@@ -18,8 +18,10 @@ import com.jcpdev.board.entity.InterceptionEntity;
 import com.jcpdev.board.model.Client;
 import com.jcpdev.board.model.Interception;
 import com.jcpdev.board.repository.ClientRepository;
+import com.jcpdev.board.repository.FollowRepository;
 import com.jcpdev.board.repository.InterceptionRepository;
 import com.jcpdev.board.service.ClientService;
+import com.jcpdev.board.service.FollowService;
 import com.jcpdev.board.service.InterceptionService;
 
 @Controller
@@ -30,29 +32,37 @@ public class InterceptionController {
 
 	@Autowired
 	InterceptionService service;
-	
+
 	@Autowired
 	ClientRepository c_repository;
-	
+
 	@Autowired
 	ClientService c_service;
-	
+
+	@Autowired
+	FollowRepository f_repository;
+
+	@Autowired
+	FollowService f_service;
+
 	@RequestMapping(value = "/starting/interception", method = RequestMethod.GET)
-	   public String addinterception(HttpSession session, HttpServletRequest request, String instruction_client_id) {
-	      String url = request.getServletPath();
-	      if (url.equals("/starting/interception")) {
-	         Client user = (Client) session.getAttribute("client");
-	         Interception interception = new Interception(0, instruction_client_id,user.getClient_id());
-	         repository.save(service.toEntity(interception));
-	         return "redirect:/starting/";
-	      } else {
-	         Client user = (Client) session.getAttribute("client");
-	         Interception interception = new Interception(0, instruction_client_id,user.getClient_id());
-	         repository.save(service.toEntity(interception));
-	         return "redirect:/starting/userProfile?client_id=" + instruction_client_id;
-	      }
-	   }
-	
+	public String addinterception(HttpSession session, HttpServletRequest request, String instruction_client_id) {
+		String url = request.getServletPath();
+		if (url.equals("/starting/interception")) {
+			Client user = (Client) session.getAttribute("client");
+			Interception interception = new Interception(0, instruction_client_id, user.getClient_id());
+			repository.save(service.toEntity(interception));
+			f_repository.unFollow(user.getClient_id(), instruction_client_id);
+			return "redirect:/starting/";
+		} else {
+			Client user = (Client) session.getAttribute("client");
+			Interception interception = new Interception(0, instruction_client_id, user.getClient_id());
+			repository.save(service.toEntity(interception));
+			f_repository.unFollow(user.getClient_id(), instruction_client_id);
+			return "redirect:/starting/userProfile?client_id=" + instruction_client_id;
+		}
+	}
+
 	@RequestMapping(value = "/starting/interceptionlist", method = RequestMethod.GET)
 	public String follower(Model model, HttpSession session) {
 		Client user = (Client) session.getAttribute("client");
@@ -66,7 +76,5 @@ public class InterceptionController {
 		model.addAttribute("list", c_list);
 		return "interception";
 	}
-	
-	
 
 }
