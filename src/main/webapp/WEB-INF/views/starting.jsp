@@ -44,7 +44,6 @@
 <body>
    <jsp:include page="fragments/header.jsp"></jsp:include>
    <main>
-   <input type="hidden" id="focus" value="<%=request.getParameter("focus")%>">
    <br>
       <div class="feeds">
          <!-- story section -->
@@ -77,7 +76,6 @@
                </c:if>   
                </div>
             </c:forEach>
-         
             </header>
             <div class="single-item" id="focus_${board.whiteboard_no}">
                <div>
@@ -116,7 +114,7 @@
                <div class="description">
                   <p>${board.whiteboard_content }</p>
                </div>
-                  <p class="point-span" id="heart_count">${board.whiteboard_like }</p>
+                  <p class="point-span" id="heart_count_${board.whiteboard_no }">${board.whiteboard_like }</p>
             </div>
             <div class="hl"></div>
             <div class="comment">
@@ -180,12 +178,6 @@
    </main>
    <script type="text/javascript">
 $(document).ready(function(){
-	var va = $('#focus').val();
-	alert(va);	
-	
-	location.href='#focus'+va;
-	
-	
 	
   $('.single-item').slick({
       infinite : true,    //무한 반복 옵션    
@@ -212,19 +204,23 @@ $(document).ready(function(){
       vertical : false,      // 세로 방향 슬라이드 옵션
       draggable : true, 
    });
+
 });
 
    // 좋아요버튼 클릭시(좋아요 추가 또는 좋아요 취소)
       function like(idx){
-      let no = idx;
+      var data ={ no : idx  };
       $.ajax({
-         url: "/heart",
+        	url: "/heart",
             type: "POST",
-            data: { "no": no },
+            data: JSON.stringify(data),   
+            contentType : "application/json",
+            success    : function(data) {
+            	$("#heart_count_"+data.idx).text(data.like);
+            }
       });
-      //좋아요 수 리로드
-      location.href="/starting/main?focus="+idx;
    };
+
    
 </script>
 </body>

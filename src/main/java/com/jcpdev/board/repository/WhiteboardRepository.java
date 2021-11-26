@@ -26,18 +26,15 @@ public interface WhiteboardRepository extends JpaRepository<WhiteboardEntity, In
 
 	@Transactional
 	@Modifying
-	@Query("update WhiteboardEntity wb set wb.whiteboard_like = wb.whiteboard_like +1 where wb.whiteboard_no = :whiteboard_no")
+	@Query("update WhiteboardEntity wb set wb.whiteboard_like = (select count(*) from HeartEntity h where h.w_heart.whiteboard_no = :whiteboard_no) where wb.whiteboard_no = :whiteboard_no")
 	void updateLike(@Param("whiteboard_no") Integer whiteboard_no);
 
 	@Query("select wb from WhiteboardEntity wb where wb.whiteboard.client_id = :client_id ORDER BY whiteboard_no DESC")
 	List<WhiteboardEntity> findByWhiteboard_Client1(@Param("client_id") String client_id);
 
-	@Transactional
-	@Modifying
-	@Query("update WhiteboardEntity wb set wb.whiteboard_like = wb.whiteboard_like -1 where wb.whiteboard_no = :whiteboard_no")
-	void downdateLike(@Param("whiteboard_no") Integer whiteboard_no);
-	
 	@Query("select count(wb) from WhiteboardEntity wb where wb.whiteboard.client_id = :client_id")
-    String findBoardCount(@Param("client_id") String client_id);
+	String findBoardCount(@Param("client_id") String client_id);
 
+	@Query("select w from WhiteboardEntity w where w.whiteboard.client_id not in((select i.interception.client_id from InterceptionEntity i where i.interception_id = :client_id)) ORDER BY w.whiteboard_no DESC")
+	List<WhiteboardEntity> findByWhiteboard(@Param("client_id") String client_id);
 }

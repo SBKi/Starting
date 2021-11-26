@@ -9,9 +9,11 @@ import java.util.UUID;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -62,59 +64,52 @@ public class WhiteboardController {
 
 	HeartService h_service;
 
-	// 메인 페이지에서 게시물 불러오기
 	@RequestMapping({ "/starting/main", "/starting/", "/" })
-	public String getList(Model model, HttpServletRequest request) {
-		Client user = (Client) request.getSession().getAttribute("client");
-		List<Whiteboard> board_All_list = new ArrayList<Whiteboard>(); //
-		List<Client> client_All_list = new ArrayList<Client>();
-		List<Client> follow_list = new ArrayList<Client>();
-		List<Client> not_follow_list = new ArrayList<Client>();
-		List<WhiteboardEntity> board_All_list_et = repository.findByWhiteboard_Client(); // 전체 게시글 리스트
-		List<ClientEntity> client_All_list_et = c_repository.findByIdAll(); // 전체 회원 리스트
-		List<FollowEntity> follow_list_en = f_repository.findByMyFollow(user.getClient_id()); // 내가 팔로우한 리스트
+	   public String getList(Model model, HttpServletRequest request) {
+	      Client user = (Client) request.getSession().getAttribute("client");
+	      List<Whiteboard> board_All_list = new ArrayList<Whiteboard>(); //
+	      List<Client> client_All_list = new ArrayList<Client>();
+	      List<Client> follow_list = new ArrayList<Client>();
+	      List<Client> not_follow_list = new ArrayList<Client>();
+	      List<WhiteboardEntity> board_All_list_et = repository.findByWhiteboard(user.getClient_id()); // 전체 게시글 리스트
+	      List<ClientEntity> client_All_list_et = c_repository.findByIdAll(); // 전체 회원 리스트
+	      List<FollowEntity> follow_list_en = f_repository.findByMyFollow(user.getClient_id()); // 내가 팔로우한 리스트
 
-		// 전체 게시글 리스트
-		for (WhiteboardEntity temp : board_All_list_et) {
-			board_All_list.add(service.toDto(temp));
-		}
-		// 전체 회원 리스트
-		for (ClientEntity temp : client_All_list_et) {
-			client_All_list.add(c_service.toDto(temp));
-		}
-		// 내가 팔로우한 리스트
-		for (FollowEntity temp : follow_list_en) {
-			follow_list.add(c_service.toDto(c_repository.getById(f_service.toDto(temp).getFollowing_id())));
-		}
-		// 팔로우 안되어있는 리스트
-		boolean status = true; // 있는지 없는지 판단
-		for (Client client : client_All_list) {
-			for (Client follow : follow_list) {
-				// 전체 회원중 한명과 내가 팔로우한 사람들중 한명의 이름이 같으면
-				if (client.getClient_id().equals(follow.getClient_id())) {
-					status = false; // 상태 변경
-					break; // 반복문 중단
-				} else {
-					status = true;
-				}
-			}
-			// 만약에 회원이 내가 팔로우 한사람들 중에 없고 그아이디가 내 세션아이디랑 같지않으면
-			if (status && !(client.getClient_id().equals(user.getClient_id()))) {
-				not_follow_list.add(client); // 추가
-			}
-		}
-		model.addAttribute("client_All_list", client_All_list); // 전체 회원 리스트
-		model.addAttribute("follow_list", follow_list); // 내가 팔로우한 리스트
-		model.addAttribute("board_All_list", board_All_list); // 전체 게시글 리스트
-		model.addAttribute("not_follow_list", not_follow_list); // 팔로우 안되어있는 리스트
-		return "starting";
-	}
-
-	// 게시물올리기 페이지
-	@RequestMapping(value = "/starting/board", method = RequestMethod.GET)
-	public String board() {
-		return "board";
-	}
+	      // 전체 게시글 리스트
+	      for (WhiteboardEntity temp : board_All_list_et) {
+	         board_All_list.add(service.toDto(temp));
+	      }
+	      // 전체 회원 리스트
+	      for (ClientEntity temp : client_All_list_et) {
+	         client_All_list.add(c_service.toDto(temp));
+	      }
+	      // 내가 팔로우한 리스트
+	      for (FollowEntity temp : follow_list_en) {
+	         follow_list.add(c_service.toDto(c_repository.getById(f_service.toDto(temp).getFollowing_id())));
+	      }
+	      // 팔로우 안되어있는 리스트
+	      boolean status = true; // 있는지 없는지 판단
+	      for (Client client : client_All_list) {
+	         for (Client follow : follow_list) {
+	            // 전체 회원중 한명과 내가 팔로우한 사람들중 한명의 이름이 같으면
+	            if (client.getClient_id().equals(follow.getClient_id())) {
+	               status = false; // 상태 변경
+	               break; // 반복문 중단
+	            } else {
+	               status = true;
+	            }
+	         }
+	         // 만약에 회원이 내가 팔로우 한사람들 중에 없고 그아이디가 내 세션아이디랑 같지않으면
+	         if (status && !(client.getClient_id().equals(user.getClient_id()))) {
+	            not_follow_list.add(client); // 추가
+	         }
+	      }
+	      model.addAttribute("client_All_list", client_All_list); // 전체 회원 리스트
+	      model.addAttribute("follow_list", follow_list); // 내가 팔로우한 리스트
+	      model.addAttribute("board_All_list", board_All_list); // 전체 게시글 리스트
+	      model.addAttribute("not_follow_list", not_follow_list); // 팔로우 안되어있는 리스트
+	      return "starting";
+	   }
 
 	// 게시물 올리기
 	@RequestMapping(value = "/starting/board", method = RequestMethod.POST)
@@ -225,16 +220,18 @@ public class WhiteboardController {
 
 	@ResponseBody
 	@RequestMapping(value = "/heart", method = RequestMethod.POST)
-	public String heart(int no, HttpServletRequest request) {
-		
+	public JSONObject heart(@RequestBody JSONObject no, HttpServletRequest request) {
+		String temp = (String) no.get("no");
+		int num =  Integer.parseInt(temp);
 		List<Heart> heart_list = new ArrayList<Heart>();
-		List<HeartEntity> h_entity = h_repository.findByBoardNo(no);
+		List<HeartEntity> h_entity = h_repository.findByBoardNo(num);
 		for (HeartEntity h : h_entity)
 			heart_list.add(h_service.toDto(h));
 
 		HttpSession session = request.getSession();
 		Client user = (Client) session.getAttribute("client");
 
+		int cnt = service.toDto(repository.getById(num)).getWhiteboard_like();
 		boolean check = true;
 		Heart test = null;
 
@@ -248,14 +245,20 @@ public class WhiteboardController {
 
 		if (check) {
 			// 토글
-			h_repository.save(h_service.toEntity(Heart.builder().w_heart_whiteboard_no(no)
-					.c_heart_client_id(user.getClient_id()).heart_no(0).build()));
-			repository.updateLike(no);
+			h_repository.save(h_service.toEntity(Heart.builder().w_heart_whiteboard_no(num).c_heart_client_id(user.getClient_id()).heart_no(0).build()));
+			repository.updateLike(num);
+			cnt++;
 		} else {
 			h_repository.delete(h_service.toEntity(test));
-			repository.downdateLike(no);
+			repository.updateLike(num);
+			cnt--;
 		}
-		return "ss";
+		
+		
+		JSONObject data = new JSONObject();
+		data.put("idx", temp);
+		data.put("like", String.valueOf(cnt));
+		return data;
 	}
 
 }

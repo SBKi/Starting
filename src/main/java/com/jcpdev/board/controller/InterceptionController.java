@@ -36,22 +36,22 @@ public class InterceptionController {
 	
 	@Autowired
 	ClientService c_service;
-
+	
 	@RequestMapping(value = "/starting/interception", method = RequestMethod.GET)
-	public String addinterception(HttpSession session, HttpServletRequest request, String instruction_client_id) {
-		String url = request.getServletPath();
-		if (url.equals("/starting/interception")) {
-			Client user = (Client) session.getAttribute("client");
-			Interception interception = new Interception(0, user.getClient_id(), instruction_client_id);
-			repository.save(service.toEntity(interception));
-			return "redirect:/starting/";
-		} else {
-			Client user = (Client) session.getAttribute("client");
-			Interception interception = new Interception(0, user.getClient_id(), instruction_client_id);
-			repository.save(service.toEntity(interception));
-			return "redirect:/starting/userProfile?client_id=" + instruction_client_id;
-		}
-	}
+	   public String addinterception(HttpSession session, HttpServletRequest request, String instruction_client_id) {
+	      String url = request.getServletPath();
+	      if (url.equals("/starting/interception")) {
+	         Client user = (Client) session.getAttribute("client");
+	         Interception interception = new Interception(0, instruction_client_id,user.getClient_id());
+	         repository.save(service.toEntity(interception));
+	         return "redirect:/starting/";
+	      } else {
+	         Client user = (Client) session.getAttribute("client");
+	         Interception interception = new Interception(0, instruction_client_id,user.getClient_id());
+	         repository.save(service.toEntity(interception));
+	         return "redirect:/starting/userProfile?client_id=" + instruction_client_id;
+	      }
+	   }
 	
 	@RequestMapping(value = "/starting/interceptionlist", method = RequestMethod.GET)
 	public String follower(Model model, HttpSession session) {
