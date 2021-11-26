@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import javax.servlet.http.HttpSession;
+
 import org.json.simple.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -81,6 +83,25 @@ public class CommentController {
 		return "redirect:/starting/comment?whiteboard_no="+comment.getComment_whiteboard_no()+"&client_id="+wb_repository.getById(comment.getComment_whiteboard_no()).getWhiteboard().getClient_id();
 	}
 	
+	   @RequestMapping("starting/comment/delete")
+	   public String update(int comment_no) {
+	      CommentEntity comment = repository.getById(comment_no);
+	      int whiteboard_no = comment.getComment().getWhiteboard_no();
+	      String writer = wb_repository.getById(whiteboard_no).getWhiteboard().getClient_id();
+	      repository.deleteById(comment_no);
+	      return "redirect:/starting/comment?whiteboard_no="+whiteboard_no+"&client_id="+writer;
+	   }
+
 	
+	   @RequestMapping("starting/comment/modify")
+	   public String update(int modityNo, String modityText, String whiteboard_no,HttpSession session) {
+		   Client user = (Client)session.getAttribute("client");
+	      CommentEntity comment = repository.getById(modityNo);
+	      comment.setComment_content(modityText);
+	      System.out.println(comment);
+	      repository.save(comment);
+	      return "redirect:/starting/comment?whiteboard_no="+whiteboard_no+"&client_id="+user.getClient_id();
+	   }
+
 	
 }

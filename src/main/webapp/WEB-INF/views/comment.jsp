@@ -51,6 +51,9 @@
 .single-item {
 	height: 100%;
 }
+.modihd{
+display: none;
+}
 </style>
 </head>
 <body style="background-color: #fafafa;">
@@ -104,15 +107,14 @@
 											<c:forEach var="comment" items="${commentlist }" varStatus="status">
 											
 												<div role="button" class="ZyFrc" tabindex="0">
-													<li class="gElp9 rUo9f  PpGvg " role="menuitem"><div
-															class="P9YgZ">
+													<li class="gElp9 rUo9f  PpGvg " role="menuitem">
 															
 															<div class="C7I1f X7jCj">
 																<div class="Jv7Aj mArmR   pZp3x">
 																	<div class="RR-M-  TKzGu  " role="button" tabindex="-1">
 																		<canvas class="CfWVH" height="53" width="53" style="position: absolute; top: -5px; left: -5px; width: 42px; height: 42px;"></canvas>
 																		<a class="_2dbep qNELH kIKUG" href="/starting/userProfile?client_id=${comment.comment_id }"tabindex="0" style="width: 32px; height: 32px; display: block;">
-																				<img src="/img/${clientlist.get(status.count-1).client_img }" class="_6q-tv">ss</a>
+																				<img src="/img/${clientlist.get(status.count-1).client_img }" class="_6q-tv"></a>
 																	</div>
 																</div>
 																
@@ -122,13 +124,20 @@
 																			<span><a href="/starting/userProfile?client_id=${comment.comment_id }">${comment.comment_id}</a></span>
 																		</div>
 																	</h3>
-																	<span class="">${comment.comment_content} </span>
-																	<div
-																		class="             qF0y9          Igw0E     IwRSH      eGOV_         _4EzTm   pjcA_                                                         aGBdT                                                  ">
-																		<div
-																			class="_7UhW9  PIoXz       MMzan   _0PwGv         uL8Hv         ">
-																		</div>
+																		<span class="">${comment.comment_content} </span>
+																	<div id="modiComment_${comment.comment_no }" class="modihd modiDiv_${comment.comment_no }">
+																		<form action="comment/modify" method="post">
+																			<input type="text" name="modityText" value="${comment.comment_content }">
+																			<input type="hidden" name="modityNo" value="${comment.comment_no }">
+																			<input type="hidden" name="whiteboard_no" value="${comment.comment_whiteboard_no }">
+																			<input type="submit" value="수정하기">
+																		</form>
 																	</div>
+                                                   <c:if test="${client.client_id eq comment.comment_id }">
+                                                      <a onclick ="modity('${comment.comment_no }')">수정하기</a>
+                                                      <a href ="/starting/comment/delete?comment_no=${comment.comment_no }">삭제하기</a>
+                                                   </c:if>
+                                                   <div>
 																</div>
 																
 															</div>
@@ -366,6 +375,11 @@ follow_btnCansle.addEventListener('click', () => {
 });
 </script>
 	<script type="text/javascript">
+	function modity(comment_no){
+		$('#modiComment_'+comment_no).css('display','block');
+		
+	}
+	
 $(document).ready(function(){
   $('.single-items').slick({
 		infinite : true, 	//무한 반복 옵션	 

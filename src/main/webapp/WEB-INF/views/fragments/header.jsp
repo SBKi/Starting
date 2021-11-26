@@ -2,7 +2,15 @@
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-
+<style>
+@FONT-FACE {
+	font-family: 'monhwa';
+	src: url("${pageContext.request.contextPath}/resources/font/monhwa.ttf)";
+}
+* {
+	font-family: monhwa;
+}
+</style>
 <nav class="NXc7H jLuN9  ">
 	<div class=" R4HNP "></div>
 	<div class="_8MQSO  Cx7Bp">
