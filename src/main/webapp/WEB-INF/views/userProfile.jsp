@@ -19,6 +19,7 @@
 					<div class="profile_imgbox">
 						<div class="profile_imgbox1">
 							<div class="filebox">
+							<c:if test="${user.client_id eq client.client_id }">
 								<form action="userProfile" method="post" enctype="multipart/form-data">
 								<div class="filebox">
 									<img src="/img/${user.client_img }" class="rounded-circle" width="150" height="150" id="preview-image">
@@ -26,9 +27,13 @@
 										<input type="file" id="input-image" name="client_img">
 										<input type="hidden" name="client_id" value="${user.client_id}">
 								</div>
-								<c:if test="${user.client_id eq client.client_id }">
 										<input type="submit" class="imgChange" value="변경">
-								</c:if>		
+								</c:if>
+							<c:if test="${user.client_id ne client.client_id }">
+								<div class="filebox">
+									<img src="/img/${user.client_img }" class="rounded-circle" width="150" height="150" id="preview-image">
+								</div>										
+								</c:if>
 								</form>		
 							</div>
 						</div>
