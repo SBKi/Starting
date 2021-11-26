@@ -181,6 +181,7 @@ public class ClientController {
        Client user = (Client) session.getAttribute("client");
        String temp = null;
        if (client_id == null || client_id.equals("")) {
+    	   client_id = user.getClient_id();
           if (user == null || user.getClient_id().equals("")) {
              return "redirect:starting";
           } else {
