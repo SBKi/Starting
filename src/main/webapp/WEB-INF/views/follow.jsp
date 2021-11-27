@@ -55,7 +55,9 @@
 								</div>
 							</div>
 							<div class="follow_list_button">
-								<button type="button" class="follow_list_button" id="follow_update">팔로우</button>
+							<c:if test="${search_id eq client.client_id}">
+								<button type="button" class="follow_list_button" id="follow_update" onclick="location.href='/starting/un_follow?id=${list.client_id}'" >언팔로우</button>
+							</c:if>	
 							</div> 
 						</div>
 					</div>

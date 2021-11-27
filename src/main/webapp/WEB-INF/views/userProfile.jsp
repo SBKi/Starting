@@ -129,8 +129,6 @@
 					<c:if test="${user.client_id eq client.client_id }">
 						<button class="modal_button" tabindex="0" onclick="location.href='profile_update'">개인정보 변경</button>
 						<button class="modal_button" tabindex="0" onclick="location.href='board'">게시물 올리기</button>
-						<button class="modal_button" tabindex="0" onclick="location.href='follower'">팔로워 확인</button>
-						<button class="modal_button" tabindex="0" onclick="location.href='follower'">팔로우 확인</button>
 						<button class="modal_button" tabindex="0" onclick="location.href='message/rooms'">message 확인</button>
 						<button class="modal_button" tabindex="0" onclick="location.href='logout'">로그아웃</button>
 						<button id="modal_cansle" class="modal_button" tabindex="0">취소</button>
@@ -139,7 +137,7 @@
 					<!-- 상대방 정보 일경우 -->
 					<c:if test="${user.client_id ne client.client_id }">
 						<button class="modal_button" tabindex="0" onclick="location.href='/starting/send_follow?id=${user.client_id }'">팔로우 하기</button>
-						<button class="modal_button" tabindex="0" onclick="location.href='follows'">팔로우 취소</button>
+						<button class="modal_button" tabindex="0" onclick="location.href='/starting/un_following?id=${user.client_id}'">팔로우 취소</button>
 						<button class="modal_button" tabindex="0" onclick="location.href='/starting/message/room?id=${user.client_id}'">message 보내기</button>
 						<button class="modal_button" tabindex="0" onclick="location.href='/starting/interception?instruction_client_id=${user.client_id }'">차단하기</button>
 						<button id="modal_cansle" class="modal_button" tabindex="0">취소</button>

@@ -72,6 +72,12 @@ main {
     scrollbar-width: none;
 }
 
-.pbNvD1 {
-	
+.comment_update {
+	color: #0095f6;
+    background-color: #fff;
+    border-style: none;
+    height: 40px;
+    width: 60px;
+    padding: 4px;
+    font-weight: 700;
 }

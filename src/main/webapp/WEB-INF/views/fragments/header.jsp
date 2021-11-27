@@ -2,15 +2,7 @@
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-<style>
-@FONT-FACE {
-	font-family: 'monhwa';
-	src: url("${pageContext.request.contextPath}/resources/font/monhwa.ttf)";
-}
-* {
-	font-family: monhwa;
-}
-</style>
+
 <nav class="NXc7H jLuN9  ">
 	<div class=" R4HNP "></div>
 	<div class="_8MQSO  Cx7Bp">
@@ -27,14 +19,14 @@
 				</div>
 				<div>
 					<form class="d-flex" action="main" method="post"
-						name="formname" accept-charset="UTF-8">
-						<input class="form-control me-2 searchbox" type="text"
-							onkeyup="enterkey()" name="search_name" placeholder="검색">
-						<button id="header-search-button" class="header-search-button">
-							<img class="fixed-search-icon" alt="Search"
-								src="https://d1unjqcospf8gs.cloudfront.net/assets/home/base/header/search-icon-7008edd4f9aaa32188f55e65258f1c1905d7a9d1a3ca2a07ae809b5535380f14.svg">
-						</button>
-					</form>
+                  name="formname" accept-charset="UTF-8">
+                  <input class="form-control me-2 searchbox" type="text"
+                     onkeyup="enterkey()" name="search_name" placeholder="검색">
+                  <button id="header-search-button" class="header-search-button">
+                     <img class="fixed-search-icon" alt="Search"
+                        src="https://d1unjqcospf8gs.cloudfront.net/assets/home/base/header/search-icon-7008edd4f9aaa32188f55e65258f1c1905d7a9d1a3ca2a07ae809b5535380f14.svg">
+                  </button>
+               </form>
 				</div>
 				<div class="ctQZg">
 					<div class="_47KiJ">

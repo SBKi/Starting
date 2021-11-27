@@ -23,7 +23,7 @@ nav img {
 .profile{
 	flex-direction: row;
 	display: flex;
-	height: 245px;
+	height: 275px;
 	border-bottom: 1px solid #dbdbdb;
 }
 .profile_left {

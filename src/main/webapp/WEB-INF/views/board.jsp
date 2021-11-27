@@ -49,10 +49,10 @@
 							<div class="modal_right1">
 								<header>
 									<div class="profile-of-article">
-										<img class="img-profile1 pic" src="/resources/img/logo.jpg"> <input
-											type="hidden" value="whiteboard_client_id">
-										<h3 class="userID main-id point-span" style="margin-top: 8px;">${client.client_id}</h3>
-										<h4 class="userID main-id point-span" style="margin-top: 8px;">${client.client_name}</h4>
+										<img class="img-profile1 pic" src="/img/${client.client_img }"> 
+										<input	type="hidden" value="whiteboard_client_id">
+										<h3 class="userID main-id point-span" style="margin-top: 8px;">${client.client_name}</h3>
+										<span class="userID main-id point-span" style="margin-top: 8px; color:gray;">${client.client_id}</span>
 									</div>
 								</header>
 								<div>

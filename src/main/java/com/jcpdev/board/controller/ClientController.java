@@ -288,13 +288,17 @@ public class ClientController {
 		return result;
 	}
 
+	@SuppressWarnings("unchecked")
 	@ResponseBody
 	@RequestMapping(value = "/starting/checkId", method = RequestMethod.POST)
-	public String idck(@RequestBody String id) {
-		if (repository.getById(id) == null) {
-			return "0";
+	public JSONObject idck(@RequestBody JSONObject data) {
+		JSONObject result = new JSONObject();
+		if (repository.mypage(String.valueOf(data.get("id"))).isEmpty()) {
+			result.put("data", 0);
+			return result;
 		} else {
-			return "32";
+			result.put("data", 32);
+			return result;
 		}
 
 	}

@@ -41,18 +41,22 @@
 								<div class="single-item">
 									<div class="">
 										<ul class="image_list single-item">
-										<li file="${board.whiteboard_img1 }"><img class="item_img"
-											src="/img/${board.whiteboard_img1 }"> <a href="#"
-											class="cvf_delete_image" title="Cancel"> <img
-												class="delete-btn" src="/resources/img/delete.png"></a></li>
-										<li file="${board.whiteboard_img2 }"><img class="item_img"
-											src="/img/${board.whiteboard_img2 }"> <a href="#"
-											class="cvf_delete_image" title="Cancel"> <img
-												class="delete-btn" src="/resources/img/delete.png"></a></li>
-										<li file="${board.whiteboard_img3 }"><img class="item_img"
-											src="/img/${board.whiteboard_img3 }"> <a href="#"
-											class="cvf_delete_image" title="Cancel"> <img
-												class="delete-btn" src="/resources/img/delete.png"></a></li>
+											<li file="${board.whiteboard_img1 }"><img
+												class="item_img" src="/img/${board.whiteboard_img1 }">
+												<a href="#" class="cvf_delete_image" title="Cancel"> <img
+													class="delete-btn" src="/resources/img/delete.png"></a></li>
+											<c:if test="${board.whiteboard_img2 eq 'null' }">
+												<li file="${board.whiteboard_img2 }"><img
+													class="item_img" src="/img/${board.whiteboard_img2 }">
+													<a href="#" class="cvf_delete_image" title="Cancel"> <img
+														class="delete-btn" src="/resources/img/delete.png"></a></li>
+											</c:if>
+											<c:if test="${board.whiteboard_img3 eq 'null' }">
+												<li file="${board.whiteboard_img3 }"><img
+													class="item_img" src="/img/${board.whiteboard_img3 }">
+													<a href="#" class="cvf_delete_image" title="Cancel"> <img
+														class="delete-btn" src="/resources/img/delete.png"></a></li>
+											</c:if>
 										</ul>
 									</div>
 								</div>
@@ -60,10 +64,10 @@
 							<div class="modal_right1">
 								<header>
 									<div class="profile-of-article">
-										<img class="img-profile1 pic" src="/resources/img/logo.jpg"> <input
-											type="hidden" value="whiteboard_client_id">
-										<h3 class="userID main-id point-span" style="margin-top: 8px;">${board.whiteboard_client_id}</h3>
-										<h4 class="userID main-id point-span" style="margin-top: 8px;">${client.client_name}</h4>
+										<img class="img-profile1 pic" src="/img/${client.client_img }"> 
+										<input	type="hidden" value="whiteboard_client_id">
+										<h3 class="userID main-id point-span" style="margin-top: 8px;">${client.client_name}</h3>
+										<span class="userID main-id point-span" style="margin-top: 8px; color:gray;">${client.client_id}</span>
 									</div>
 									<img class="icon-react icon-more"
 										src="https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/bearu/more.png"
@@ -84,10 +88,14 @@
 															</div>
 															<form action="/starting/update" method="post"
 																enctype="multipart/form-data">
-																<input type = "hidden" name = "whiteboard_client_id" value="${client.client_id }">
-																<input type = "hidden" name = "whiteboard_no" value="${board.whiteboard_no }">
-																<input type = "hidden" name = "whiteboard_count" value="${board.whiteboard_count }">
-																<input type = "hidden" name = "whiteboard_like" value="${board.whiteboard_like }">
+																<input type="hidden" name="whiteboard_client_id"
+																	value="${client.client_id }"> <input
+																	type="hidden" name="whiteboard_no"
+																	value="${board.whiteboard_no }"> <input
+																	type="hidden" name="whiteboard_count"
+																	value="${board.whiteboard_count }"> <input
+																	type="hidden" name="whiteboard_like"
+																	value="${board.whiteboard_like }">
 																<div class="regist_box">
 																	<div class="">
 																		<dl class="regist_image_dl" id="images_box">
@@ -102,26 +110,22 @@
 																				<div class="container-fluid">
 																					<div class="col-md-6">
 																						<div class="form-group">
-																							<label for="input_img1"> 
-																								<img style="width: 100px; height: 100px; display: flex;"
-																								src="https://ccimage.hellomarket.com/web/2018/auto/img_car_pic_basic.png">
-																							</label>
-																							 	<input type="file" name="whiteboard_img1" id="input_img1" class=" user_picked_files"
-																								accept="image/*" required />
-																							<label for="input_img2"> 
-																								<img
+																							<label for="input_img1"> <img
 																								style="width: 100px; height: 100px; display: flex;"
 																								src="https://ccimage.hellomarket.com/web/2018/auto/img_car_pic_basic.png">
-																							</label> 
-																								<input type="file" name="whiteboard_img2"
+																							</label> <input type="file" name="whiteboard_img1"
+																								id="input_img1" class=" user_picked_files"
+																								accept="image/*" required /> <label
+																								for="input_img2"> <img
+																								style="width: 100px; height: 100px; display: flex;"
+																								src="https://ccimage.hellomarket.com/web/2018/auto/img_car_pic_basic.png">
+																							</label> <input type="file" name="whiteboard_img2"
 																								id="input_img2" class=" user_picked_files"
-																								accept="image/*" />
-																							<label for="input_img3">
+																								accept="image/*" /> <label for="input_img3">
 																								<img
 																								style="width: 100px; height: 100px; display: flex;"
 																								src="https://ccimage.hellomarket.com/web/2018/auto/img_car_pic_basic.png">
-																							</label>
-																								<input type="file" name="whiteboard_img3"
+																							</label> <input type="file" name="whiteboard_img3"
 																								id="input_img3" class=" user_picked_files"
 																								accept="image/*" />
 																						</div>

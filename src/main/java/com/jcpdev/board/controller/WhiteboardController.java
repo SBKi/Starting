@@ -63,7 +63,7 @@ public class WhiteboardController {
 	@Autowired
 	HeartService h_service;
 
-	@RequestMapping({ "/starting/main", "/starting/", "/" })
+	@RequestMapping({ "/starting/main", "/starting/", "/","/starting" })
 	public String getList(Model model, HttpServletRequest request,String search_name) {
 		Client user = (Client) request.getSession().getAttribute("client");
 		List<Whiteboard> board_All_list = new ArrayList<Whiteboard>(); //
@@ -177,7 +177,6 @@ public class WhiteboardController {
 		WhiteboardEntity entity = repository.findById(whiteboard_no).get();
 		Whiteboard dto = service.toDto(entity);
 		model.addAttribute("board", dto);
-
 		return "boardUpdate";
 	}
 

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -51,8 +51,9 @@
 .single-item {
 	height: 100%;
 }
-.modihd{
-display: none;
+
+.modihd {
+	display: none;
 }
 </style>
 </head>
@@ -68,118 +69,101 @@ display: none;
 								<div class="modal_left1">
 									<div class="single-items">
 										<div>
-											<img style="height: 475px;"
-												src="/img/${whiteboard.whiteboard_img1 }">
+											<img style="height: 475px;"	src="/img/${whiteboard.whiteboard_img1 }">
 										</div>
-											<c:if test="${whiteboard.whiteboard_img2 != null }">								
-										<div>
-											<img style="height: 475px;"
-												src="/img/${whiteboard.whiteboard_img2 }">
-										</div>
-											</c:if>	
-											<c:if test="${whiteboard.whiteboard_img3 != null }">								
-										<div>
-											<img style="height: 475px;"
-												src="/img/${whiteboard.whiteboard_img3 }">
-										</div>
-											</c:if>	
+										<c:if test="${whiteboard.whiteboard_img2 != null }">
+											<div>
+												<img style="height: 475px;"	src="/img/${whiteboard.whiteboard_img2 }">
+											</div>
+										</c:if>
+										<c:if test="${whiteboard.whiteboard_img3 != null }">
+											<div>
+												<img style="height: 475px;"	src="/img/${whiteboard.whiteboard_img3 }">
+											</div>
+										</c:if>
 									</div>
 								</div>
-								<div class="modal_right1"
-									style="overflow: hidden;">
+								<div class="modal_right1" style="overflow: hidden;">
 									<header>
 										<div class="profile-of-article">
-											<img class="img-profile1 pic"
-												src="${pageContext.request.contextPath}/resources/img/logo.jpg"
-												onclick="location.href='/starting/userProfile?${whiteboard.whiteboard_client_id}'">
-											<h3 class="userID main-id point-span"
-												style="margin-top: 8px;">${whiteboard.whiteboard_client_id }</h3>
-
-											<button id="follow_update" class="follow_list_button" style="margin-top: 8px;">팔로우</button>
+											<img class="img-profile1 pic" src="/img/${board_writer.client_img }" onclick="location.href='/starting/userProfile?${whiteboard.whiteboard_client_id}'">
+											<h3 class="userID main-id point-span" style="margin-top: 8px;">${board_writer.client_name }</h3>
+												<span style="margin-top: 8px; color:gray;">(${whiteboard.whiteboard_client_id })</span>
 										</div>
-										<img class="icon-react icon-more" id="option"
-											src="https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/bearu/more.png"
-											alt="more">
+										<img class="icon-react icon-more" id="option" src="https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/bearu/more.png">
 									</header>
 									<div>
 										<div class="EtaWk">
-											<ul class="XQXOT    pXf-y ">
-											<c:forEach var="comment" items="${commentlist }" varStatus="status">
-											
-												<div role="button" class="ZyFrc" tabindex="0">
-													<li class="gElp9 rUo9f  PpGvg " role="menuitem">
-															
+											<ul class="XQXOT    pXf-y " style="height: 350px;" id="comment_">
+												<c:forEach var="comment" items="${commentlist }" varStatus="status">
+													<div role="button" class="ZyFrc" tabindex="0">
+														<li class="gElp9 rUo9f  PpGvg " role="menuitem">
 															<div class="C7I1f X7jCj">
 																<div class="Jv7Aj mArmR   pZp3x">
 																	<div class="RR-M-  TKzGu  " role="button" tabindex="-1">
 																		<canvas class="CfWVH" height="53" width="53" style="position: absolute; top: -5px; left: -5px; width: 42px; height: 42px;"></canvas>
-																		<a class="_2dbep qNELH kIKUG" href="/starting/userProfile?client_id=${comment.comment_id }"tabindex="0" style="width: 32px; height: 32px; display: block;">
-																				<img src="/img/${clientlist.get(status.count-1).client_img }" class="_6q-tv"></a>
+																		<a class="_2dbep qNELH kIKUG" href="/starting/userProfile?client_id=${comment.comment_id }"	tabindex="0" style="width: 32px; height: 32px; display: block;">
+																			<img src="/img/${clientlist.get(status.count-1).client_img }"class="_6q-tv">
+																		</a>
 																	</div>
 																</div>
-																
+
 																<div class="C4VMK">
-																	<h3 class="_6lAjh ">
 																		<div>
-																			<span><a href="/starting/userProfile?client_id=${comment.comment_id }">${comment.comment_id}</a></span>
+																	<h3 class="_6lAjh ">
+																			<span><a style="font-size: 15px;"  href="/starting/userProfile?client_id=${comment.comment_id }">${clientlist.get(status.count-1).client_name }</a></span>
 																		</div>
 																	</h3>
-																		<span class="">${comment.comment_content} </span>
-																	<div id="modiComment_${comment.comment_no }" class="modihd modiDiv_${comment.comment_no }">
+																	<span class="">${comment.comment_content} </span>
+																	<div id="modiComment_${comment.comment_no }"
+																		class="modihd modiDiv_${comment.comment_no }">
 																		<form action="comment/modify" method="post">
-																			<input type="text" name="modityText" value="${comment.comment_content }">
-																			<input type="hidden" name="modityNo" value="${comment.comment_no }">
-																			<input type="hidden" name="whiteboard_no" value="${comment.comment_whiteboard_no }">
-																			<input type="submit" value="수정하기">
+																			<input type="text" name="modityText"
+																				value="${comment.comment_content }"> <input
+																				type="hidden" name="modityNo"
+																				value="${comment.comment_no }"> <input 
+																				type="hidden" name="whiteboard_no"
+																				value="${comment.comment_whiteboard_no }"> <input class="comment_update"
+																				type="submit" value="수정하기">
 																		</form>
 																	</div>
-                                                   <c:if test="${client.client_id eq comment.comment_id }">
-                                                      <a onclick ="modity('${comment.comment_no }')">수정하기</a>
-                                                      <a href ="/starting/comment/delete?comment_no=${comment.comment_no }">삭제하기</a>
-                                                   </c:if>
-                                                   <div>
+																	<c:if test="${client.client_id eq comment.comment_id }">
+																	<div style="display: flex; flex-direction: row;">
+																		<svg  class="_8-yf5 " onclick="modity('${comment.comment_no }')"
+																			color="#262626" fill="#262626" height="24" role="img"
+																			viewBox="0 0 24 24" width="24">
+																			<path
+																				d="M12.202 3.203H5.25a3 3 0 00-3 3V18.75a3 3 0 003 3h12.547a3 3 0 003-3v-6.952"
+																				fill="none" stroke="currentColor"
+																				stroke-linecap="round" stroke-linejoin="round"
+																				stroke-width="2"></path>
+																			<path
+																				d="M10.002 17.226H6.774v-3.228L18.607 2.165a1.417 1.417 0 012.004 0l1.224 1.225a1.417 1.417 0 010 2.004z"
+																				fill="none" stroke="currentColor"
+																				stroke-linecap="round" stroke-linejoin="round"
+																				stroke-width="2"></path>
+																			<line fill="none" stroke="currentColor"
+																				stroke-linecap="round" stroke-linejoin="round"
+																				stroke-width="2" x1="16.848" x2="20.076" y1="3.924"
+																				y2="7.153"></line></svg>
+																			<img style="width: 20px; height: 20px; margin-left: 12px;" onclick="location.href='/starting/comment/delete?comment_no=${comment.comment_no }'"
+																				src="${pageContext.request.contextPath}/resources/img/x.png">
+																		</div>
+																	</c:if>
 																</div>
-																
 															</div>
-														</div></li>
-												</div>
+														</li>
+													</div>
 												</c:forEach>
 											</ul>
 										</div>
 									</div>
-									<div class="icons-react">
-										<div class="icons-left">
-										<c:if test="${client.client_id ne whiteboard.whiteboard_client_id }">
-											<c:if test="${!heartCheck}">
-												<i class="fa fa-heart-o heart" style="cursor: pointer;"
-													onclick="like(heart)"></i>
-												<span class="visually-hiddewn"></span>
-											</c:if>
-											<!-- 이미 관심등록 되어있음 -->
-											<c:if test="${heartCheck }">
-												<i class="fa heart heart-clicked fa-heart"
-													style="color: red; cursor: pointer;"
-													onclick="unLike(heart)"></i>
-												<span class="visually-hidden"></span>
-											</c:if>
-												<img class="icon-react" onclick="location.href='/starting/message/room?id=${board.whiteboard_client_id}'"  src="/resources/img/dm.png">
-										</c:if>
-										</div>
-									</div>
-									<div class="reaction">
-										<div class="liked-people">
-											<p>
-												<span class="point-span" id="heart_count">0</span>
-											</p>
-										</div>
-									</div>
 									<div class="comment">
 										<form action="comment/save" method="post">
-											<input type="hidden" name="comment_no" value="0">
-											<input type="hidden" name="comment_whiteboard_no" value="${whiteboard.whiteboard_no }">
+											<input type="hidden" name="comment_no" value="0"> 
+											<input type="hidden" name="comment_whiteboard_no" value="${whiteboard.whiteboard_no }"> 
 											<input type="hidden" name="comment_id" value="${client.client_id }">
-											<input id="input-comment" name="comment_content" style="width: 420px;"
-												class="input-comment" type="text" placeholder="댓글 달기...">
+											<input id="input-comment" name="comment_content"style="width: 400px; margin-left: 16px;" class="input-comment" type="text"	placeholder="댓글 달기...">
 											<button type="submit" class="submit-comment">게시</button>
 										</form>
 									</div>
@@ -206,11 +190,12 @@ display: none;
 			<div class="profile_board_imgs">
 				<div class="board_imgs">
 					<c:forEach var="board" items="${board_list }">
-					<div>
-						<img class="board_img img" onclick="location.href='/starting/comment?whiteboard_no=${board.whiteboard_no}&client_id=${board.whiteboard_client_id }'"
-							src="/img/${board.whiteboard_img1 }">
-					</div>
-				</c:forEach>
+						<div>
+							<img class="board_img img"
+								onclick="location.href='/starting/comment?whiteboard_no=${board.whiteboard_no}&client_id=${board.whiteboard_client_id }'"
+								src="/img/${board.whiteboard_img1 }">
+						</div>
+					</c:forEach>
 				</div>
 			</div>
 		</div>
@@ -221,57 +206,21 @@ display: none;
 				<div class="piCib">
 					<div class="modal_button_body">
 						<!--내 글 이면-->
-						<c:if test="${client.client_id eq whiteboard.whiteboard_client_id}">
-						<button class="modal_button" tabindex="0"
-							onclick="location.href='delete?whiteboard_no=${whiteboard.whiteboard_no}'">삭제하기</button>
-						<button class="modal_button" tabindex="0"
-							onclick="location.href='update?whiteboard_no=${whiteboard.whiteboard_no}'">수정하기</button>
-						<button id="modal_cansle" class="modal_button" tabindex="0">취소</button>
+						<c:if
+							test="${client.client_id eq whiteboard.whiteboard_client_id}">
+							<button class="modal_button" tabindex="0"
+								onclick="location.href='delete?whiteboard_no=${whiteboard.whiteboard_no}'">삭제하기</button>
+							<button class="modal_button" tabindex="0"
+								onclick="location.href='update?whiteboard_no=${whiteboard.whiteboard_no}'">수정하기</button>
+							<button id="modal_cansle" class="modal_button" tabindex="0">취소</button>
 						</c:if>
 						<!-- 상대방 글 이면 -->
-						<c:if test="${client.client_id ne whiteboard.whiteboard_client_id}">
-						<button class="modal_button" id="report_option" tabindex="0"
-							onclick="report_modal">신고하기</button>
-						<button class="modal_button" id="meaning_option" tabindex="0"
-							onclick="meaning_modal">차단하기</button>
-						<button id="modal_cansle" class="modal_button" tabindex="0">취소</button>
+						<c:if
+							test="${client.client_id ne whiteboard.whiteboard_client_id}">
+							<button class="modal_button" id="meaning_option" tabindex="0"
+								onclick="meaning_modal">차단하기</button>
+							<button id="modal_cansle" class="modal_button" tabindex="0">취소</button>
 						</c:if>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="RnEpo  Yx5HN " id="report_modal">
-		<div class="pbNvD  fPMEg" style="margin-top: 50px;">
-			<div class="_1XyCr  ">
-				<div class="piCib">
-					<div class="modal_button_body">
-						<h3>신고</h3>
-						<h3>이 게시물을 신고하는 이유</h3>
-						<button class="modal_button" tabindex="0" onclick="meaning_modal">스팸</button>
-						<button class="modal_button" tabindex="0"
-							onclick="location.href='/report/${1}'">나체 이미지 또는 성적 행위</button>
-						<button class="modal_button" tabindex="0"
-							onclick="location.href='/report/${2}'">혐오발언 또는 상징</button>
-						<button class="modal_button" tabindex="0"
-							onclick="location.href='/report/${3}'">폭력 또는 위험한 단체</button>
-						<button class="modal_button" tabindex="0"
-							onclick="location.href='/report/${4}'">불법 또는 규제 상품 판매</button>
-						<button class="modal_button" tabindex="0"
-							onclick="location.href='/report/${5}'">따돌림 또는 괴롭힘</button>
-						<button class="modal_button" tabindex="0"
-							onclick="location.href='/report/${6}'">지적 재산권 침해</button>
-						<button class="modal_button" tabindex="0"
-							onclick="location.href='/report/${7}'">자살 또는 자해</button>
-						<button class="modal_button" tabindex="0"
-							onclick="location.href='/report/${8}'">자살 또는 자해</button>
-						<button class="modal_button" tabindex="0"
-							onclick="location.href='/report/${9}'">사기 또는 거짓</button>
-						<button class="modal_button" tabindex="0"
-							onclick="location.href='/report/${10}'">거짓 정보</button>
-						<button class="modal_button" tabindex="0"
-							onclick="location.href='/report/${11}'">마음에 들지 않습니다</button>
-						<button id="report_modal_cansle" class="modal_button" tabindex="0">취소</button>
 					</div>
 				</div>
 			</div>
@@ -305,27 +254,9 @@ display: none;
 			</div>
 		</div>
 	</div>
-	<div class="RnEpo  Yx5HN " id="follow_modal">
-		<div class="pbNvD1  fPMEg">
-			<div class="_1XyCr  ">
-				<div class="piCib">
-					<div class="modal_button_body">
-						<div class="user_profile">
-							<img class="user_img" src="${pageContext.request.contextPath}/resources/img/person.png">
-							<div>
-								<h4 class="h4">{client_id} 님을 팔로우 하시겠습니까?</h4>
-							</div>
-						</div>
-						<button class="modal_button" tabindex="0" style="font-weight: 700; "
-							onclick="location.href='update'"><span>팔로우 하기</span></button>
-						<button id="follow_modal_cansle" class="modal_button" tabindex="0">취소</button>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
 	<script>
 	/*옵션 모달  */
+$("#comment_").scrollTop($("#comment_")[0].scrollHeight);	
 const modal = document.querySelector('#modal'); 
 const btnOpenPopup = document.getElementById('option');
 const btnCansle = document.querySelector('#modal_cansle');
@@ -336,18 +267,6 @@ btnOpenPopup.addEventListener('click', () => {
 	
 btnCansle.addEventListener('click', () => { 
 	modal.style.display = 'none';
-});	
-	/*신고옵션 모달  */
-const report_modal = document.querySelector('#report_modal'); 
-const report_btnOpenPopup = document.getElementById('report_option');
-const report_btnCansle = document.querySelector('#report_modal_cansle');
-
-report_btnOpenPopup.addEventListener('click', () => { 
-	modal.style.display = 'none';
-	report_modal.style.display = 'block';
-	});
-report_btnCansle.addEventListener('click', () => { 
-	report_modal.style.display = 'none';
 });	
 	/*차단 모달  */
 const meaning_modal = document.querySelector('#meaning_modal'); 
@@ -361,18 +280,6 @@ meaning_btnOpenPopup.addEventListener('click', () => {
 meaning_btnCansle.addEventListener('click', () => { 
 	meaning_modal.style.display = 'none';
 });	
-/*팔로우 모달  */
-const follow_modal = document.querySelector('#follow_modal'); 
-const follow_btnOpenPopup = document.getElementById('follow_update');
-const follow_btnCansle = document.querySelector('#follow_modal_cansle');
-
-follow_btnOpenPopup.addEventListener('click', () => { 
-	follow_modal.style.display = 'block';
-	});
-	
-follow_btnCansle.addEventListener('click', () => { 
-	follow_modal.style.display = 'none';
-});
 </script>
 	<script type="text/javascript">
 	function modity(comment_no){

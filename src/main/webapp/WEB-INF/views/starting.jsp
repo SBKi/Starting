@@ -101,13 +101,13 @@
                <c:forEach var="item" items="${likelist }">
                	<c:if test="${not loop}">
                		<c:if test="${board.whiteboard_no eq item.w_heart_whiteboard_no }">
-                        <i id = "heart" class="fa fa-heart heart" style="cursor: pointer;" onclick="like('${board.whiteboard_no}',this)"></i>
+                        <i id = "heart" class="fa fa-heart heart" style="cursor: pointer; color: red;" onclick="like('${board.whiteboard_no}',this)"></i>
                         <c:set var="loop" value="true"/>
                		</c:if>
                	</c:if>
                	</c:forEach>
                	<c:if test="${not loop}">
-                        <i id = "heart" class="fa fa-heart-o heart" style="cursor: pointer;" onclick="like('${board.whiteboard_no}',this)"></i>
+                        <i id = "heart" class="fa fa-heart-o heart" style="cursor: pointer; color: red;" onclick="like('${board.whiteboard_no}',this)"></i>
                	</c:if>
                   <img class="icon-react" onclick="location.href='/starting/comment?whiteboard_no=${board.whiteboard_no}&client_id=${board.whiteboard_client_id }'"
                      src="https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/bearu/comment.png">
@@ -120,9 +120,9 @@
             <div class="reaction">
                
                <div class="description">
-                  <p>${board.whiteboard_content }</p>
+                  <span class="point-span" style="margin-left: 11px;"  id="heart_count_${board.whiteboard_no }">${board.whiteboard_like }</span>
                </div>
-                  <p class="point-span" id="heart_count_${board.whiteboard_no }">${board.whiteboard_like }</p>
+                  <p>${board.whiteboard_content }</p>
             </div>
             <div class="hl"></div>
             <div class="comment">

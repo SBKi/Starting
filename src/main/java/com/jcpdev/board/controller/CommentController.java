@@ -70,6 +70,9 @@ public class CommentController {
 	        wb_list.forEach(item-> {
 	        board_list.add(wb_service.toDto(item));
 	        });
+	        
+	        Client writer = c_service.toDto(c_repository.getById(client_id));
+	        model.addAttribute("board_writer",writer);
 	        model.addAttribute("board_list", board_list);
 	      return "comment";
 	   }
@@ -97,10 +100,10 @@ public class CommentController {
 	   public String update(int modityNo, String modityText, String whiteboard_no,HttpSession session) {
 		   Client user = (Client)session.getAttribute("client");
 	      CommentEntity comment = repository.getById(modityNo);
+	      WhiteboardEntity whiteboard_en = wb_repository.getOne(Integer.parseInt(whiteboard_no));
 	      comment.setComment_content(modityText);
-	      System.out.println(comment);
 	      repository.save(comment);
-	      return "redirect:/starting/comment?whiteboard_no="+whiteboard_no+"&client_id="+user.getClient_id();
+	      return "redirect:/starting/comment?whiteboard_no="+whiteboard_no+"&client_id="+whiteboard_en.getWhiteboard().getClient_id();
 	   }
 
 	
